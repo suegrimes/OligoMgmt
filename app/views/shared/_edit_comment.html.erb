@@ -1,0 +1,22 @@
+<br />
+
+<% form_tag :action => :update, :id => c.id do%>
+
+<fieldset class="form">
+<legend>Edit Comment:</legend>
+
+  <table class="form">
+    <tr>
+	  <th>Title:</th><td><%= text_field_tag 'comment[title]', c.title, :size => 50 %></td>
+    </tr>
+    <tr>
+      <th>Text:</th><td><%= text_area_tag 'comment[comment]', c.comment, :cols=>60, :rows=>3 %><td>
+    </tr>	
+    <tr>
+      <td colspan="2" align="center"><%= submit_tag "Update comment"%></td>
+    </tr>
+  </table>  
+</fieldset>
+
+<% end %>
+

@@ -1,0 +1,45 @@
+<% headings = %w{Date Project chr_num chr_target_start L_sel_start L_sel_end R_sel_start R_sel_end amplicon_length
+                  n_sites_start left_site_used right_site_used polarity enz selector 5prime_end_20b_sel 3prime_20b_sel
+	              amplicon_seq roi_ids_of_selectors U_selector oligo_id oligo_name flags annot paralog WG_U0 WG_U1
+                  version_id} %>					  
+<% if controller.controller_name == 'synth_oligos' then headings.push('synth_id') end %>
+	
+<%= FasterCSV.generate_line(headings, {:col_sep => "\t", :row_sep => "\n"}) -%>
+  
+<% for oligo_design in @oligo_designs %>
+    <% oligo_id = (controller.controller_name == 'synth_oligos' ? oligo_design.oligo_id : oligo_design.id )%>
+	<% paralog_cnt = (oligo_design.oligo_annotation.nil? ? ' ' : oligo_design.oligo_annotation.paralog_cnt)%>
+	<% wg_u0_cnt   = (oligo_design.oligo_annotation.nil? ? ' ' : oligo_design.oligo_annotation.wg_u0_cnt)%>
+	<% wg_u1_cnt   = (oligo_design.oligo_annotation.nil? ? ' ' : oligo_design.oligo_annotation.wg_u1_cnt)%>
+    <% data = ["#{Date.today.to_s}", 
+               "NA",
+               oligo_design.chromosome_nr,
+               oligo_design.chr_target_start,
+               oligo_design.sel_left_start_rel_pos, 
+               oligo_design.sel_left_end_rel_pos, 
+               oligo_design.sel_right_start_rel_pos, 
+               oligo_design.sel_right_end_rel_pos,
+               oligo_design.amplicon_length, 
+               oligo_design.sel_n_sites_start, 
+               oligo_design.sel_left_site_used,
+               oligo_design.sel_right_site_used, 
+               oligo_design.sel_polarity, 
+               oligo_design.enzyme_code,  
+               oligo_design.selector, 
+               oligo_design.sel_5prime, 
+               oligo_design.sel_3prime, 
+               oligo_design.amplicon_seq, 
+               oligo_design.roi_ids_of_selectors, 
+               oligo_design.selector_useq, 
+	           oligo_id, 
+               oligo_design.oligo_name,
+               oligo_design.annotation_codes,
+               oligo_design.other_annotations,
+               paralog_cnt, 
+               wg_u0_cnt, 
+               wg_u1_cnt, 
+               version_name(oligo_design.version_id)] %>
+    <% if controller.controller_name == 'synth_oligos' then data.push(oligo_design.id) end %>		
+	
+    <%= FasterCSV.generate_line(data, {:col_sep => "\t", :row_sep => "\n"}) -%>
+<% end %>

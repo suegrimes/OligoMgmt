@@ -1,0 +1,78 @@
+<p>
+  <b>Oligo Name:</b>
+  <%=h oligo_design.oligo_name %>
+</p>
+
+<table class="border">
+  <tr>
+	<th>ID</th>
+    <th>Chromosome</th>    
+	<th>Amplicon Length</th>       
+	<th>Amplicon Start</th>      
+	<th>Amplicon End</th> 
+	<th>Version/Build</th>      
+  </tr>
+  
+  <tr>
+  	<td>
+  	<% if controller.controller_name == 'synth_oligos' %>
+	    <%=oligo_design.oligo_id %>
+	<% else %>
+	    <%=oligo_design.id %>
+	<% end %>
+	</td>
+  	<td><%=oligo_design.chromosome_nr %></td>
+	<td><%=oligo_design.amplicon_length %></td>
+	<td><%=oligo_design.amplicon_chr_start_pos %></td>
+	<td><%=oligo_design.amplicon_chr_end_pos %></td>
+	<td><%=h version_name(oligo_design.version_id) %></td>
+  </tr>
+</table>
+
+<table class="border">  
+  <tr>
+  	<th>5prime Selector</th>
+	<th>Vector</th>
+	<th>3prime Selector</th>
+	<th>Polarity</th>
+  </tr>
+  <tr>
+    <td><%=h oligo_design.sel_5prime %></td>
+	<td><%=h oligo_design.vector %></td>
+	<td><%=h oligo_design.sel_3prime %></td>
+	<td align=center><%=h oligo_design.polarity %></td>
+  </tr>
+</table>
+
+<table class="border">
+  <tr>
+  	<th colspan=2>Annotations</th>
+	<th colspan=3>Repeat counts</th>
+  </tr>
+  <tr>
+  	<th>Flagged</th>
+	<th>Other</th>
+	<th>Paralogs</th>
+	<th>WG U0</th>
+	<th>WG U1</th>
+  </tr>
+  <tr>
+  	<td><%=h oligo_design.annotation_codes %></td>
+	<td><%=h oligo_design.other_annotations %></td>
+	
+	<% if controller.controller_name == 'synth_oligos' %>
+	  <%= render :partial => 'oligo_designs/annotations', :locals => {:oligo_annotation => oligo_design} %>
+	<% else %>
+      <%= render :partial => 'oligo_designs/annotations', :locals => {:oligo_annotation => oligo_design.oligo_annotation} %>
+	<% end %>
+  </tr>
+</table>
+
+<table class="border">
+<tr><th>Amplicon&nbsp;Sequence</th></tr>
+<tr><td class=hardbreak><%= oligo_design.amplicon_seq %></td></tr>
+</table>
+
+<%= render(:partial => "shared/show_comments", :locals => {:comments => @comments}) %>
+<%= render(:partial => "shared/add_comment", :locals => {:id => oligo_design.id}) %>
+		

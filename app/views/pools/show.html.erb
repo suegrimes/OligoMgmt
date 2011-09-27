@@ -1,0 +1,35 @@
+<h1>Details for Pool: <%=h [@pool.tube_label, @pool.pool_name].join('/') %></h1>
+
+<table class="list">
+  <tr>
+	<th>Pool Name</th>
+	<th>#Oligos</th>
+	<th>Source Conc(um)</th>
+	<th>Room/Shelf/Box/Bin</th>
+	<th>Description</th>
+  </tr>
+  <tr>
+    <td><%=h @pool.pool_name %></td>
+	<td><%=h @pool.plate_positions.size %></td>
+  	<td><%=h @pool.source_conc_um %></td>
+	<td><% if @pool.storage_location %><%=h @pool.storage_location.location_string %><% end %></td>
+	<td><%=h @pool.pool_description %></td>
+  </tr>
+ </table>
+ 
+ <table class="list">
+  <tr>
+    <th>Oligo name (chars 1-50)</th>
+	<th>Plate#/Well</th>
+  </tr>
+
+<% for plate_position in @pool.plate_positions %>
+  <tr>
+    <td><%=link_to plate_position.oligo_name[0,49], plate_position.synth_oligos[0] %></td>
+	<td><%=h plate_position.plate_or_tube_name %>/<%=h plate_position.well_coord %></td>
+  </tr>
+<% end %>
+</table>
+
+<br/>
+<%= link_to 'Edit', edit_pool_path(@pool) %>

@@ -1,0 +1,20 @@
+<h1>Editing Plate: <%=h @plate_tube.plate_or_tube_name %></h1>
+
+<% form_for @plate_tube, :action => :update do |f| %>
+  <%=f.error_messages %>
+  
+  <fieldset class="form">
+  <table class="form">
+  <tr>
+  	<th style="text-align:right"><%=f.label :description, 'Description' %></th>
+    <td><%=f.text_field(:description) %></td>
+  </tr>
+  <tr>
+  	<th style="text-align:right"><%=f.label :synthesis_date %></th>
+    <td><%=f.text_field(:synthesis_date, :size => 8) %></td>
+  </tr>
+  </table>
+  </fieldset>
+  
+  <%= break_clear(f.submit 'Update')%>
+<% end %>

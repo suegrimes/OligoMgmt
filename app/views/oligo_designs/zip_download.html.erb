@@ -1,0 +1,19 @@
+
+<h3>Download Oligos - Entire Exonome</h3>
+
+<% form_tag :action=> 'zip_download'  do %>
+
+<br />
+<br />
+<table>
+<tr class='notes'>
+	<td> Zipped file is 80MB; download time will depend on the speed of your internet connection. <br><br>
+	  There is a readme file as well as the oligo design file in the zipped archive.<br><br>
+	  After extracting the files it is recommended to open the oligo design file using a spreadsheet program such as Excel.<br>
+	  Note that it may take several minutes to open, depending on your machine. </td>
+</tr> 
+</table>
+<br /> <br />
+  
+<%= submit_tag 'Download' %>
+<%end%>

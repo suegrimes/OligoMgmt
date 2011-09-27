@@ -1,0 +1,26 @@
+<h3>Storage Location</h3>
+
+<table class="border">
+  	<tr>
+  	  <th>Room nr:</th>
+	  <td><%=h @storage_location.room_nr %></td>
+  	</tr>
+	
+	<tr>
+  	  <th>Shelf nr:</th>
+	  <td><%=h @storage_location.shelf_nr %></td>
+  	</tr>
+	
+	<tr>
+  	  <th>Bin nr:</th>
+	  <td><%=h @storage_location.bin_nr %></td>
+  	</tr>
+	
+	<tr>
+  	  <th>Box nr:</th>
+	  <td><%=h @storage_location.box_nr %></td>
+  	</tr>
+  </table>
+
+<%= link_to 'Edit', edit_storage_location_path(@storage_location) %> |
+<%= link_to 'Back', storage_locations_path %>

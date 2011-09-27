@@ -1,0 +1,40 @@
+<h3>Oligo Designs</h3>
+
+<% form_tag :action => "export_design" do %>
+<p><%=h @oligo_designs.size %> oligos selected <%= submit_tag "Export Oligos" -%></p>
+<%= hidden_field_tag("version_id", @version_id)%>
+
+<table class="border">
+  <tr>
+  	<% if @version_id < 3 %><th>ID</th><% end %>
+	<th>Oligo Name</th>
+	<th>Chromosome</th>
+	<th>Amplicon Start</th>
+	<th>Length</th>
+	<th>Flags</th>
+	<th>Annot</th>
+	<th>5prime Selector</th>
+	<th>3prime Selector</th>
+	<th>Polarity</th>
+	<th>Design Ver</th>	
+  </tr>
+	
+<% for oligo_design in @oligo_designs %>
+  <tr>
+  	<% if @version_id < 3 %><td><%=h oligo_design.id %></td><%end%>
+	<td><%= link_to oligo_design.oligo_name, oligo_design %></td>
+	<td><%=h oligo_design.chromosome_nr %></td>
+	<td><%=h oligo_design.amplicon_chr_start_pos %></td>
+	<td align=center><%=h oligo_design.amplicon_length %></td>
+	<td><%=h oligo_design.annotation_codes %></td>
+	<td><%=h oligo_design.other_annotations %></td>
+	<td width=220><%=h oligo_design.sel_5prime %></td>
+	<td width=220><%=h oligo_design.sel_3prime %></td>
+	<td align=center><%=h oligo_design.sel_polarity %></td>
+	<td><%=h version_name(oligo_design.version_id) %></td>
+	<td width=10><%= hidden_field_tag("export_id[]", oligo_design.id)%>
+  </tr>
+<% end %>
+<% end %>
+</table>
+<%= link_to 'New search', :action => 'select_project'%>

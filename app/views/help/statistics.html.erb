@@ -1,0 +1,18 @@
+<h1>OligoExome Statistics</h1>
+
+<%= render :partial => 'stats_table', :locals => {:stats_table => @table1} %>
+<span class="notes">Region-of-interest(ROI) is defined as a minimum of the exon and adjacent intronic sequence up to 
+50 bases from the exon flank</span>
+<br />
+<br />
+
+<%= render :partial => 'stats_table', :locals => {:stats_table => @table2} %>
+<br />
+
+<%= render :partial => 'stats_table', :locals => {:stats_table => @table3} %>
+<span class="notes">Filtering with all flags includes the W-flag (whole genome matches), P-flag (paralogs), A-flag (Alu)
+and R-flag (other repeats)</span>
+<br />
+<br />
+
+<%= link_to 'Back', :back %>

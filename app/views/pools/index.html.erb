@@ -1,0 +1,23 @@
+<h1>Listing Oligo Pools</h1>
+
+<table class="list">
+  <tr>
+    <th>Pool ID</th>
+	<th>Label</th>
+    <th>Pool Name</th>
+	<th>Source Conc(um)</th>
+	<th>Description</th>
+	<th>&nbsp;</th>   
+  </tr>
+
+<% for pool in @pools %>
+  <tr>
+    <td><%=h pool.id %></td>
+	<td><%=h pool.tube_label %></td>
+    <td><%=h pool.pool_name %></td>
+	<td><%=h pool.source_conc_um %></td>
+    <td><%=h pool.pool_description %></td>
+    <td><%= link_to 'Show', pool %></td>
+  </tr>
+<% end %>
+</table>

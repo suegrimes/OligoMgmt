@@ -1,0 +1,47 @@
+<tr>
+  	<td><%=Date.today.to_s %></td>
+	<td>NA</td>
+	<td align=center><%=h oligo_design.chromosome_nr %></td>
+	<td><%=h oligo_design.chr_target_start %></td>
+	<td align=left><%=h oligo_design.sel_left_start_rel_pos %></td>
+	<td align=center><%=h oligo_design.sel_left_end_rel_pos %></td>
+	<td align=center><%=h oligo_design.sel_right_start_rel_pos %></td>
+	<td align=center><%=h oligo_design.sel_right_end_rel_pos %></td>
+	<td align=center><%=h oligo_design.amplicon_length %></td>
+	<td align=center><%=h oligo_design.sel_n_sites_start %></td>	
+	<td align=center><%=h oligo_design.sel_left_site_used %></td>	
+	<td align=center><%=h oligo_design.sel_right_site_used %></td>
+	<td align=center><%=h oligo_design.sel_polarity %></td>
+	<td align=center><%=h oligo_design.enzyme_code %></td>
+	<td align=center><%=h oligo_design.selector %></td>	
+	<td align=left><%=h oligo_design.sel_5prime %></td>
+	<td align=left><%=h oligo_design.sel_3prime %></td>
+	<td align=left><%=h oligo_design.amplicon_seq %></td>
+	<td align=left><%=h oligo_design.roi_ids_of_selectors %></td>
+	<td align=center><%=h oligo_design.selector_useq %></td>
+	<td>
+	<% if controller.controller_name == 'synth_oligos' %>
+	   <%=h oligo_design.oligo_id %>
+	<% else %>
+	   <%=h oligo_design.id %>
+	<% end %>
+	</td>
+	<td><%=h oligo_design.oligo_name %></td>
+	
+	<td align=center><%=h oligo_design.annotation_codes %></td>
+	<td align=center><%=h oligo_design.other_annotations %></td>
+	<% if oligo_annotation %>
+	  <td><%=h oligo_annotation.paralog_cnt %></td>
+	  <td><%=h oligo_annotation.wg_u0_cnt %></td>
+	  <td><%=h oligo_annotation.wg_u1_cnt %></td>
+	<% else %>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	<% end %>
+	
+	<td align=center><%=h version_name(oligo_design.version_id)%></td>		
+	<% if controller.controller_name == 'synth_oligos' %>
+	   <td><%=h oligo_design.id %></td>
+	<% end %>
+  </tr>

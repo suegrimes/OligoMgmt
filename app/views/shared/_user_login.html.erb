@@ -1,0 +1,18 @@
+<table>
+<% form_tag session_path do -%>
+  <tr>
+    <td><label for="login">Login</label><%= text_field_tag(:login, nil, :size=>10) %></td>
+  </tr>
+  <tr>
+    <td><label for="password">Password</label><%= password_field_tag(:password, nil, :size=>8) %></td>
+  </tr>
+  
+<!-- Uncomment this if you want this functionality
+<p><label for="remember_me">Remember me:</label>
+<%= check_box_tag 'remember_me' %></p>
+-->
+  <tr><td><%= submit_tag 'Log in' %></td></tr>
+<% end -%>
+
+  <tr><td>OR <%= button_to 'Sign up', :controller => :users, :action => :new -%></td></tr>
+</table>

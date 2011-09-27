@@ -1,0 +1,80 @@
+<h1>Annotation Codes</h1>
+
+<p>Oligos are annotated (in annotation_codes and other_annotations fields) as follows:</p>
+<b>annotation_codes:</b>
+<table class="list">
+<tr>
+  <th>Code</th>
+  <th>Type</th>
+  <th>Definition</th>
+</tr>
+<tr>
+  <td>P</td>
+  <td>Paralog</td>
+  <td>Both 20b segments at the end of the oligo have >1 perfect  match within the genome AND
+   match in opposite orientation AND at <1kb apart.</td>
+</tr>
+<tr>
+  <td>W</td>
+  <td>Whole Genome</td>
+  <td>20b at end of oligos exactly match whole genome more than once.</td>
+</tr>
+<tr>
+  <td>A</td>
+  <td>AluI</td>
+  <td>14b internal to the ends of the amplicon sequence are perfect matches to the AluI consensus
+   in reference file</td>
+</tr>
+<tr>
+  <td>R</td>
+  <td>Other Repeat</td>
+  <td>14b internal to the ends of the amplicon sequence are perfect matches to another repeat 
+  present in the reference file</td>
+</tr>
+</table>
+
+<b>other_annotations:</b>
+<table class="list">
+<tr>
+  <th>Code</th>
+  <th>Type</th>
+  <th>Definition</th>
+</tr>
+<tr>
+  <td>W1</td>
+  <td>Whole Genome/1</td>
+  <td>20b at end of oligos match whole genome more than once, with a single base mismatch allowed</td>
+</tr>
+</table>
+
+<b>counts:</b>
+<table class="list">
+<tr>
+  <th>Name</th>
+  <th>Definition</th>
+</tr>
+<tr>
+  <td>paralog</td>
+  <td>number of paralog matches for this oligo within the genome</td>
+</tr>
+<tr>
+  <td>W0_count</td>
+  <td>the sum of the number of whole genome exact matches for this oligo, for ends adjacent to RE sites
+   (i.e. not a flap)</td>
+</tr>
+<tr>
+  <td>W1_count</td>
+  <td>the sum of the number of whole genome matches (with one base mismatch) for this oligo, for ends 
+  adjacent to RE sites (i.e. not a flap)</td>
+</tr>
+</table>
+
+<h1>Entering comments</h1>
+<p>Comments may be entered for individual oligos, by clicking on the oligo and then 
+   clicking 'Add comment'</p>
+   
+<h1>Contact Us</h1>
+<p>For technical problems, login issues, or other questions, please use the 'Contact' link at the
+   very bottom of the page </p>
+
+<%= link_to 'Back', :back %>

@@ -1,0 +1,17 @@
+<p class="notes">Please enter your login and password below </p>
+<% form_tag session_path do -%>
+<p><label for="login">Login</label>
+  <%= text_field_tag 'login' %> &nbsp;&nbsp; 
+
+  <label for="password">Password</label>
+  <%= password_field_tag 'password' %> &nbsp;&nbsp;
+
+<!-- Uncomment this if you want this functionality
+<p><label for="remember_me">Remember me:</label>
+<%= check_box_tag 'remember_me' %></p>
+-->
+<%= submit_tag 'Log in' %></p>
+<% end -%>
+
+<p class="notes"> OR <%= button_to 'Sign up', :controller => :users, :action => :new -%> 
+</p>

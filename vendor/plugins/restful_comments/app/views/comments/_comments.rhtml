@@ -1,0 +1,19 @@
+<%
+	user = if defined? current_user then current_user else nil end
+	extension = commentable.class.comments_extension
+%>
+
+<%if extension.can_comment?( commentable, nil, user ) %>
+	(<%=link_to_function :do_comment.l, 'restfulComments.showForm( 0 )' %>)
+<%end%>
+
+<div id="comment_form_0">
+	<%=render :partial => 'comments/form_new', :locals => { :commentable => commentable } %>	
+</div>
+
+<%odd = 1%>
+<%Comment.for_each commentable.comments do |comment|%>
+	<%=render :partial => 'comments/comment', :locals => { :comment => comment, :odd => odd } %>
+	<%odd = 3 - odd%>
+<%end%>
+

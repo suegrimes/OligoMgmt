@@ -1,0 +1,33 @@
+<h1>Annotation Codes</h1>
+
+<p>Oligos are annotated (in annotation_codes and other_annotations fields) as follows:</p>
+&nbsp;&nbsp;annotation_codes:
+<ul>
+  <li>Paralog (P):  both 20b segments at the end of the oligo have >1 perfect  match within the genome AND
+   match in opposite orientation AND at <1kb apart.</li>
+  <li>W:  20b at end of oligos exactly match whole genome (WG)  >1x.</li> 
+  <li>AluI (A):   14b internal to the ends of the amplicon sequence are perfect matches to the AluI consensus
+   in reference file.</li>
+  <li>Other_repeat (R): 14b internal to the ends of the amplicon sequence are perfect matches to another repeat 
+  present in the reference file.</li> 
+</ul>
+
+&nbsp;&nbsp;other_annotations:
+<ul>
+  <li>W1: same as W above, except allowing a single base mismatch</li>
+  <li>paralog: number of paralog matches for this oligo within the genome</li>
+  <li>W0_count: the sum of the number of whole genome exact matches for this oligo, for ends adjacent to RE sites
+   (i.e. not a flap).</li> 
+  <li>w1_count: the sum of the number of whole genome matches (with one base mismatch) for this oligo, for ends 
+  adjacent to RE sites (i.e. not a flap).</li> 
+</ul>
+
+<h1>Entering comments</h1>
+<p>Comments may be entered for individual oligos, by clicking on the oligo and then 
+   clicking 'Add comment'</p>
+   
+<h1>Contact Us</h1>
+<p>For technical problems, login issues, or other questions, please use the 'Contact' link at the
+   very bottom of the page </p>
+
+<%= link_to 'Back', :back %>

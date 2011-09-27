@@ -1,0 +1,28 @@
+<h1>Details for Oligo: <%=h @synth_oligo.oligo_name %>, on plate: <%=h @synth_oligo.plate_position.plate_or_tube_name %></h1>
+
+<fieldset class="info">
+<table class="info">
+  <tr>
+  	<th>Plate#: </th><td><%=h @synth_oligo.plate_position.plate_or_tube_name %></td>
+	<th>Well Seq:</th><td><%=h @synth_oligo.plate_position.plate_position %></td>
+	<th>Well Coord:</th><td><%=h @synth_oligo.plate_position.well_coord %></td>
+  </tr> 
+  <tr>
+  	<th>Oligo Type: </th><td><%=h @synth_oligo.oligo_usage_descr %></td>
+  </tr>
+  <tr>
+  	<th>Oligo Name: </th><td colspan="5"><%=h @synth_oligo.oligo_name %></td>
+  </tr>
+  <tr>
+  	<th>Sequence Ordered: </th><td colspan="5"><%=h @synth_oligo.sequence %></td>
+  </tr>
+  <tr>
+  	<th>Sequence (Sanitized): </th><td colspan="5"><%=h @synth_oligo.dna_sequence %></td>
+  </tr>
+  <tr>
+  	<th>Notes: </th><td colspan="5"><%=h @synth_oligo.notes %></td>
+  </tr>  
+</table>
+</fieldset>
+
+<%= break_clear %>

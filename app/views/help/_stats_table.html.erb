@@ -1,0 +1,12 @@
+<table class="list">
+<% stats_table.each_with_index do |row, i|%>
+<tr>
+  <% tag = (i == 0? 'th' : 'td') %>
+  <% row.each do |col| %>  
+    <% if i == 0%><th><%= col %></th>
+	<% else %>    <td><%= col %></td>
+	<% end %>
+  <% end %>
+</tr>
+<% end %>
+</table>

@@ -1,0 +1,23 @@
+<h3>Storage locations list</h3>
+
+<table class="border">
+  <tr>
+    <th>Room nr</th>
+    <th>Shelf nr</th>
+    <th>Bin nr</th>
+    <th>Box nr</th>
+  </tr>
+
+<% for storage_location in @storage_locations %>
+  <tr>
+    <td><%=h storage_location.room_nr %></td>
+    <td><%=h storage_location.shelf_nr %></td>
+    <td><%=h storage_location.bin_nr %></td>
+    <td><%=h storage_location.box_nr %></td>
+    <td class='noborder'><%= link_to 'Edit', edit_storage_location_path(storage_location) %></td>
+    <td class='noborder'><%= link_to 'Delete', storage_location, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'New storage location', new_storage_location_path %>

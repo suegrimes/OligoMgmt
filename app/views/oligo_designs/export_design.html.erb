@@ -1,0 +1,9 @@
+
+<table>
+  <%= render :partial => 'export_design_hdr' %>
+
+<% for oligo_design in @oligo_designs %>
+  <%= render :partial => 'export_design_row', :locals => {:oligo_design => oligo_design,
+                                                          :oligo_annotation => oligo_design.oligo_annotation} %>
+<% end %>
+</table>

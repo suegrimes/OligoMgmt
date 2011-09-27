@@ -1,0 +1,8 @@
+<h1>Editing Misc Pool: <%=h [@pool.tube_label, @pool.pool_name].join('/') %></h1>
+
+<% form_for @pool, :action => :update do |f| %>
+  <%=f.error_messages %>
+  <%= render :partial => 'pool_form', :locals => {:f => f} %>
+  
+  <%= break_clear(f.submit 'Update')%>
+<% end %>

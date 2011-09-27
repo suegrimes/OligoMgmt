@@ -1,0 +1,13 @@
+<h3>Oligo Design query</h3>
+
+<% form_tag :action=> 'select_params'  do %>
+
+<table>	
+  <%= render :partial => '/shared/project_select_one' %>
+</table>
+
+<p><%= submit_tag "Enter parameters" %></p>
+<%end%>
+
+<p> -OR- <br><br>
+Click <%= link_to 'here', :action => 'zip_download' %> to download zipped file of oligos for entire exonome </p>

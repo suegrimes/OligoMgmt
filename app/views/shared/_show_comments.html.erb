@@ -1,0 +1,20 @@
+<% if !comments.empty? %>
+<fieldset class="info" style="width:75%">
+  <legend>Comments:</legend>
+  <table>
+  <% for c in comments %>
+    <tr>
+      <td>(<%= c.user.login %>)</td>
+      <td><%= c.created_at.strftime("%m-%d-%Y %I:%M%p") %></td>
+      <td class="no-wrap-line"><%= c.title %>: </td> 
+	  <td><%= c.comment%></td>
+	  <% if c.user_id == current_user.id %>
+	    <td><div class="linkborder"><%= link_to "Edit", :controller => :comments, :action => :edit, :id => c.id %></div></td>
+		<td><div class="linkborder"><%= link_to 'Delete', :controller => :comments, :action => :destroy, :id => c.id,
+                                :confirm => 'Are you sure?', :method => :delete %></div></td>
+	  <% end %>
+	</tr>
+  <% end %>
+  </table>
+<% end %>
+</fieldset>
