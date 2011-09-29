@@ -1,10 +1,40 @@
 class OligoDesignsController < ApplicationController
   require_role "admin", :for => [:new, :create, :edit, :update]
-  skip_before_filter :login_required, :only => :welcome
   
-  def welcome    
+  # GET /oligo_designs/1
+  def show
+    @oligo_design = OligoDesign.find(params[:id], :include => :oligo_annotation )
+    @comments     = @oligo_design.comments.sort_by(&:created_at).reverse
   end
   
+  #*******************************************************************************************#
+  # Methods for input of parameters for retrieval of specific oligo designs                   #
+  #*******************************************************************************************#
+  def new_query
+    @versions = Version.find(:all)
+    @enzymes = OligoDesign::ENZYMES_WO_GAPFILL
+  end
+
+  #*******************************************************************************************#
+  # Method for listing oligo designs, based on parameters entered above                       #
+  #*******************************************************************************************#
+  def list_selected
+    @condition_array = ['oligo_designs.id BETWEEN ? AND ?', 2800, 3000]  #Use for testing only
+    @version_id = (params[:version] ? params[:version][:id] : Version::DESIGN_VERSION_ID)
+    @oligo_designs   = OligoDesign.find_oligos_with_conditions(@condition_array, params[:version][:id])
+    # return error if no oligos found
+    error_found = check_if_blank(@oligo_designs, 'oligos')      
+  
+    if error_found
+      redirect_to :action => 'new_query'
+    else
+      render :action => 'list_selected'
+    end
+  end
+  
+  #*******************************************************************************************#
+  # Method for exporting oligos from 'list_selected' view                                     #    
+  #*******************************************************************************************#
   def export_design
     export_type = 'T1'
     @version_id = Version::version_id_or_default(params[:version_id])
@@ -40,72 +70,6 @@ class OligoDesignsController < ApplicationController
       end
   end
   
-  
-  # GET /oligo_designs
-  def index
-    @oligo_designs = OligoDesign.curr_ver.find(:all)
-  end
-  
-  # GET /oligo_designs/1
-  def show
-    @oligo_design = OligoDesign.find(params[:id], :include => :oligo_annotation )
-    @comments     = @oligo_design.comments.sort_by(&:created_at).reverse
-  end
-  
-  #*******************************************************************************************#
-  # Methods for input of parameters for retrieval of specific oligo designs                   #
-  #*******************************************************************************************#
-  def select_project
-    @projects = Project.find(:all)
-  end
-  
-  def select_params
-    @versions = Version.find(:all)
-    @enzymes = OligoDesign::ENZYMES_WO_GAPFILL
-    @project_id = (params[:project] ? params[:project][:project_id] : '')
-    
-    if !@project_id.blank?
-      @proj_genes = ProjectGene.find_proj_genes(@project_id)
-      @project    = Project.find_by_id(@project_id)
-      @version    = Version.find(@project.version_id) # set version as default for select box
-      render :action => 'select_proj_genes'
-    else
-      @version = Version.curr_version.find(:first) # set version as default for select box
-      render :action => 'select_genes_or_ids'
-    end   
-    
-  end
-
-  #*******************************************************************************************#
-  # Method for listing oligo designs, based on parameters entered above                       #
-  #*******************************************************************************************#
-  def list_selected
-    param_type = params[:param_type] ||= 'proj_gene'
-    @version_id = Version::version_id_or_default(params[:version][:id])
-    
-    error_found = false 
-    # check for correct number of parameters entered
-    # must have project/gene(s), or id(s)
-    @rc = check_params(params, param_type)
-    
-    if @rc =~ /e\d/ # error code ('e' followed by digit)
-      error_found    = true   
-    else
-      @condition_array = define_conditions(params, @rc, @version_id)
-      excl_flagged     = (params[:excl_flagged] == 'true' ? 'yes' : 'no')
-      @oligo_designs   = OligoDesign.find_oligos_with_conditions(@condition_array, @version_id,
-                                                                {:excl_flagged => excl_flagged})
-      # return error if no oligos found
-      error_found = check_if_blank(@oligo_designs, 'oligos', @rc)      
-    end
-  
-    if error_found
-      redirect_to :action => 'select_params', :project => params[:project]
-    else
-      render :action => 'list_selected'
-    end
-  end
-  
   #*******************************************************************************************#
   # Method for download of zip file of oligos for entire exonome                              #    
   #*******************************************************************************************#
@@ -123,6 +87,20 @@ class OligoDesignsController < ApplicationController
     end
     
     redirect_to :action => 'show', :id => params[:id]
+  end
+  
+  def get_project_list
+    @projects = Project.find(:all, :conditions => ['version_id IN (?)', params[:version_id]])
+    render :update do |page|
+      page.replace_html 'project_list', :partial => 'project_list', :projects => @projects
+    end
+  end
+  
+  def get_gene_list
+    @genes = ProjectGene.find(:all, :conditions => ['project_id IN (?)', params[:project_id]], :order => :gene_code)
+    render :update do |page|
+      page.replace_html 'gene_list', :partial => 'gene_list', :genes => @genes
+    end
   end
   
   private

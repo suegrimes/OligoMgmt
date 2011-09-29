@@ -42,11 +42,15 @@ class Version < ActiveRecord::Base
   APP_VERSION = (app_version_row1 ? app_version_row1[0] : '??')
   
   def version_id_name
-    [id.to_s, [exonome_or_partial, genome_build, design_version].join('/')].join('-')
+    [id.to_s, [exonome_or_partial, version_name].join('/')].join('-')
   end
   
   def version_id_flagged_name
     #flag current version with asterisk, for use in select box
     (id == DESIGN_VERSION.id ? ['*', version_id_name].join('') : [' ', version_id_name].join(''))
+  end
+  
+  def self.version_id_or_default(id_num)
+    return (id_num.blank? ? DESIGN_VERSION_ID : id_num.to_i)
   end
 end

@@ -105,8 +105,8 @@ class OligoDesign < ActiveRecord::Base
     return oligo_design
   end
   
-  def self.find_selectors_with_conditions(condition_array, version_id=Version::DESIGN_VERSION_ID)
-    condition_array[0] += ' AND version_id = ?'
+  def self.find_oligos_with_conditions(condition_array, version_id=Version::DESIGN_VERSION_ID)
+    condition_array[0] += (version_id.is_a?(Array) ? ' AND version_id IN (?)' : ' AND version_id = ?')
     condition_array.push(version_id)
     
     self.qcpassed.find(:all,

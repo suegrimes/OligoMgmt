@@ -76,18 +76,4 @@ protected
     return sql_where_clause
   end
   
-  def sql_conditions_for_range(where_select, where_values, from_fld, to_fld, db_fld)
-    if !from_fld.blank? && !to_fld.blank?
-      where_select.push "#{db_fld} BETWEEN ? AND ?"
-      where_values.push(from_fld, to_fld) 
-    elsif !from_fld.blank? # To field is null or blank
-      where_select.push("#{db_fld} >= ?")
-      where_values.push(from_fld)
-    elsif !to_fld.blank? # From field is null or blank
-      where_select.push("(#{db_fld} IS NULL OR #{db_fld} <= ?)")
-      where_values.push(to_fld)
-    end  
-    return where_select, where_values 
-  end
-  
 end

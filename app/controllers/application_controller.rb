@@ -45,13 +45,7 @@ class ApplicationController < ActionController::Base
     return param_list
   end
   
-  def wrap_long_string(text,max_width = 60)
-   (text.length < max_width) ?
-    text :
-    text.scan(/.{1,#{max_width}}/).join("<br>")
-  end
-  
-   def check_if_blank(model_object, model_text, param_type)
+  def check_if_blank(model_object, model_text, param_type='parameters')
     if model_object.nil? || model_object.empty?
       error_found = true
       flash[:notice] = "No #{model_text} found for #{param_type} entered - please try again"
@@ -62,5 +56,56 @@ class ApplicationController < ActionController::Base
     return error_found
   end
   
+  def plate_where_clause(plate_string)
+    all_plate_numbers = plate_string.split(",")
+    where_select = []; where_values = [];
+    plate_numbers = []; plate_or_tube_names = []; error = [];
+
+    for num in all_plate_numbers
+      num = num.to_s.delete(' ')    
+      case num
+      when /^(M\d+)$/ # has 'M' followed by digits
+        plate_or_tube_names << num # gather into array
+      when /^(M\d+)\-(M\d+)$/ # is a range with 'M' followed by digits
+        #if $1[0].chr != $2[0].chr then error << 'First letters of ' + $1 + ' and ' + $2 + ' do not match'; next end
+        where_select.push('plate_positions.plate_or_tube_name BETWEEN ? AND ?')
+        where_values.push($1, $2)
+      when /^\d+$/ # has digits only
+        plate_numbers << num # gather into array
+      when /^(\d+)\-(\d+)$/ # has range of digits
+        where_select.push('plate_tubes.plate_number BETWEEN ? AND ?')
+        where_values.push($1, $2)
+      else error << num + ' is unexpected value'
+      end # case
+    end # for
+    
+    if (!plate_or_tube_names.empty?) 
+      where_select.push('plate_or_tube_name IN (?)')
+      where_values.push(plate_or_tube_names)
+    end
+    
+    if (!plate_numbers.empty?)
+      where_select.push('plate_number IN (?)')
+      where_values.push(plate_numbers)
+    end
+    
+    where_clause = (where_select.size > 0 ? ['(' + where_select.join(' OR ') + ')'] : [])
+    #puts error if !error.empty?
+    return where_clause, where_values
+  end
+  
+  def sql_conditions_for_range(where_select, where_values, from_fld, to_fld, db_fld)
+    if !from_fld.blank? && !to_fld.blank?
+      where_select.push "#{db_fld} BETWEEN ? AND ?"
+      where_values.push(from_fld, to_fld) 
+    elsif !from_fld.blank? # To field is null or blank
+      where_select.push("#{db_fld} >= ?")
+      where_values.push(from_fld)
+    elsif !to_fld.blank? # From field is null or blank
+      where_select.push("(#{db_fld} IS NULL OR #{db_fld} <= ?)")
+      where_values.push(to_fld)
+    end  
+    return where_select, where_values 
+  end
 
 end

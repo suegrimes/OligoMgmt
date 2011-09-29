@@ -1,0 +1,7 @@
+<table>
+  <tr>
+  	<th>Genes:</th>
+  	<td><%= collection_select(:project_gene, :id, @genes, :id, :gene_code, {:include_blank => 'All'},
+                             {:size => 10, :multiple => :multiple})%></td>
+  </tr>
+</table>

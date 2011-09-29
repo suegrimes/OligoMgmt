@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   # Home page
-  map.root :controller => "oligo_designs", :action => "welcome" 
+  map.root :controller => "welcome", :action => "index" 
   
   # Signup/Login 
   map.signup  '/signup',           :controller => 'users',   :action => 'new' 
@@ -14,9 +14,11 @@ ActionController::Routing::Routes.draw do |map|
   
   # Oligo Designs
   map.resources :oligo_designs
-  map.designquery 'designquery',       :controller => 'oligo_designs', :action => 'select_params'
+  map.designquery 'designquery',       :controller => 'oligo_designs', :action => 'new_query'
   map.list_selected 'list_oligos',     :controller => 'oligo_designs', :action => 'list_selected'
   map.export 'export',                 :controller => 'oligo_designs', :action => 'export'
+  map.project_list 'project_list',     :controller => 'oligo_designs', :action => 'get_project_list'
+  map.gene_list 'gene_list',           :controller => 'oligo_designs', :action => 'get_gene_list'
   
   # Synthesis Plates/Tubes
   map.resources :plate_tubes
