@@ -11,7 +11,7 @@
 #  updated_at         :timestamp
 #
 
-class PlateTube < ActiveRecord::Base
+class PlateTube < InventoryDB
   has_many :plate_positions, :foreign_key => :plate_or_tube_id
   
   def self.find_all_incl_oligos(condition_array=nil)

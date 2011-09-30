@@ -1,11 +1,11 @@
 class PoolsController < ApplicationController
-  require_role "admin", :for_all_except => [:new_params, :show, :index]
+  require_role "stanford"
   
   def new_params
-    @min_plate, @max_plate = PlateTube.find_min_and_max_plates
     @min_date, @max_date   = PlateTube.find_min_and_max_dates
     # Invert hash keys/values (ie hash value first, then key); convert to array, sort and add blank first value
-    @oligo_usages = SynthOligo::OLIGO_USAGE.invert.to_a.sort.insert(0,'')  
+    @oligo_usages = SynthOligo::OLIGO_USAGE.invert.to_a.sort.insert(0,'') 
+    @pool_types   = Pool.pool_types
   end
   
   def list_oligos
@@ -85,13 +85,12 @@ protected
     @where_select = []
     @where_values = []
     
+    @where_select, @where_values = plate_where_clause(params[:plate_string]) if !params[:plate_string].blank?
+    
     if params[:oligo_usage] && !params[:oligo_usage].blank?
       @where_select.push('oligo_usage = ?')
       @where_values.push(params[:oligo_usage])
-    end
-    
-    db_fld = 'CAST(SUBSTRING(plate_positions.plate_or_tube_name,2,2) AS UNSIGNED)'
-    @where_select, @where_values = sql_conditions_for_range(@where_select, @where_values, params[:plate_from], params[:plate_to], db_fld)
+    end   
     
     db_fld = 'plate_tubes.synthesis_date'
     @where_select, @where_values = sql_conditions_for_range(@where_select, @where_values, params[:date_from], params[:date_to], db_fld)

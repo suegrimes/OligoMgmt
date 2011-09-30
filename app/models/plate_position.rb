@@ -12,7 +12,7 @@
 #  updated_at         :timestamp
 #
 
-class PlatePosition < ActiveRecord::Base
+class PlatePosition < InventoryDB
   belongs_to :plate_tube, :foreign_key => :plate_or_tube_id
   has_many :synth_oligos
   has_many :aliquot_to_pools

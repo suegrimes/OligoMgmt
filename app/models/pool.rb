@@ -15,7 +15,7 @@
 #  updated_at       :timestamp
 #
 
-class Pool < ActiveRecord::Base
+class Pool < InventoryDB
   has_many :aliquot_to_pools
   has_many :plate_positions, :through => :aliquot_to_pools
   belongs_to :storage_location
@@ -23,4 +23,13 @@ class Pool < ActiveRecord::Base
   accepts_nested_attributes_for :aliquot_to_pools
   
   validates_presence_of :tube_label
+  
+  def pool_type
+    return tube_label[0,2]
+  end
+  
+  def self.pool_types
+    unique_pool_types = self.find(:all, :select => 'DISTINCT(LEFT(tube_label,2)) AS pool_type')
+    return unique_pool_types.map{|pool| pool[:pool_type]}
+  end
 end

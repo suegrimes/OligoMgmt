@@ -11,8 +11,8 @@ class OligoDesignsController < ApplicationController
   # Methods for input of parameters for retrieval of specific oligo designs                   #
   #*******************************************************************************************#
   def new_query
-    @versions = Version.find(:all)
-    @enzymes = OligoDesign::ENZYMES_WO_GAPFILL
+    @versions = Version.curr_version.find(:all, :order => :id)
+    @enzymes = OligoDesign::ENZYMES_WO_GAPFILL 
   end
 
   #*******************************************************************************************#
@@ -89,107 +89,32 @@ class OligoDesignsController < ApplicationController
     redirect_to :action => 'show', :id => params[:id]
   end
   
-  def get_project_list
-    @projects = Project.find(:all, :conditions => ['version_id IN (?)', params[:version_id]])
-    render :update do |page|
-      page.replace_html 'project_list', :partial => 'project_list', :projects => @projects
-    end
-  end
-  
+  #*******************************************************************************************#
+  # Ajax method to populate gene list, based on selected design version                       #
+  #*******************************************************************************************#  
   def get_gene_list
-    @genes = ProjectGene.find(:all, :conditions => ['project_id IN (?)', params[:project_id]], :order => :gene_code)
-    render :update do |page|
-      page.replace_html 'gene_list', :partial => 'gene_list', :genes => @genes
-    end
-  end
-  
-  private
-  #*******************************************************************************************#
-  # Method for checking parameters from "select_proj_genes", and "select_genes_or_ids" views  #
-  #*******************************************************************************************#
-  def check_params(params, param_type)
-    if param_type == 'proj_gene'
-      if params[:oligo_design] && params[:oligo_design][:gene_code]
-      # if gene_list[0].blank? then "all genes" was selected from drop-down
-      # set rc=p if "all genes", => retrieve all genes for the selected project
-      # set rc=g otherwise,      => retrieve just the genes selected
-        gene_list = params[:oligo_design][:gene_code]
-        rc = (gene_list[0].blank? ? 'p' : 'gl')
-      
-      elsif params[:project] 
-        #only project entered, so will retrieve all genes for that project
-        rc = 'p'
-      else
-        # error - neither project or gene were selected
-        flash[:notice] = 'Please select project and/or gene(s)'
-        rc = 'e2'
+    @version = Version.find(params[:version_id])
+    
+    if @version.exonome_or_partial == 'P'
+      @unique_genes = PilotOligoDesign.find(:all, :select => 'DISTINCT(gene_code)', :order => :gene_code,
+                                            :conditions => ['version_id = ?', params[:version_id]])
+      @genes = @unique_genes.collect{|design| design[:gene_code]}  
+      render :update do |page|
+        if !@unique_genes.nil?
+          page.replace_html 'gene_list', :partial => 'gene_list', :genes => @genes
+        else
+          page.replace_html 'gene_list', '<p>No genes found for this version, in pilot designs</p>'
+        end
       end
       
-    else #param_type == 'gene_id'
-      nr_genes = params[:genes].split.size if params[:genes]
-      if nr_genes && nr_genes > 400
-        params[:genes] = ''  #reset params[:genes] to avoid browser errors
-        flash[:notice] = "Too many genes (#{nr_genes}) in list - please limit to 400 genes"
-        rc = 'e3'
-        
-      # oligo ids if entered, take priority over genes, so check for ids first
-      elsif !params[:oligo_ids].blank?
-        rc = 'id'
-      
-      elsif !params[:genes].blank?
-        rc = 'gt'
-   
-      else
-        # error - both genes and oligo ids are blank
-        flash[:notice] = 'Please select gene(s) or id(s)'
-        rc = 'e4'
+    else
+      render :update do |page|
+        page.replace_html 'gene_list', '<p>Text box goes here </p>'
       end
     end
-    
-    return rc
   end
   
-  #*******************************************************************************************#
-  # Method for creating sql condition array, based on parameters entered                      #
-  #*******************************************************************************************#
-  def define_conditions(params, ptype, version_id)
-    condition_array = []
-    condition_array[0] = 'blank'
-    select_conditions = []
-    
-    case ptype
-      when 'id' #list of ids entered
-        id_list = create_array_from_text_area(params[:oligo_ids], 'integer')
-        select_conditions.push('id IN (?)')
-        condition_array.push(id_list)
-      
-      when 'gl'  #gene list entered (as array from drop-down)
-        gene_list      = params[:oligo_design][:gene_code]
-        select_conditions.push('gene_code IN (?)')
-        condition_array.push(gene_list)
-      
-      when 'gt'  #gene list entered (as text)
-        gene_list      = create_array_from_text_area(params[:genes])
-        select_conditions.push('gene_code IN (?)')
-        condition_array.push(gene_list)
-      
-      when 'p' #project entered, without entering specific genes, so get all genes for project
-        gene_list      = ProjectGene.genelist(params[:project], nil)
-        select_conditions.push('gene_code IN (?)')
-        condition_array.push(gene_list)
-    end
-    
-    if params[:enzyme] && !param_blank?(params[:enzyme][:enzyme_code])
-      select_conditions.push('enzyme_code IN (?)')
-      condition_array.push(enzyme_add_gapfill(params[:enzyme][:enzyme_code]))
-    end
-    
-    select_conditions.push('version_id = ?')
-    condition_array.push(version_id)
-    condition_array[0] = select_conditions.join(' AND ')
-    return condition_array 
-  end
-  
+  private  
   #*******************************************************************************************#
   # Export oligo designs to csv file                                                          #    
   #*******************************************************************************************#

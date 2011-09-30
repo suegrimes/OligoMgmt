@@ -17,7 +17,7 @@
 #  updated_at        :timestamp
 #
 
-class SynthOligo < ActiveRecord::Base
+class SynthOligo < InventoryDB
   belongs_to :plate_position
   
   OLIGO_USAGE = {:V => 'Vector', :A => 'Adapter', :P => 'Primer', :S => 'Selector', :Q => 'OS-Seq', 

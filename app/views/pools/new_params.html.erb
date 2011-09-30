@@ -1,22 +1,9 @@
 <h1>Oligos for new pool - Select parameters</h1>
 
 <% form_tag({:action => :list_oligos}, :method => :get) do %>
-<fieldset class="form">
-<table class="form">
-  <tr>
-    <th>Plate Number: </th><td>M<%= text_field_tag(:plate_from, @min_plate, :size => 4) %></td>
-    <th>To:</th><td>M<%= text_field_tag(:plate_to, @max_plate, :size => 4) %></td>
-  </tr>
-  <tr><td class="notes">OR</td></tr> 
-  <tr>
-    <th>Date From:</th><td><%=calendar_date_select_tag(:date_from, @min_date, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
-	<th>To:</th><td><%=calendar_date_select_tag(:date_to, @max_date, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
-  </tr>
-  <tr>
-    <th>Oligo Type:</th><td><%= select_tag(:oligo_usage, options_for_select(@oligo_usages, ''))%></td>
-  </tr>		
-</table>
-</fieldset>
+<%= render :partial => 'pool_from_plates' %>
+
+<%= render :partial => 'pool_from_pools' %>
 
 <%= break_clear(submit_tag "Submit")%>
 <%end%>

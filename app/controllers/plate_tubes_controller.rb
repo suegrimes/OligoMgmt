@@ -1,5 +1,5 @@
 class PlateTubesController < ApplicationController
-  require_role "admin", :for_all_except => [:new_query, :show, :index]
+  require_role "stanford"
   
   def new_query
     @min_plate, @max_plate = PlateTube.find_min_and_max_plates

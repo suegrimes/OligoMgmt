@@ -1,0 +1,10 @@
+<fieldset class="form">
+<legend>Create From Existing Pools</legend>
+<table class="form">
+  <tr>
+    <th>Pool(s):</th>
+	<td><%= select_tag(:pool_type, options_for_select(@pool_types, ''))%></td>
+	<td colspan="2"><%= text_field_tag(:pool_string, @pool_string, :size => 30) %></td> 
+  </tr>	
+</table>
+</fieldset>

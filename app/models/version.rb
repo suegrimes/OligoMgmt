@@ -42,7 +42,7 @@ class Version < ActiveRecord::Base
   APP_VERSION = (app_version_row1 ? app_version_row1[0] : '??')
   
   def version_id_name
-    [id.to_s, [exonome_or_partial, version_name].join('/')].join('-')
+    return "#{id.to_s}: #{version_name}(#{genome_build})"
   end
   
   def version_id_flagged_name
