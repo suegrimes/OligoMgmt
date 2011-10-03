@@ -1,8 +1,8 @@
-<h1>Oligos for new pool - Select parameters</h1>
+<h1>Create new pool - Select parameters</h1>
 
-<% form_tag({:action => :list_oligos}, :method => :get) do %>
+<% form_tag({:action => :list_for_pool}, :method => :get) do %>
 <%= render :partial => 'pool_from_plates' %>
-
+<%= break_clear %>
 <%= render :partial => 'pool_from_pools' %>
 
 <%= break_clear(submit_tag "Submit")%>

@@ -71,8 +71,12 @@ class OligoDesign < ActiveRecord::Base
     selector_useq[21,40]
   end
   
+  def vector
+    Vector::VECTORS[version_id]
+  end
+  
   def selector
-    [sel_5prime, Vector::VECTOR, sel_3prime].join('')
+    [sel_5prime, vector, sel_3prime].join('')
   end
   
   def chr_target_start
@@ -105,13 +109,10 @@ class OligoDesign < ActiveRecord::Base
     return oligo_design
   end
   
-  def self.find_oligos_with_conditions(condition_array, version_id=Version::DESIGN_VERSION_ID)
-    condition_array[0] += (version_id.is_a?(Array) ? ' AND version_id IN (?)' : ' AND version_id = ?')
-    condition_array.push(version_id)
-    
-    self.qcpassed.find(:all,
-                       :order => 'gene_code, enzyme_code',                               
-                       :conditions => condition_array) 
+  def self.find_oligos_with_conditions(condition_array, version_id=Version::DESIGN_VERSION_ID)        
+    model = Version.find(version_id).oligo_model 
+    model.constantize.qcpassed.find(:all, :order => "gene_code, enzyme_code", 
+                                          :conditions => condition_array)
   end
   
   def self.find_with_id_list(id_list)

@@ -1,0 +1,18 @@
+<table class="list">
+  <tr>
+  	<th>&nbsp;</th>
+    <th>Plate#</th>
+	<th>Well</th>
+    <th>Oligo name</th>
+  </tr>
+
+<% for plate_position in plate_positions %>
+  <tr>
+  	<td><%= check_box_tag("plate_position_id[#{plate_position.id}]", '1', checked) %></td>
+	<td><%=h plate_position.plate_or_tube_name %></td>
+	<td><%=h plate_position.well_coord %></td>
+    <td><%=h plate_position.oligo_name %></td>
+    <!-- <td><%= link_to 'Show', plate_position %></td> -->
+  </tr>
+<% end %>
+</table>

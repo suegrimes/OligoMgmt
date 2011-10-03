@@ -20,12 +20,15 @@
 #
 
 class Version < ActiveRecord::Base  
+  belongs_to :vector
+  
   named_scope :curr_version, :conditions => {:version_for_synthesis => 'Y', :archive_flag => 'C'}, :order => 'id DESC'
   
   before_save do |version|
     version.archive_flag = (version.exonome_or_partial == 'E' ? 'C' : 'P')
   end
   
+  VERSIONS = self.find(:all)
   DESIGN_VERSION = self.curr_version.find(:first)
   DESIGN_VERSION_ID = DESIGN_VERSION.id
   DESIGN_VERSION_NAMES = DESIGN_VERSION.genome_build + "/" + DESIGN_VERSION.design_version
@@ -42,7 +45,7 @@ class Version < ActiveRecord::Base
   APP_VERSION = (app_version_row1 ? app_version_row1[0] : '??')
   
   def version_id_name
-    return "#{id.to_s}: #{version_name}(#{genome_build})"
+    return "#{id.to_s}:#{version_name}(#{genome_build})"
   end
   
   def version_id_flagged_name
@@ -53,4 +56,14 @@ class Version < ActiveRecord::Base
   def self.version_id_or_default(id_num)
     return (id_num.blank? ? DESIGN_VERSION_ID : id_num.to_i)
   end
+  
+  def oligo_model
+    model = case 
+      when exonome_or_partial == 'P' then 'PilotOligoDesign'
+      when archive_flag == 'A'       then 'ArchiveOligoDesign'
+      else 'OligoDesign'
+      end
+    return model
+  end
+  
 end

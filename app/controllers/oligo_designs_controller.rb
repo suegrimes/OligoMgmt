@@ -19,9 +19,10 @@ class OligoDesignsController < ApplicationController
   # Method for listing oligo designs, based on parameters entered above                       #
   #*******************************************************************************************#
   def list_selected
-    @condition_array = ['oligo_designs.id BETWEEN ? AND ?', 2800, 3000]  #Use for testing only
-    @version_id = (params[:version] ? params[:version][:id] : Version::DESIGN_VERSION_ID)
-    @oligo_designs   = OligoDesign.find_oligos_with_conditions(@condition_array, params[:version][:id])
+    @version = (params[:version] ? Version.find(params[:version][:id]) : Version::DESIGN_VERSION)
+    @condition_array = define_conditions(params, @version.id)  
+    
+    @oligo_designs   = OligoDesign.find_oligos_with_conditions(@condition_array, @version.id)
     # return error if no oligos found
     error_found = check_if_blank(@oligo_designs, 'oligos')      
   
@@ -109,10 +110,33 @@ class OligoDesignsController < ApplicationController
       
     else
       render :update do |page|
-        page.replace_html 'gene_list', '<p>Text box goes here </p>'
+        page.replace_html 'gene_list', :partial => 'gene_text'
       end
     end
   end
+  
+  protected
+  #*******************************************************************************************#
+  # Ajax method to populate gene list, based on selected design version                       #
+  #*******************************************************************************************#  
+  def define_conditions(params, version_id=Version::DESIGN_VERSION_ID)
+    @where_select = ['version_id = ?']
+    @where_values = [version_id]
+
+    if params[:gene_string]
+      gene_array = create_array_from_text_area(params[:gene_string])
+    elsif params[:pilot_oligo_design] && params[:pilot_oligo_design][:gene_code]
+      gene_array = params[:pilot_oligo_design][:gene_code]
+    end
+    
+    if gene_array
+      @where_select.push("gene_code IN (?)")
+      @where_values.push(gene_array)
+    end
+    
+    sql_where_clause = (@where_select.length == 0 ? [] : [@where_select.join(' AND ')].concat(@where_values))
+    return sql_where_clause
+  end  
   
   private  
   #*******************************************************************************************#

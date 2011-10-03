@@ -16,11 +16,11 @@
 #
 
 class Pool < InventoryDB
-  has_many :aliquot_to_pools
+  has_many :aliquot_to_pools, :dependent => :destroy
   has_many :plate_positions, :through => :aliquot_to_pools
   belongs_to :storage_location
   
-  accepts_nested_attributes_for :aliquot_to_pools
+  accepts_nested_attributes_for :aliquot_to_pools, :allow_destroy => true
   
   validates_presence_of :tube_label
   

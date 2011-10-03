@@ -94,6 +94,33 @@ class ApplicationController < ActionController::Base
     return where_clause, where_values
   end
   
+  def pool_where_clause(pool_type, pool_string)
+    all_pool_numbers = pool_string.split(",")
+    where_select = []; where_values = [];
+    pool_nums = []; error = [];
+
+    for num in all_pool_numbers
+      num = num.to_s.delete(' ')    
+      case num
+      when /^(\d+)$/ # digits only
+        pool_nums << num.to_i  # convert to integer; gather into array
+      when /^(\d+)\-(\d+)$/ # has range of digits
+        where_select.push('pools.tube_label BETWEEN ? AND ?')
+        where_values.push(pool_type + "%04d" % $1.to_i, pool_type + "%04d" % $2.to_i) # Convert to format XXnnnn where XX is pool prefix, nnnn is 4 digit integer
+      else error << num + ' is unexpected value'
+      end # case
+    end # for
+    
+    if (!pool_nums.empty?) 
+      where_select.push('CAST(SUBSTRING(tube_label,3) AS UNSIGNED) IN (?)')
+      where_values.push(pool_nums)
+    end
+    
+    where_clause = (where_select.size > 0 ? ['(' + where_select.join(' OR ') + ')'] : [])
+    #puts error if !error.empty?
+    return where_clause, where_values
+  end
+  
   def sql_conditions_for_range(where_select, where_values, from_fld, to_fld, db_fld)
     if !from_fld.blank? && !to_fld.blank?
       where_select.push "#{db_fld} BETWEEN ? AND ?"

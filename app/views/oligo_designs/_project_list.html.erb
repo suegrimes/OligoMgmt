@@ -1,9 +1,0 @@
-<table>
-  <tr>
-  	<th>Projects:</th>
-  	<td><%= collection_select(:project, :id, @projects, :id, :project_name, {:include_blank => 'All'},
-                             {:size => 3, :multiple => :multiple,
-                              :onChange => remote_function(:url=> {:action=> :get_gene_list},
-                              :with=> "'project_id=' + this.value" )})%></td>
-  </tr>
-</table>

@@ -14,6 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   
   # Oligo Designs
   map.resources :oligo_designs
+  map.resources :pilot_oligo_designs, :only => :show
   map.designquery 'designquery',       :controller => 'oligo_designs', :action => 'new_query'
   map.list_selected 'list_oligos',     :controller => 'oligo_designs', :action => 'list_selected'
   map.export 'export',                 :controller => 'oligo_designs', :action => 'export'
@@ -31,7 +32,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :pools
   map.resources :aliquot_to_pools 
   map.pool_params 'pool_params',  :controller => 'pools',  :action => 'new_params'
-  map.pools_list  'pools_list',   :controller => 'pools',  :action => 'list_oligos'
+  map.pools_list  'pools_list',   :controller => 'pools',  :action => 'list_for_pool'
   
   # Error/not implemented
   map.notimplemented 'notimplemented', :controller => 'dummy',         :action => 'notimplemented'

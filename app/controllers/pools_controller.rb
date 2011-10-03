@@ -8,20 +8,27 @@ class PoolsController < ApplicationController
     @pool_types   = Pool.pool_types
   end
   
-  def list_oligos
-    sql_where_clause = define_conditions(params)
-    @synth_oligos = SynthOligo.find(:all, :include => {:plate_position => :plate_tube}, :conditions => sql_where_clause)
+  def list_for_pool
+    @from_oligos_or_pools = (params[:pool_string].blank? ? 'oligo' : 'pool')
+    
+    if @from_oligos_or_pools == 'pool'
+      sql_where_clause = define_pool_conditions(params)
+      @current_pools = Pool.find(:all, :conditions => sql_where_clause)
+    else
+      sql_where_clause = define_oligo_conditions(params)
+      @plate_positions = PlatePosition.find(:all, :include => :plate_tube, :conditions => sql_where_clause)
+    end
     @checked = false
     @pool = Pool.new
     @storage_locations = StorageLocation.find(:all, :order => "room_nr, shelf_nr")
-    render :action => 'list_oligos'
+    render :action => 'list_for_pool'
   end
   
   # GET /pools
   # GET /pools.xml
   def index
     #sql_where_clause = define_conditions(params)
-    @pools = Pool.find(:all) 
+    @pools = Pool.find(:all, :order => :tube_label) 
     render :action => 'index'
   end
 
@@ -42,19 +49,25 @@ class PoolsController < ApplicationController
   # POST /pools.xml
   def create
     @pool = Pool.new(params[:pool])
+    
     if params[:plate_position_id]
+      success_msg_dtls = "#{params[:plate_position_id].size} plate_positions/tubes"
       params[:plate_position_id].keys.each {|p_id| @pool.aliquot_to_pools.build(:plate_position_id => p_id)}
+    elsif params[:pool_id]
+      success_msg_dtls = "#{params[:pool_id].size} existing pools"
+      aliquot_to_pools = AliquotToPool.find(:all, :conditions => ['pool_id IN (?)', params[:pool_id].keys])
+      aliquot_to_pools.each {|aliquot| @pool.aliquot_to_pools.build(:plate_position => aliquot.plate_position)}
     end
     
     if @pool.save
-      flash[:notice] = "Pool successfully created with #{params[:plate_position_id].size} plate positions/tubes"
+      flash[:notice] = "Pool successfully created from #{success_msg_dtls}"
       redirect_to(@pool)
     else
-      # Validation error in entering misc pool
+      # Validation error in entering pool
       @synth_oligos = SynthOligo.find(:all, :include => :plate_position, :conditions => ["id in (?)", params[:plate_position].keys])
       @checked = true
       @storage_locations = StorageLocation.find(:all, :order => "room_nr, shelf_nr")
-      render :action => :list_oligos
+      render :action => :list_for_pool
     end
   end
 
@@ -74,16 +87,15 @@ class PoolsController < ApplicationController
   # DELETE /pools/1
   # DELETE /pools/1.xml
   def destroy
-    @pool = Pool.find(params[:id])
+    @pool = Pool.find(params[:id], :include => :aliquot_to_pools)
     @pool.destroy
 
     redirect_to(pools_url)
   end
   
 protected
-  def define_conditions(params)
-    @where_select = []
-    @where_values = []
+  def define_oligo_conditions(params)
+    @where_select = [];  @where_values = []
     
     @where_select, @where_values = plate_where_clause(params[:plate_string]) if !params[:plate_string].blank?
     
@@ -99,18 +111,13 @@ protected
     return sql_where_clause
   end
   
-  def sql_conditions_for_range(where_select, where_values, from_fld, to_fld, db_fld)
-    if !from_fld.blank? && !to_fld.blank?
-      where_select.push "#{db_fld} BETWEEN ? AND ?"
-      where_values.push(from_fld, to_fld) 
-    elsif !from_fld.blank? # To field is null or blank
-      where_select.push("#{db_fld} >= ?")
-      where_values.push(from_fld)
-    elsif !to_fld.blank? # From field is null or blank
-      where_select.push("(#{db_fld} IS NULL OR #{db_fld} <= ?)")
-      where_values.push(to_fld)
-    end  
-    return where_select, where_values 
+  def define_pool_conditions(params)
+    @where_select = []; @where_values = []
+    
+    @where_select, @where_values = pool_where_clause(params[:pool_type], params[:pool_string]) 
+    
+    sql_where_clause = (@where_select.length == 0 ? [] : [@where_select.join(' AND ')].concat(@where_values))
+    return sql_where_clause
   end
-  
+
 end

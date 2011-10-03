@@ -12,5 +12,5 @@
 
 class AliquotToPool < InventoryDB
   belongs_to :plate_position
-  belongs_to :pool 
+  belongs_to :pool
 end

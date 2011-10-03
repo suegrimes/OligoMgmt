@@ -1,14 +1,16 @@
+<%= debug(Vector::VECTORS) %>
+
 <h1>Oligo Designs</h1>
 
 <% form_tag :action => "export_design" do %>
 <p><%=h @oligo_designs.size %> oligos selected <%= submit_tag "Export Oligos" -%></p>
-<%= hidden_field_tag("version_id", @version_id)%>
+<%= hidden_field_tag("version_id", @version.id)%>
 
 <table class="list">
   <tr>
   	<th>ID</th>
 	<th>Oligo Name</th>
-	<th>Chromosome</th>
+	<th>Chr</th>
 	<th>Amplicon Start</th>
 	<th>Length</th>
 	<th>Flags</th>
@@ -31,7 +33,7 @@
 	<td width=220><%=h oligo_design.sel_5prime %></td>
 	<td width=220><%=h oligo_design.sel_3prime %></td>
 	<td align=center><%=h oligo_design.sel_polarity %></td>
-	<td><%=h version_name(oligo_design.version_id) %></td>
+	<td><%=h @version.version_id_name %></td>
 	<td width=10><%= hidden_field_tag("export_id[]", oligo_design.id)%>
   </tr>
 <% end %>
