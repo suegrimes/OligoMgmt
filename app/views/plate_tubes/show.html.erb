@@ -14,7 +14,7 @@
 <% for synth_oligo in plate_position.synth_oligos %>
   <tr>
     <td><%=h synth_oligo.oligo_name[0,49] %></td>
-    <td><%=h synth_oligo.oligo_usage_descr %></td>
+    <td><%=h plate_position.oligo_usage_descr %></td>
 	<td><%=h synth_oligo.sequence[0,39] %></td>
 	<td><%=h plate_position.well_coord %></td>
 	<td><%=h synth_oligo.notes %></td>

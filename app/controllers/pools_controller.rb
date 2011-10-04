@@ -4,7 +4,7 @@ class PoolsController < ApplicationController
   def new_params
     @min_date, @max_date   = PlateTube.find_min_and_max_dates
     # Invert hash keys/values (ie hash value first, then key); convert to array, sort and add blank first value
-    @oligo_usages = SynthOligo::OLIGO_USAGE.invert.to_a.sort.insert(0,'') 
+    @oligo_usages = PlatePosition::OLIGO_USAGE.invert.to_a.sort.insert(0,'') 
     @pool_types   = Pool.pool_types
   end
   
@@ -97,7 +97,7 @@ class PoolsController < ApplicationController
   
 protected
   def define_oligo_conditions(params)
-    @where_select = [];  @where_values = []
+    @where_select = [];  @where_values = [];
     
     @where_select, @where_values = plate_where_clause(params[:plate_string]) if !params[:plate_string].blank?
     

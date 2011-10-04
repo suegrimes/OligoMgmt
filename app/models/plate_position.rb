@@ -5,6 +5,7 @@
 #
 #  id                 :integer(4)      not null, primary key
 #  oligo_name         :string(100)     default(""), not null
+#  oligo_usage        :string(1)
 #  plate_or_tube_name :string(30)
 #  plate_or_tube_id   :integer(4)
 #  well_number        :string(3)
@@ -19,6 +20,12 @@ class PlatePosition < InventoryDB
   has_many :pools, :through => :aliquot_to_pools
   
   WELL_LETTER = %w{A B C D E F G H}
+  OLIGO_USAGE = {:V => 'Vector', :A => 'Adapter', :P => 'Primer', :S => 'Selector', :Q => 'OS-Seq', 
+                 :T => 'SV Tiling', :O => 'Other Oligo'}
+  
+  def oligo_usage_descr
+    (oligo_usage.blank? ? 'Unknown' : OLIGO_USAGE[oligo_usage.to_sym])
+  end
   
   def well_coord
     well_alpha = WELL_LETTER[(plate_position - 1)/12]
