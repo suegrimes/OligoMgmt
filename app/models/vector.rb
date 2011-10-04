@@ -1,4 +1,5 @@
 # == Schema Information
+# Schema version: 20090121183010
 #
 # Table name: vectors
 #

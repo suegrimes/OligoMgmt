@@ -73,14 +73,14 @@ class ApplicationController < ActionController::Base
       when /^\d+$/ # has digits only
         plate_numbers << num # gather into array
       when /^(\d+)\-(\d+)$/ # has range of digits
-        where_select.push('plate_tubes.plate_number BETWEEN ? AND ?')
+        where_select.push("plate_tubes.plate_or_tube_name NOT LIKE 'M%' AND plate_tubes.plate_number BETWEEN ? AND ?")
         where_values.push($1, $2)
       else error << num + ' is unexpected value'
       end # case
     end # for
     
     if (!plate_or_tube_names.empty?) 
-      where_select.push('plate_or_tube_name IN (?)')
+      where_select.push("plate_or_tube_name NOT LIKE 'M%' AND plate_or_tube_name IN (?)")
       where_values.push(plate_or_tube_names)
     end
     

@@ -5,6 +5,8 @@
     <th>Pool(s):</th>
 	<td><%= select_tag(:pool_type, options_for_select(@pool_types, ''))%></td>
 	<td colspan="2"><%= text_field_tag(:pool_string, @pool_string, :size => 30) %></td> 
-  </tr>	
+  </tr>
+  <tr><td class="notes" colspan="4">Select pool prefix, and enter integer pool#s or ranges. Eg. '1,10-15,23'</td></tr>
+  <tr><td>&nbsp;</td></tr>  
 </table>
 </fieldset>

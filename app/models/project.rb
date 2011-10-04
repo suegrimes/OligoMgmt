@@ -1,14 +1,16 @@
 # == Schema Information
+# Schema version: 20090121183010
 #
 # Table name: projects
 #
 #  id                  :integer(4)      not null, primary key
 #  project_name        :string(50)      default(""), not null
 #  project_description :string(255)
-#  version_id          :integer(4)
+#  version_id          :integer(2)
 #
 
 class Project < ActiveRecord::Base
+  has_many :gene_lists, :as => :list_owner
   has_many :project_genes
   after_update :save_genes
   

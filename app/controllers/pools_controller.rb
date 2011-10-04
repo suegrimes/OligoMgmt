@@ -13,10 +13,12 @@ class PoolsController < ApplicationController
     
     if @from_oligos_or_pools == 'pool'
       sql_where_clause = define_pool_conditions(params)
-      @current_pools = Pool.find(:all, :conditions => sql_where_clause)
+      @current_pools = Pool.find(:all, :conditions => sql_where_clause,
+                                       :order => :tube_label)
     else
       sql_where_clause = define_oligo_conditions(params)
-      @plate_positions = PlatePosition.find(:all, :include => :plate_tube, :conditions => sql_where_clause)
+      @plate_positions = PlatePosition.find(:all, :include => :plate_tube, :conditions => sql_where_clause,
+                                                  :order => 'plate_positions.plate_or_tube_name, plate_position')
     end
     @checked = false
     @pool = Pool.new

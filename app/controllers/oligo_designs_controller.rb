@@ -19,7 +19,8 @@ class OligoDesignsController < ApplicationController
   # Method for listing oligo designs, based on parameters entered above                       #
   #*******************************************************************************************#
   def list_selected
-    @version = (params[:version] ? Version.find(params[:version][:id]) : Version::DESIGN_VERSION)
+    #@version = (params[:version] ? Version.find(params[:version][:id]) : Version::DESIGN_VERSION)
+    @version = Version.find(params[:version][:id], :include => :gene_lists)
     @condition_array = define_conditions(params, @version.id)  
     
     @oligo_designs   = OligoDesign.find_oligos_with_conditions(@condition_array, @version.id)
@@ -91,24 +92,23 @@ class OligoDesignsController < ApplicationController
   end
   
   #*******************************************************************************************#
-  # Ajax method to populate gene list, based on selected design version                       #
+  # Ajax method to populate gene or project list, based on selected design version            #
   #*******************************************************************************************#  
   def get_gene_list
-    @version = Version.find(params[:version_id])
+    @version = Version.find(params[:version_id], :include => :gene_lists)
     
     if @version.exonome_or_partial == 'P'
-      @unique_genes = PilotOligoDesign.find(:all, :select => 'DISTINCT(gene_code)', :order => :gene_code,
-                                            :conditions => ['version_id = ?', params[:version_id]])
-      @genes = @unique_genes.collect{|design| design[:gene_code]}  
+      @genes = @version.gene_lists.collect{|genes| genes[:gene_code]} 
       render :update do |page|
-        if !@unique_genes.nil?
+        if !@genes.nil?
           page.replace_html 'gene_list', :partial => 'gene_list', :genes => @genes
         else
-          page.replace_html 'gene_list', '<p>No genes found for this version, in pilot designs</p>'
+          page.replace_html 'gene_list', '<p>No genes found for this version, in gene_lists table</p>'
         end
       end
       
     else
+      @projects = Project.find(:all)
       render :update do |page|
         page.replace_html 'gene_list', :partial => 'gene_text'
       end

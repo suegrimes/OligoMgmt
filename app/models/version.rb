@@ -21,8 +21,10 @@
 
 class Version < ActiveRecord::Base  
   belongs_to :vector
+  has_many :gene_lists, :as => :list_owner
   
   named_scope :curr_version, :conditions => {:version_for_synthesis => 'Y', :archive_flag => 'C'}, :order => 'id DESC'
+  named_scope :exome_version, :conditions => {:exonome_or_partial => 'E'}
   
   before_save do |version|
     version.archive_flag = (version.exonome_or_partial == 'E' ? 'C' : 'P')
@@ -53,10 +55,6 @@ class Version < ActiveRecord::Base
     (id == DESIGN_VERSION.id ? ['*', version_id_name].join('') : [' ', version_id_name].join(''))
   end
   
-  def self.version_id_or_default(id_num)
-    return (id_num.blank? ? DESIGN_VERSION_ID : id_num.to_i)
-  end
-  
   def oligo_model
     model = case 
       when exonome_or_partial == 'P' then 'PilotOligoDesign'
@@ -64,6 +62,10 @@ class Version < ActiveRecord::Base
       else 'OligoDesign'
       end
     return model
+  end
+  
+  def self.version_id_or_default(id_num)
+    return (id_num.blank? ? DESIGN_VERSION_ID : id_num.to_i)
   end
   
 end
