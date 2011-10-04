@@ -1,14 +1,14 @@
 <%= error_messages_for :user %>
 <% form_for :user do |f| -%>
   <table id="newedit">
-	 <thead>
+  	 <thead>
         <tr>
           <th colspan="2" >Pick a new password for <%= @user.email %></th>
         </tr>
      </thead>
 	 
 	 <tbody>
-		<tr>
+	 	<tr>
 	      <td align="right"><label>Password:</label></td>
 		  <td><%= f.password_field :password %></td>
         </tr>

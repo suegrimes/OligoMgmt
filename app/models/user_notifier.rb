@@ -1,6 +1,6 @@
 class UserNotifier < ActionMailer::Base
-  #SITE_URL = 'reve.stanford.edu:3200'  # Development/Test (SGTC)
-  SITE_URL  = 'oligoexome.stanford.edu' # Production (SGTC-svr108)
+  SITE_URL = 'localhost:3001'  # Development/Test (SGTC)
+  #SITE_URL  = 'reve.stanford.edu:3200' # Production (reve)
   
 #  def signup_notification(user)
 #    setup_email(user)
@@ -23,8 +23,8 @@ class UserNotifier < ActionMailer::Base
 protected
   def setup_email(user)
     @recipients  = "#{user.email}"
-    @from        = "oligoexome_admin@stanford.edu"
-    @subject     = "OligoExome: "
+    @from        = "oligomgmt_admin@stanford.edu"
+    @subject     = "OligoMgmt: "
     @sent_on     = Time.now
     @body[:user] = user
   end
