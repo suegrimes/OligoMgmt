@@ -43,6 +43,7 @@ class OligoDesign < ActiveRecord::Base
 # or method must be passed a parameter to indicate which model the method is accessing
   acts_as_commentable
  
+  belongs_to :version
   has_one  :oligo_annotation, :foreign_key => :oligo_design_id
   
   validates_uniqueness_of :oligo_name,
@@ -64,7 +65,11 @@ class OligoDesign < ActiveRecord::Base
   #****************************************************************************************#
   
   def polarity
-    (sel_polarity == 'p' ? 'plus' : 'minus')
+    case sel_polarity
+      when 'p' then 'plus'
+      when 'm' then 'minus'
+      else nil
+    end
   end
   
   def usel_vector

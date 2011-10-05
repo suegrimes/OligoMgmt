@@ -3,7 +3,7 @@ class OligoDesignsController < ApplicationController
   
   # GET /oligo_designs/1
   def show
-    @oligo_design = OligoDesign.find(params[:id], :include => :oligo_annotation )
+    @oligo_design = OligoDesign.find(params[:id], :include => [:oligo_annotation, :version] )
     @comments     = @oligo_design.comments.sort_by(&:created_at).reverse
   end
   

@@ -22,15 +22,15 @@
 	<td><%=oligo_design.amplicon_length %></td>
 	<td><%=oligo_design.amplicon_chr_start_pos %></td>
 	<td><%=oligo_design.amplicon_chr_end_pos %></td>
-	<td><%=h version_name(oligo_design.version_id) %></td>
+	<td><%=oligo_design.version.version_id_name %></td>
   </tr>
 </table>
 
 <table class="list">  
   <tr>
-  	<th>5prime Selector</th>
-	<th>Vector</th>
-	<th>3prime Selector</th>
+  	<th>Capture Seq(5')</th>
+	<th>Constant Region(Vector)</th>
+	<th>Capture Seq(3')</th>
 	<th>Polarity</th>
   </tr>
   <tr>
