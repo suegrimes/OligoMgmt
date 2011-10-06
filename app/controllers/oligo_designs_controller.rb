@@ -142,7 +142,7 @@ class OligoDesignsController < ApplicationController
   #*******************************************************************************************#
   # Export oligo designs to csv file                                                          #    
   #*******************************************************************************************#
-  def export_designs_csv(oligo_designs, fmt_nr=2)
+  def export_designs_csv(oligo_designs, fmt_nr=1)
     csv_string = FasterCSV.generate(:col_sep => "\t") do |csv|
       csv << ['Date', 'Project'].concat(ExportField.headings(fmt_nr))
       

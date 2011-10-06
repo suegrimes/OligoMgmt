@@ -72,12 +72,12 @@ class OligoDesign < ActiveRecord::Base
     end
   end
   
-  def usel_vector
-    selector_useq[21,40]
-  end
-  
   def vector
     Vector::VECTORS[version_id]
+  end
+  
+  def usel_vector
+    (version_id == 10 ? vector : selector_useq[21,40]) # Differentiate between OSSeq and Selector technology
   end
   
   def selector

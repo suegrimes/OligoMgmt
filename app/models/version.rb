@@ -23,7 +23,7 @@ class Version < ActiveRecord::Base
   belongs_to :vector
   has_many :gene_lists, :as => :list_owner
   
-  named_scope :curr_version, :conditions => {:version_for_synthesis => 'Y', :archive_flag => 'C'}, :order => 'id DESC'
+  named_scope :curr_version, :conditions => {:archive_flag => 'C'}, :order => 'id DESC'
   named_scope :exome_version, :conditions => {:exonome_or_partial => 'E'}
   
   before_save do |version|
