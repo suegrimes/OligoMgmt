@@ -32,7 +32,7 @@
 	<td width=220><%=h oligo_design.sel_3prime %></td>
 	<td align=center><%=h oligo_design.sel_polarity %></td>
 	<td><%=h @version.version_id_name %></td>
-	<td width=10><%= hidden_field_tag("export_id[]", oligo_design.id)%>
+	<%= hidden_field_tag("export_id[]", oligo_design.id)%>
   </tr>
 <% end %>
 <% end %>

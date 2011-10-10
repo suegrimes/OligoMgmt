@@ -1,14 +1,11 @@
-<h3> Welcome</h3>
-<br />
-<br />
-<p> SGTC Oligo DB is a scalable oligonucleotide management system for genomic analysis</p>
-<p> and high-throughput resequencing.  Targeted selection oligonucleotides will cover</p>
-<p> all known exons and regulatory regions from the human genome. </p> 
+<h1>Welcome</h1>
+<p> SGTC Oligo DB is a scalable oligonucleotide management system for genomic analysis and high-throughput resequencing. Targeted selection oligonucleotides will cover all known exons and regulatory regions from the human genome. </p> 
 <br />
 <br />
 
 <%if !current_user%> <hr> <%= render :partial => 'user_login' %> 
-  <% else %>              <p class="notes">Please select one of the options on the left </p>
+<% else %>              
+<p class="notes">Please select one of the options on the left </p>
 <% end %>
 
 

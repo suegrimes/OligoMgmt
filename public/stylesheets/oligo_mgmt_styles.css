@@ -2,7 +2,7 @@
 /* CSS Document */
 
 /* 
-   Styles mainly for OligoDB site
+   Styles mainly for Oligo Management site
 */
 
 /* form fieldset styles */
@@ -34,4 +34,8 @@ fieldset.form label.radio {
 	white-space: nowrap;  /* css-3 */
 	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
 	word-wrap: break-word;/* Internet Explorer 5.5+ */	
+}
+
+#leftsidebar ul li a {
+    padding: 0 5px 0 15px;
 }

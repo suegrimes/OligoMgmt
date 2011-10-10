@@ -6,7 +6,7 @@
 		<meta name="description" content="<%= META_TAGS[:description] %>" />
         <meta name="keywords" content="<%= META_TAGS[:keywords] %>" />
         <%= stylesheet_link_tag 'sgtc_std' %>
-		<%= stylesheet_link_tag 'oligodb_styles' %>
+		<%= stylesheet_link_tag 'oligo_mgmt_styles' %>
 		<!--%= stylesheet_link_tag 'lims-superfish' %-->
 		<!--[if IE]><%= stylesheet_link_tag 'ie-fixes' %><![endif]-->        
         <%= javascript_include_tag :defaults, :cache => true %>
@@ -28,7 +28,16 @@
 <body id='body'>
     <% user_roles = (logged_in? ? current_user.roles.collect(&:name) : nil) %>
     
-<div id="container" style="width: 98%;">
+<% if ( 
+        (controller.controller_name == "welcome") ||
+        (controller.controller_name == "users") ||
+        (@invalid_login_flag);
+      )
+%>
+    <div id="container" style="width: 800px;">
+<% else %>
+    <div id="container" style="width: 98%;">
+<% end %>
     
 <div id="header">
   <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 0;">
@@ -123,7 +132,7 @@
     <div class="sidebar-label">OTHER LINKS:</div>
     <li><a href="http://cancer.stanford.edu/">Stanford Cancer Center</a></li>
     <li><a href="http://dna-discovery.stanford.edu/">Stanford DNA Discovery</a></li>
-    <li><a href="http://med.stanford.edu/sgtc/">Stanford Genome Technology</a></li>
+    <li><a href="http://med.stanford.edu/sgtc/">Stanford Genome Tech Center</a></li>
   </ul> <!-- /opened -->
 </div> <!-- /leftsidebar -->    
 
