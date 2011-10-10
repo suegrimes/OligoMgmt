@@ -6,7 +6,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -61,8 +61,8 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random, 
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => '_OligoDB_session',
-    :secret      => '8b7444061d4099e612c73636ae4908d36f4rhgj3d0365231cda1b7502743f0c7f556cce93e8f6dd8556128e9c5db06d63c8ebf64ee74bf84d8930c8c'
+    :session_key => '_OligoMgmt_session',
+    :secret      => '8b7444061d4099e612c73636ae4908d36f40ab53d0365231cda1b7502743f0c7f556cce93e8f6dd8556128e9c5db06d63c8ebf64ee74bf84d8930c8c'
   }
 
   # Use the database for sessions instead of the cookie-based default,

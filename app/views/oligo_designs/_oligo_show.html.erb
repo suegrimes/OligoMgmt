@@ -1,9 +1,6 @@
-<p>
-  <b>Oligo Name:</b>
-  <%=h oligo_design.oligo_name %>
-</p>
+<h1>Oligo Name: <%=h oligo_design.oligo_name %></h1>
 
-<table class="border">
+<table class="list">
   <tr>
 	<th>ID</th>
     <th>Chromosome</th>    
@@ -25,15 +22,15 @@
 	<td><%=oligo_design.amplicon_length %></td>
 	<td><%=oligo_design.amplicon_chr_start_pos %></td>
 	<td><%=oligo_design.amplicon_chr_end_pos %></td>
-	<td><%=h version_name(oligo_design.version_id) %></td>
+	<td><%=oligo_design.version.version_id_name %></td>
   </tr>
 </table>
 
-<table class="border">  
+<table class="list">  
   <tr>
-  	<th>5prime Selector</th>
-	<th>Vector</th>
-	<th>3prime Selector</th>
+  	<th>Capture Seq(5')</th>
+	<th>Constant Region(Vector)</th>
+	<th>Capture Seq(3')</th>
 	<th>Polarity</th>
   </tr>
   <tr>
@@ -44,7 +41,7 @@
   </tr>
 </table>
 
-<table class="border">
+<table class="list">
   <tr>
   	<th colspan=2>Annotations</th>
 	<th colspan=3>Repeat counts</th>
@@ -68,11 +65,9 @@
   </tr>
 </table>
 
-<table class="border">
+<table class="list">
 <tr><th>Amplicon&nbsp;Sequence</th></tr>
-<tr><td class=hardbreak><%= oligo_design.amplicon_seq %></td></tr>
+<tr><td class="hardbreak"><%= oligo_design.amplicon_seq %></td></tr>
 </table>
 
-<%= render(:partial => "shared/show_comments", :locals => {:comments => @comments}) %>
-<%= render(:partial => "shared/add_comment", :locals => {:id => oligo_design.id}) %>
 		

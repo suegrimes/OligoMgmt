@@ -2,7 +2,7 @@
 /* CSS Document */
 
 /* 
-   Styles mainly for OligoExome site
+   Styles mainly for OligoDB site
 */
 
 /* form fieldset styles */
@@ -27,4 +27,11 @@ fieldset.form label {
 fieldset.form label.radio {
     float:left; width:20em; 
     margin-right: 1em;
+}
+
+.hardbreak {
+    word-break: break-all;
+	white-space: nowrap;  /* css-3 */
+	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+	word-wrap: break-word;/* Internet Explorer 5.5+ */	
 }

@@ -6,7 +6,6 @@
 #  id                :integer(4)      not null, primary key
 #  plate_position_id :integer(4)
 #  oligo_name        :string(100)     default(""), not null
-#  oligo_usage       :string(2)
 #  oligo_id          :integer(4)
 #  oligo_type        :string(30)
 #  chromosome_nr     :string(2)
@@ -17,15 +16,8 @@
 #  updated_at        :timestamp
 #
 
-class SynthOligo < ActiveRecord::Base
+class SynthOligo < InventoryDB
   belongs_to :plate_position
-  
-  OLIGO_USAGE = {:V => 'Vector', :A => 'Adapter', :P => 'Primer', :S => 'Selector', :Q => 'OS-Seq', 
-                 :T => 'SV Tiling', :O => 'Other Oligo'}
-  
-  def oligo_usage_descr
-    (oligo_usage.blank? ? 'Unknown' : OLIGO_USAGE[oligo_usage.to_sym])
-  end
   
   def dna_sequence
     # Delete any of the following characters from ordered oligo: space, P, X, 5, '-', or single quote

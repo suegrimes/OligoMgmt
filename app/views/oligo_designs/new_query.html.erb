@@ -1,0 +1,19 @@
+<h1>Query Oligo Designs</h1>
+
+<% form_tag({:action => :list_selected}, :method => :get) do %>
+
+<fieldset class="form">
+<legend>Specify parameters</legend>
+<table class="form">
+  <tr>
+  	<th>Version(s):</th>
+  	<td><%= collection_select(:version, :id, @versions, :id, :version_id_name, {:include_blank => 'Select..'},
+                             {:onChange => remote_function(:url=> {:action=> :get_gene_list},
+                              :with=> "'version_id=' + this.value" )})%></td>
+  </tr>
+</table>
+<div id="gene_list"></div>
+</fieldset>
+
+<%= break_clear(submit_tag "Submit") %>
+<%end%>

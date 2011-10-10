@@ -1,8 +1,5 @@
-<% checkbox ||= false %>
-
 <table class="list">
   <tr>
-  	<% if checkbox == true %><th>&nbsp;</th><% end %>
     <th>Oligo ID</th>
     <th>Oligo name (chars 1-50)</th>
     <th>Oligo type</th>
@@ -13,10 +10,9 @@
 
 <% for oligo in synth_oligos %>
   <tr>
-  	<% if checkbox == true %><td><%= check_box_tag("oligo_id[#{oligo.id}]", '1', checked) %></td><% end %>
     <td><%=h oligo.id %></td>
     <td><%=h oligo.oligo_name[0,49] %></td>
-    <td><%=h oligo.oligo_usage_descr %></td>
+    <td><%=h oligo.plate_position.oligo_usage_descr %></td>
 	<td><%=h oligo.sequence[0,39] %></td>
 	<td><%=h oligo.plate_position.plate_or_tube_name %>/<%=h oligo.plate_position.well_coord %></td>
 	<td><%=h oligo.notes %></td>

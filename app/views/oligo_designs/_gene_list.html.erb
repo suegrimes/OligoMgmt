@@ -1,0 +1,6 @@
+<table>
+  <tr>
+  	<th>Genes:</th>
+	<td><%= select(:pilot_oligo_design, :gene_code, @genes, {:include_blank => '<All>'}, {:size => 10, :multiple => :multiple})%></td>
+  </tr>
+</table>

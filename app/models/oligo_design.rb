@@ -43,6 +43,7 @@ class OligoDesign < ActiveRecord::Base
 # or method must be passed a parameter to indicate which model the method is accessing
   acts_as_commentable
  
+  belongs_to :version
   has_one  :oligo_annotation, :foreign_key => :oligo_design_id
   
   validates_uniqueness_of :oligo_name,
@@ -64,15 +65,23 @@ class OligoDesign < ActiveRecord::Base
   #****************************************************************************************#
   
   def polarity
-    (sel_polarity == 'p' ? 'plus' : 'minus')
+    case sel_polarity
+      when 'p' then 'plus'
+      when 'm' then 'minus'
+      else nil
+    end
+  end
+  
+  def vector
+    Vector::VECTORS[version_id]
   end
   
   def usel_vector
-    selector_useq[21,40]
+    (version_id == 10 ? vector : selector_useq[21,40]) # Differentiate between OSSeq and Selector technology
   end
   
   def selector
-    [sel_5prime, Vector::VECTOR, sel_3prime].join('')
+    [sel_5prime, vector, sel_3prime].join('')
   end
   
   def chr_target_start
@@ -105,13 +114,10 @@ class OligoDesign < ActiveRecord::Base
     return oligo_design
   end
   
-  def self.find_selectors_with_conditions(condition_array, version_id=Version::DESIGN_VERSION_ID)
-    condition_array[0] += ' AND version_id = ?'
-    condition_array.push(version_id)
-    
-    self.qcpassed.find(:all,
-                       :order => 'gene_code, enzyme_code',                               
-                       :conditions => condition_array) 
+  def self.find_oligos_with_conditions(condition_array, version_id=Version::DESIGN_VERSION_ID)        
+    model = Version.find(version_id).oligo_model 
+    model.constantize.qcpassed.find(:all, :order => "gene_code, enzyme_code", 
+                                          :conditions => condition_array)
   end
   
   def self.find_with_id_list(id_list)

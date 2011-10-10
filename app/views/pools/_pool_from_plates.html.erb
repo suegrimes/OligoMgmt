@@ -1,0 +1,22 @@
+<fieldset class="form">
+<legend>Create From Oligo Plates</legend>
+<table class="form">
+  <tr>
+    <th>Plate Number(s): </th>
+	<td colspan="2"><%= text_field_tag(:plate_string, @plate_string, :size => 30) %></td>
+  </tr>
+  <tr><td class="notes" colspan="4">Enter individual plates separated by commas, enter ranges with '-'. Eg. '1,23,M10-M15,100,30-32'</td></tr>
+  <tr><td>&nbsp;</td></tr>  
+  </tr>
+  <tr>
+    <th>Date From:</th>
+	<td><%=calendar_date_select_tag(:date_from, @min_date, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
+	<th>To:</th>
+	<td><%=calendar_date_select_tag(:date_to, @max_date, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
+  </tr>
+  <tr>
+    <th>Oligo Type:</th>
+	<td><%= select_tag(:oligo_usage, options_for_select(@oligo_usages, ''))%></td>
+  </tr>		
+</table>
+</fieldset>

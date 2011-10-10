@@ -17,13 +17,10 @@ config.action_controller.perform_caching             = false
 config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
              :enable_starttls_auto => true,
-             :address => 'smtp.gmail.com',
-             :port    => 587,
-             :domain  => 'stanford.oligoexome@gmail.com',
-             :tls     => true,
-#             :authentication => :login,
-#             :user_name => 'stanford.oligoexome',
-#             :password  => <pswd>
+             :address => 'smtp.stanford.edu',
+             :port    => 25,
+             :domain  => 'stanford.edu',
+             :tls     => true
              }
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = true

@@ -1,0 +1,20 @@
+<table class="list">
+  <tr>
+  	<th>&nbsp;</th>
+    <th>Pool ID</th>
+    <th>Label</th>
+    <th>Name</th>
+	<th>Description</th>
+  </tr>
+
+<% for pool in pools %>
+  <tr>
+  	<td><%= check_box_tag("pool_id[#{pool.id}]", '1', checked) %></td>
+    <td><%=h pool.id %></td>
+    <td><%=h pool.tube_label %></td>
+    <td><%=h pool.pool_name %></td>
+	<td><%=h pool.pool_description %></td>
+    <td><%= link_to 'Show', pool %></td>
+  </tr>
+<% end %>
+</table>
