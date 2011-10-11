@@ -64,13 +64,7 @@ class PlateTubesController < ApplicationController
 protected
   def define_plate_conditions(params)
     @where_select = [];  @where_values = [];
-    
     @where_select, @where_values = plate_where_clause(params[:plate_string]) if !params[:plate_string].blank?
-    
-    if params[:oligo_usage] && !params[:oligo_usage].blank?
-      @where_select.push('oligo_usage = ?')
-      @where_values.push(params[:oligo_usage])
-    end   
     
     db_fld = 'plate_tubes.synthesis_date'
     @where_select, @where_values = sql_conditions_for_range(@where_select, @where_values, params[:date_from], params[:date_to], db_fld)
