@@ -68,7 +68,7 @@ class ApplicationController < ActionController::Base
         plate_or_tube_names << num # gather into array
       when /^(M\d+)\-(M\d+)$/ # is a range with 'M' followed by digits
         #if $1[0].chr != $2[0].chr then error << 'First letters of ' + $1 + ' and ' + $2 + ' do not match'; next end
-        where_select.push('plate_positions.plate_or_tube_name BETWEEN ? AND ?')
+        where_select.push('plate_tubes.plate_or_tube_name BETWEEN ? AND ?')
         where_values.push($1, $2)
       when /^\d+$/ # has digits only
         plate_numbers << num # gather into array

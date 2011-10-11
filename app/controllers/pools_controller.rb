@@ -2,35 +2,41 @@ class PoolsController < ApplicationController
   require_role "stanford"
   
   def new_params
-    @min_date, @max_date   = PlateTube.find_min_and_max_dates
-    # Invert hash keys/values (ie hash value first, then key); convert to array, sort and add blank first value
-    @oligo_usages = PlatePosition::OLIGO_USAGE.invert.to_a.sort.insert(0,'') 
-    @pool_types   = Pool.pool_types
+    @pool_types   = Pool.pool_types.insert(0,'')
   end
   
   def list_for_pool
-    @from_oligos_or_pools = (params[:pool_string].blank? ? 'oligo' : 'pool')
-    
-    if @from_oligos_or_pools == 'pool'
+    if !params[:pool_string].blank? && !params[:pool_type].blank?  
       sql_where_clause = define_pool_conditions(params)
       @current_pools = Pool.find(:all, :conditions => sql_where_clause,
                                        :order => :tube_label)
-    else
-      sql_where_clause = define_oligo_conditions(params)
-      @plate_positions = PlatePosition.find(:all, :include => :plate_tube, :conditions => sql_where_clause,
-                                                  :order => 'plate_positions.plate_or_tube_name, plate_position')
+      if !params[:plate_string].blank?
+        sql_where_clause = define_plate_conditions(params)
+        @current_plates = PlateTube.find_all_plates(sql_where_clause)
+      end
+      
+    elsif !params[:plate_string].blank?
+      sql_where_clause = define_plate_conditions(params)
+      @plate_positions = PlatePosition.find_all_positions(sql_where_clause)
     end
-    @checked = false
-    @pool = Pool.new
-    @storage_locations = StorageLocation.find(:all, :order => "room_nr, shelf_nr")
-    render :action => 'list_for_pool'
+    
+    if !@current_pools.nil? || !@plate_positions.nil?
+      @checked = false
+      @pool = Pool.new
+      @storage_locations = StorageLocation.find(:all, :order => "room_nr, shelf_nr")
+      render :action => 'list_for_pool'
+    else
+      flash.now[:notice] = 'Please enter pool type and numbers, and/or plate numbers for new pool'
+      @pool_types = Pool.pool_types.insert(0,'')
+      render :action => 'new_params'
+    end
   end
   
   # GET /pools
   # GET /pools.xml
   def index
-    #sql_where_clause = define_conditions(params)
-    @pools = Pool.find(:all, :order => :tube_label) 
+    sql_where_clause = ['pools.id = ?', params[:id]] if params[:id]
+    @pools = Pool.find(:all, :order => :tube_label, :conditions => sql_where_clause ) 
     render :action => 'index'
   end
 
@@ -59,6 +65,11 @@ class PoolsController < ApplicationController
       success_msg_dtls = "#{params[:pool_id].size} existing pools"
       aliquot_to_pools = AliquotToPool.find(:all, :conditions => ['pool_id IN (?)', params[:pool_id].keys])
       aliquot_to_pools.each {|aliquot| @pool.aliquot_to_pools.build(:plate_position => aliquot.plate_position)}
+      if params[:plate_tube_id]
+        success_msg_dtls += ", #{params[:plate_tube_id].size} existing plates"
+        plate_positions = PlatePosition.find(:all, :conditions => ['plate_or_tube_id IN (?)', params[:plate_tube_id].keys])
+        plate_positions.each {|plate_position| @pool.aliquot_to_pools.build(:plate_position => plate_position)}
+      end
     end
     
     if @pool.save
@@ -80,7 +91,7 @@ class PoolsController < ApplicationController
 
     if @pool.update_attributes(params[:pool])
       flash[:notice] = 'Pool was successfully updated.'
-      redirect_to(@pool)
+      redirect_to(:action => :index, :id => params[:id])
     else
       render :action => "edit"
     end
@@ -96,30 +107,18 @@ class PoolsController < ApplicationController
   end
   
 protected
-  def define_oligo_conditions(params)
-    @where_select = [];  @where_values = [];
-    
-    @where_select, @where_values = plate_where_clause(params[:plate_string]) if !params[:plate_string].blank?
-    
-    if params[:oligo_usage] && !params[:oligo_usage].blank?
-      @where_select.push('oligo_usage = ?')
-      @where_values.push(params[:oligo_usage])
-    end   
-    
-    db_fld = 'plate_tubes.synthesis_date'
-    @where_select, @where_values = sql_conditions_for_range(@where_select, @where_values, params[:date_from], params[:date_to], db_fld)
-       
+  def define_pool_conditions(params)
+    @where_select = []; @where_values = [];  
+    @where_select, @where_values = pool_where_clause(params[:pool_type], params[:pool_string]) 
     sql_where_clause = (@where_select.length == 0 ? [] : [@where_select.join(' AND ')].concat(@where_values))
     return sql_where_clause
   end
   
-  def define_pool_conditions(params)
-    @where_select = []; @where_values = []
-    
-    @where_select, @where_values = pool_where_clause(params[:pool_type], params[:pool_string]) 
-    
+  def define_plate_conditions(params)
+    @where_select = [];  @where_values = []; 
+    @where_select, @where_values = plate_where_clause(params[:plate_string]) if !params[:plate_string].blank?       
     sql_where_clause = (@where_select.length == 0 ? [] : [@where_select.join(' AND ')].concat(@where_values))
     return sql_where_clause
   end
-
+ 
 end

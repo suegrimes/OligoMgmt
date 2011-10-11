@@ -5,6 +5,7 @@
     <th>Oligo type</th>
 	<th>Sequence Ordered (bases 1-40) </th>
 	<th>Plate#/Well</th>
+	<th>Synth Date</th>
 	<th>Notes</th>
   </tr>
 
@@ -15,6 +16,7 @@
     <td><%=h oligo.plate_position.oligo_usage_descr %></td>
 	<td><%=h oligo.sequence[0,39] %></td>
 	<td><%=h oligo.plate_position.plate_or_tube_name %>/<%=h oligo.plate_position.well_coord %></td>
+	<td><%=h oligo.plate_position.plate_tube.synthesis_date %></td>
 	<td><%=h oligo.notes %></td>
     <td><%= link_to 'Show', oligo %></td>
   </tr>

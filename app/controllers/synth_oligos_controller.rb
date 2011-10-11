@@ -9,10 +9,10 @@ class SynthOligosController < ApplicationController
       @plate_string = params[:plate_string]
       @min_date = params[:date_from]
       @max_date = params[:date_to]
+      @oligo_usage = params[:oligo_usage]
       render :action => :new_query
     else
       @synth_oligos = SynthOligo.find(:all, :include => {:plate_position => :plate_tube},
-      #                                     :conditions => 'plate_tubes.plate_number < 10')
                                             :conditions => @condition_array)
       render :action => :index
     end
@@ -45,6 +45,7 @@ class SynthOligosController < ApplicationController
   #*******************************************************************************************#
   def new_query
     @min_date, @max_date   = PlateTube.find_min_and_max_dates
+    @oligo_usages = PlatePosition::OLIGO_USAGE.invert.to_a.sort.insert(0,'') 
   end
    
 protected
@@ -53,6 +54,11 @@ protected
     @where_values = []
     
     @where_select, @where_values = plate_where_clause(params[:plate_string]) if !params[:plate_string].blank?
+    
+    if !params[:oligo_usage].blank?
+      @where_select.push('plate_positions.oligo_usage = ?')
+      @where_values.push(params[:oligo_usage])
+    end
     
     db_fld = 'plate_tubes.synthesis_date'
     @where_select, @where_values = sql_conditions_for_range(@where_select, @where_values, params[:date_from], params[:date_to], db_fld)

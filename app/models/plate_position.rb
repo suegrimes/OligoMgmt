@@ -33,8 +33,14 @@ class PlatePosition < InventoryDB
     return well_alpha + well_num.to_s
   end
   
+  def self.find_all_positions(condition_array=nil)
+    self.find(:all, :include => :plate_tube, :order => 'plate_positions.plate_or_tube_name, plate_position',
+                    :conditions => condition_array)
+  end
+  
   def self.find_all_incl_oligos(condition_array=nil)
-    self.find(:all, :include => :synth_oligos, :order => 'id', :conditions => condition_array)
+    self.find(:all, :include => :synth_oligos, :order => 'plate_positions.plate_or_tube_name, plate_position',
+                    :conditions => condition_array)
   end
   
 end
