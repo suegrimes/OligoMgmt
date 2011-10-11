@@ -111,8 +111,9 @@ class ApplicationController < ActionController::Base
       end # case
     end # for
     
-    if (!pool_nums.empty?) 
-      where_select.push('CAST(SUBSTRING(tube_label,3) AS UNSIGNED) IN (?)')
+    if (!pool_nums.empty?)
+      where_select.push('LEFT(tube_label,2) = ? AND CAST(SUBSTRING(tube_label,3) AS UNSIGNED) IN (?)')
+      where_values.push(pool_type)
       where_values.push(pool_nums)
     end
     
