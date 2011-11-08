@@ -1,28 +1,58 @@
-<h1>Details for Oligo: <%=h @synth_oligo.oligo_name %>, on plate: <%=h @synth_oligo.plate_position.plate_or_tube_name %></h1>
+<h1>Details for Oligo ID# <%=h @synth_oligo.oligo_id %>, on plate: <%=h @synth_oligo.plate_position.plate_or_tube_name %></h1>
 
-<fieldset class="info">
-<table class="info">
+<table class="list">
   <tr>
-  	<th>Plate#: </th><td><%=h @synth_oligo.plate_position.plate_or_tube_name %></td>
-	<th>Well Seq:</th><td><%=h @synth_oligo.plate_position.plate_position %></td>
-	<th>Well Coord:</th><td><%=h @synth_oligo.plate_position.well_coord %></td>
-  </tr> 
-  <tr>
-  	<th>Oligo Type: </th><td><%=h @synth_oligo.plate_position.oligo_usage_descr %></td>
+  	<th>Plate#</th>
+	<th>Well</th>
+	<th>Oligo Type</th>
+	<th>Oligo Name</th>
+	<th>Synthesis Date</th>
   </tr>
   <tr>
-  	<th>Oligo Name: </th><td colspan="5"><%=h @synth_oligo.oligo_name %></td>
+    <td><%=h @synth_oligo.plate_position.plate_or_tube_name %></td> 
+    <td><%=h @synth_oligo.plate_position.well_coord %></td>
+    <td><%=h @synth_oligo.plate_position.oligo_usage_descr %></td>
+    <td><%=h @synth_oligo.oligo_name %></td>
+	<td><%=h @synth_oligo.plate_position.plate_tube.synthesis_date %></td>
   </tr>
-  <tr>
-  	<th>Sequence Ordered: </th><td colspan="5"><%=h @synth_oligo.sequence %></td>
-  </tr>
-  <tr>
-  	<th>Sequence (Sanitized): </th><td colspan="5"><%=h @synth_oligo.dna_sequence %></td>
-  </tr>
-  <tr>
-  	<th>Notes: </th><td colspan="5"><%=h @synth_oligo.notes %></td>
-  </tr>  
 </table>
-</fieldset>
 
-<%= break_clear %>
+<% if ['OligoDesign', 'PilotOligoDesign'].include?(@synth_oligo.oligo_type) %>
+<table class="list">
+  <tr>
+  	<th>Chr</th>
+	<th>Amplicon Start</th>
+	<th>Amplicon Length</th>
+	<th>Gene</th>
+	<th>Enzyme</th>
+	<th>Polarity</th>
+	<th>Annotation</th>
+	<th>Version</th>
+  </tr>
+  <tr>
+  	<td><%=h @synth_oligo.oligo.chromosome_nr %></td>
+	<td><%=h @synth_oligo.oligo.amplicon_chr_start_pos %></td>
+	<td><%=h @synth_oligo.oligo.amplicon_length %></td>
+	<td><%=h @synth_oligo.oligo.gene_code %></td>
+	<td><%=h @synth_oligo.oligo.enzyme_code %></td>
+	<td><%=h @synth_oligo.oligo.polarity %></td>
+	<td><%=h @synth_oligo.oligo.annotation_codes %></td>
+	<td><%=h @synth_oligo.oligo.version.version_id_name %></td>
+  </tr>
+</table>
+<% end %>
+
+<table class="list">
+  <tr>
+	<th>Sequence Ordered: </th>
+	<td><%=h @synth_oligo.sequence %></td>
+  </tr>
+  <tr>
+	<th>Sequence(Sanitized): </th>
+	<td><%=h @synth_oligo.dna_sequence %></td>
+  </tr>
+  <tr>
+    <th>Notes: </th>
+    <td><%=h @synth_oligo.notes %></td>	
+  </tr>
+</table>

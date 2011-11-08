@@ -39,5 +39,7 @@
 #
 
 class PilotOligoDesign < OligoDesign
-  set_table_name 'pilot_oligo_designs' 
+  set_table_name 'pilot_oligo_designs'
+  
+  has_many :synth_oligos, :as => :oligo
 end

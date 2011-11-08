@@ -9,7 +9,7 @@
   <tr><td>&nbsp;</td></tr>
   <tr>
     <th>Oligo Type:</th>
-	<td><%= select_tag(:oligo_usage, options_for_select(@oligo_usages, ''))%></td>
+	<td><%= select_tag(:oligo_usage, options_for_select(@oligo_usages, ''), :prompt => '(All)')%></td>
   </tr>
   <tr>
     <th>Date From:</th><td><%=calendar_date_select_tag(:date_from, @min_date, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>

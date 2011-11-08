@@ -27,6 +27,14 @@ class PlatePosition < InventoryDB
     (oligo_usage.blank? ? 'Unknown' : OLIGO_USAGE[oligo_usage.to_sym])
   end
   
+  def plate_number
+    case plate_or_tube_name
+      when /^M(\d+)$/  then $1.to_i
+      when /^.*_(\d+)$/ then $1.to_i
+      else 0
+    end
+  end
+  
   def well_coord
     well_alpha = WELL_LETTER[(plate_position - 1)/12]
     well_num   = (plate_position - 1) % 12 + 1 

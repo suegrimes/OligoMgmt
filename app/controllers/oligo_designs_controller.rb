@@ -18,7 +18,7 @@ class OligoDesignsController < ApplicationController
   #*******************************************************************************************#
   # Method for listing oligo designs, based on parameters entered above                       #
   #*******************************************************************************************#
-  def list_selected
+  def index
     #@version = (params[:version] ? Version.find(params[:version][:id]) : Version::DESIGN_VERSION)
     @version = Version.find(params[:version][:id], :include => :gene_lists)
     @condition_array = define_conditions(params, @version.id)  
@@ -30,12 +30,12 @@ class OligoDesignsController < ApplicationController
     if error_found
       redirect_to :action => 'new_query'
     else
-      render :action => 'list_selected'
+      render :action => 'index'
     end
   end
   
   #*******************************************************************************************#
-  # Method for exporting oligos from 'list_selected' view                                     #    
+  # Method for exporting oligos from 'index' view                                             #    
   #*******************************************************************************************#
   def export_design
     export_type = 'T1'

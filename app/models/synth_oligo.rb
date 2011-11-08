@@ -18,6 +18,7 @@
 
 class SynthOligo < InventoryDB
   belongs_to :plate_position
+  belongs_to :oligo, :polymorphic => true
   
   def dna_sequence
     # Delete any of the following characters from ordered oligo: space, P, X, 5, '-', or single quote
@@ -26,7 +27,14 @@ class SynthOligo < InventoryDB
   end
   
   def self.find_all_incl_plate(condition_array=nil)
-    self.find(:all, :include => :plate_position, :order => 'plate_positions.plate_number, plate_positions.well_order',
-                         :conditions => condition_array)
+    self.find(:all, :include => {:plate_position => :plate_tube}, 
+                    :order => 'plate_tubes.plate_number, plate_positions.well_number',
+                    :conditions => condition_array)
+  end
+  
+  def self.find_with_id_list(id_list)
+    self.find(:all, :include => {:plate_position => :plate_tube},
+                    :order => 'gene_code, enzyme_code',
+                    :conditions => ["id IN (?)", id_list])
   end
 end

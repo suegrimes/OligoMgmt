@@ -16,9 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :oligo_designs
   map.resources :pilot_oligo_designs, :only => :show
   map.designquery 'designquery',       :controller => 'oligo_designs', :action => 'new_query'
-  map.list_selected 'list_oligos',     :controller => 'oligo_designs', :action => 'list_selected'
   map.export 'export',                 :controller => 'oligo_designs', :action => 'export'
-  map.project_list 'project_list',     :controller => 'oligo_designs', :action => 'get_project_list'
   map.gene_list 'gene_list',           :controller => 'oligo_designs', :action => 'get_gene_list'
   
   # Synthesis Plates/Tubes

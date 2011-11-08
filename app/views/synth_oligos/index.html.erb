@@ -1,3 +1,26 @@
 <h1>Listing Synthesized Oligos</h1>
 
-<%= render :partial => 'list_oligos', :locals => {:synth_oligos => @synth_oligos} %>
+<% form_tag :action => "export_oligos" do %>
+  <p><%=h @synth_oligos.size %> oligos selected <%= submit_tag "Export Oligos" -%></p>
+
+<table class="list">
+  <tr>
+    <th>Oligo ID</th>
+    <th>Oligo name (chars 1-50)</th>
+    <th>Oligo type</th>
+	<th>Sequence Ordered (bases 1-40) </th>
+	<th>Plate#/Well</th>
+  </tr>
+
+<% for oligo in @synth_oligos %>
+  <tr>
+    <td><%=h oligo.oligo_id %></td>
+    <td><%=link_to oligo.oligo_name[0,49], oligo %></td>
+    <td><%=h oligo.plate_position.oligo_usage_descr %></td>
+	<td><%=h oligo.sequence[0,39] %></td>
+	<td><%=h oligo.plate_position.plate_or_tube_name %>/<%=h oligo.plate_position.well_coord %></td>
+  </tr>
+  <%=hidden_field_tag("export_id[]", oligo.id) %>
+<% end %>
+</table>
+<% end %>
