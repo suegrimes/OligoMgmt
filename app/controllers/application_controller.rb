@@ -33,6 +33,17 @@ class ApplicationController < ActionController::Base
     model_instance.add_comment(comment) 
   end
 
+  def param_blank?(val)
+    if val.nil?
+      val_blank = true
+    elsif val.is_a? Array
+      val_blank = (val.length == 1 && val[0].blank? ? true : false )
+    else
+       val_blank = val.blank?
+    end
+    return val_blank 
+  end
+  
   def create_array_from_text_area(text, ret_type='text')
     if text.blank? 
       return []

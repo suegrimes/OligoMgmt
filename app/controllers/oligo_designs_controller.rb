@@ -25,8 +25,8 @@ class OligoDesignsController < ApplicationController
     
     @oligo_designs   = OligoDesign.find_oligos_with_conditions(@condition_array, @version.id)
     # return error if no oligos found
-    error_found = check_if_blank(@oligo_designs, 'oligos')      
-  
+    error_found = check_if_blank(@oligo_designs, 'oligos') 
+    
     if error_found
       redirect_to :action => 'new_query'
     else
@@ -125,8 +125,8 @@ class OligoDesignsController < ApplicationController
 
     if params[:gene_string]
       gene_array = create_array_from_text_area(params[:gene_string])
-    elsif params[:pilot_oligo_design] && params[:pilot_oligo_design][:gene_code]
-      gene_array = params[:pilot_oligo_design][:gene_code]
+    elsif params[:pilot_oligo_design] && !param_blank?(params[:pilot_oligo_design][:gene_code])
+      gene_array = params[:pilot_oligo_design][:gene_code] 
     end
     
     if gene_array
