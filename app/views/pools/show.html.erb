@@ -3,14 +3,12 @@
 <table class="list">
   <tr>
 	<th>Pool Name</th>
-	<th>#Oligos</th>
 	<th>Source Conc(um)</th>
 	<th>Room/Shelf/Box/Bin</th>
 	<th>Description</th>
   </tr>
   <tr>
     <td><%=h @pool.pool_name %></td>
-	<td><%=h @pool.plate_positions.size %></td>
   	<td><%=h @pool.source_conc_um %></td>
 	<td><% if @pool.storage_location %><%=h @pool.storage_location.location_string %><% end %></td>
 	<td><%=h @pool.pool_description %></td>
@@ -18,18 +16,19 @@
  </table>
  
  <table class="list">
-  <tr>
-    <th>Oligo name</th>
-	<th>Plate#/Well</th>
-  </tr>
+  <tr><th>Total Oligos:</th><td><strong><%=h @pool.total_oligos %></strong></td></tr>
+  
+  <% if @from_pools %>
+    <tr><th>From Pools:</th><td><%=h @from_pools.join(', ')%></td></tr>
+  <% end %>
+  
+  <% if @from_plates %>
+    <tr><th>From Plates:</th><td><%=h @from_plates.join(', ')%></td></tr>
+  <% end %>
+ </table>
+ 
+ <div id="oligo_div">
+   <%=link_to 'Edit', edit_pool_path(@pool) %> |
+   <%=link_to_remote("Show Oligos", :update => 'oligo_div', :url => {:action => 'get_oligos', :id => @pool.id}) %>
+ </div>
 
-<% for plate_position in @pool.plate_positions %>
-  <tr>
-    <td><%=link_to plate_position.oligo_name, plate_position.synth_oligos[0] %></td>
-	<td><%=h plate_position.plate_or_tube_name %>/<%=h plate_position.well_coord %></td>
-  </tr>
-<% end %>
-</table>
-
-<br/>
-<%= link_to 'Edit', edit_pool_path(@pool) %>

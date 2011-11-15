@@ -17,7 +17,7 @@
     <td><%=h pool.pool_name %></td>
 	<td><%=h pool.source_conc_um %></td>
     <td><%=h pool.pool_description %></td>
-    <td><%= link_to 'Show Oligos', pool %></td>
+    <td><%= link_to 'Show', pool %></td>
 	<td><%= link_to 'Edit', edit_pool_path(pool) %></td>
 	<% if current_user && current_user.has_role?("admin") %>
 	<td><%= link_to 'Delete', pool, :confirm => 'Are you sure?', :method => :delete %></td>

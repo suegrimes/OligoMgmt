@@ -43,8 +43,15 @@ class PoolsController < ApplicationController
   # GET /pools/1
   # GET /pools/1.xml
   def show
-    @pool = Pool.find(params[:id], :include => {:aliquot_to_pools => :plate_position})
+    @pool = Pool.find(params[:id])
+    @from_pools = Pool.find(:all, :conditions => ['id in (?)', @pool.from_pools]).collect(&:tube_label) if @pool.from_pools
+    @from_plates = PlateTube.find(:all, :conditions => ['id IN (?)', @pool.from_plates]).collect(&:plate_or_tube_name) if @pool.from_plates
     render :action => 'show'
+  end
+  
+  def get_oligos
+    @pool = Pool.find(params[:id], :include => :plate_positions)
+    render :partial => 'show_oligos', :locals => {:pool => @pool}
   end
 
   # GET /pools/1/edit
