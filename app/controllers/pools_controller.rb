@@ -21,8 +21,8 @@ class PoolsController < ApplicationController
     end
     
     if !@current_pools.nil? || !@plate_positions.nil?
-      @checked = false
       @pool = Pool.new
+      @checked = false
       @storage_locations = StorageLocation.find(:all, :order => "room_nr, shelf_nr")
       render :action => 'list_for_pool'
     else
@@ -50,24 +50,48 @@ class PoolsController < ApplicationController
   # GET /pools/1/edit
   def edit
     @pool = Pool.find(params[:id])
+    @from_pools = Pool.find(:all, :conditions => ['id in (?)', @pool.from_pools]).collect(&:tube_label) if @pool.from_pools
+    @from_plates = PlateTube.find(:all, :conditions => ['id IN (?)', @pool.from_plates]).collect(&:plate_or_tube_name) if @pool.from_plates
     @storage_locations = StorageLocation.find(:all, :order => "room_nr, shelf_nr")
   end
 
   # POST /pools
   # POST /pools.xml
   def create
+    #
+    # TODO - Work on error handling.  Ideally should return to same state as submitted form, with correct boxes checked
+    #
     @pool = Pool.new(params[:pool])
+    @total_oligos = 0
+    #render :action => 'debug'
     
-    if params[:plate_position_id]
-      success_msg_dtls = "#{params[:plate_position_id].size} plate_positions/tubes"
-      params[:plate_position_id].keys.each {|p_id| @pool.aliquot_to_pools.build(:plate_position_id => p_id)}
-    elsif params[:pool_id]
-      success_msg_dtls = "#{params[:pool_id].size} existing pools"
-      aliquot_to_pools = AliquotToPool.find(:all, :conditions => ['pool_id IN (?)', params[:pool_id].keys])
+    if params[:plate_position_id]  # Selecting from oligo list
+      @plate_positions = PlatePosition.find(:all, :conditions => ['id IN (?)', params[:plate_position_id].keys])
+      @checked_pposition_ids = params[:plate_position_id].reject {|id, val| val == '0'}.keys
+      @pool.total_oligos += @checked_pposition_ids.size
+      success_msg_dtls = "#{@checked_pposition_ids.size} plate_positions/tubes"
+      
+      # build aliquot_to_pools, only for checked plates 
+      @checked_pposition_ids.each {|p_id| @pool.aliquot_to_pools.build(:plate_position_id => p_id)}    
+      
+    elsif params[:pool_id]         # Selecting from pools list
+      @current_pools = Pool.find(:all, :include => :aliquot_to_pools, :conditions => ['id IN (?)', params[:pool_id].keys])
+      @checked_pool_ids = params[:pool_id].reject {|id, val| val == '0'}.keys
+      @pool.from_pools = @checked_pool_ids
+      @pool.total_oligos += Pool.sum(:total_oligos, :conditions => ['id IN (?)', @checked_pool_ids])
+      success_msg_dtls = "#{@checked_pool_ids.size} existing pools"
+
+      aliquot_to_pools = AliquotToPool.find(:all, :conditions => ['pool_id IN (?)', @checked_pool_ids])
       aliquot_to_pools.each {|aliquot| @pool.aliquot_to_pools.build(:plate_position => aliquot.plate_position)}
-      if params[:plate_tube_id]
-        success_msg_dtls += ", #{params[:plate_tube_id].size} existing plates"
-        plate_positions = PlatePosition.find(:all, :conditions => ['plate_or_tube_id IN (?)', params[:plate_tube_id].keys])
+
+      if params[:plate_tube_id]    # Selecting from plate/tube list
+        @current_plates = PlateTube.find(:all, :conditions => ['id IN (?)', params[:plate_tube_id].keys])
+        @checked_plate_ids = params[:plate_tube_id].reject {|id, val| val == '0'}.keys
+        @pool.from_plates = @checked_plate_ids
+        @pool.total_oligos += PlatePosition.count(:id, :conditions => ['plate_or_tube_id IN (?)', @checked_plate_ids])
+        success_msg_dtls += ", #{@checked_plate_ids.size} existing plates"
+        
+        plate_positions = PlatePosition.find(:all, :conditions => ['plate_or_tube_id IN (?)', @checked_plate_ids])
         plate_positions.each {|plate_position| @pool.aliquot_to_pools.build(:plate_position => plate_position)}
       end
     end
@@ -76,11 +100,10 @@ class PoolsController < ApplicationController
       flash[:notice] = "Pool successfully created from #{success_msg_dtls}"
       redirect_to(@pool)
     else
-      # Validation error in entering pool
-      @synth_oligos = SynthOligo.find(:all, :include => :plate_position, :conditions => ["id in (?)", params[:plate_position].keys])
-      @checked = true
+      flash[:notice] = "Validation error creating pool"
       @storage_locations = StorageLocation.find(:all, :order => "room_nr, shelf_nr")
-      render :action => :list_for_pool
+      #render :action => 'debug'
+      render :action => 'list_for_pool'
     end
   end
 

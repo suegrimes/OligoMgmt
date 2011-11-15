@@ -8,8 +8,9 @@
   </tr>
 
 <% for pool in pools %>
+  <%= hidden_field_tag("pool_id[#{pool.id}]", '0')%>
   <tr>
-  	<td><%= check_box_tag("pool_id[#{pool.id}]", '1', checked) %></td>
+  	<td><%= check_box_tag("pool_id[#{pool.id}]", '1', (@checked_pool_ids.nil? ? nil : @checked_pool_ids.include?(pool.id.to_s))) %></td>
     <td><%=h pool.tube_label %></td>
     <td><%=h pool.pool_name %></td>
 	<td><%=h pool.pool_description %></td>

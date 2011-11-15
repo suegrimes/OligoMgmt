@@ -21,6 +21,9 @@ class Pool < InventoryDB
   has_many :plate_positions, :through => :aliquot_to_pools
   belongs_to :storage_location
   
+  serialize :from_pools, Array
+  serialize :from_plates, Array
+  
   accepts_nested_attributes_for :aliquot_to_pools, :allow_destroy => true
   
   validates_presence_of :tube_label
