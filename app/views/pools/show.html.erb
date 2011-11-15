@@ -19,13 +19,13 @@
  
  <table class="list">
   <tr>
-    <th>Oligo name (chars 1-50)</th>
+    <th>Oligo name</th>
 	<th>Plate#/Well</th>
   </tr>
 
 <% for plate_position in @pool.plate_positions %>
   <tr>
-    <td><%=link_to plate_position.oligo_name[0,49], plate_position.synth_oligos[0] %></td>
+    <td><%=link_to plate_position.oligo_name, plate_position.synth_oligos[0] %></td>
 	<td><%=h plate_position.plate_or_tube_name %>/<%=h plate_position.well_coord %></td>
   </tr>
 <% end %>

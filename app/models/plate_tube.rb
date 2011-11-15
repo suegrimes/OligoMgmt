@@ -15,11 +15,15 @@ class PlateTube < InventoryDB
   has_many :plate_positions, :foreign_key => :plate_or_tube_id
   
   def self.find_all_incl_oligos(condition_array=nil)
-    #Convoluted sort order is needed because sorting alphabetically the 'M' plates would sort as M1,M10,M11,..M2,M20 etc),
+    #This sort order is needed because sorting alphabetically the 'M' plates would sort as M1,M10,M11,..M2,M20 etc),
     #and sorting numerically by plate_number would mix M plates and standard plates since there is M10 and 0010 for example)
     self.find(:all, :include => {:plate_positions => :synth_oligos}, 
                     :order => 'LEFT(plate_or_tube_name,1), plate_number',
                     :conditions => condition_array)
+  end
+  
+  def self.find_all_plates(condition_array=nil)
+    self.find(:all, :order => 'LEFT(plate_or_tube_name,1), plate_number', :conditions => condition_array)
   end
   
   def self.find_min_and_max_plates

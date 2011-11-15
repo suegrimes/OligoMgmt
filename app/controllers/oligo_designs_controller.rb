@@ -18,24 +18,24 @@ class OligoDesignsController < ApplicationController
   #*******************************************************************************************#
   # Method for listing oligo designs, based on parameters entered above                       #
   #*******************************************************************************************#
-  def list_selected
+  def index
     #@version = (params[:version] ? Version.find(params[:version][:id]) : Version::DESIGN_VERSION)
     @version = Version.find(params[:version][:id], :include => :gene_lists)
     @condition_array = define_conditions(params, @version.id)  
     
     @oligo_designs   = OligoDesign.find_oligos_with_conditions(@condition_array, @version.id)
     # return error if no oligos found
-    error_found = check_if_blank(@oligo_designs, 'oligos')      
-  
+    error_found = check_if_blank(@oligo_designs, 'oligos') 
+    
     if error_found
       redirect_to :action => 'new_query'
     else
-      render :action => 'list_selected'
+      render :action => 'index'
     end
   end
   
   #*******************************************************************************************#
-  # Method for exporting oligos from 'list_selected' view                                     #    
+  # Method for exporting oligos from 'index' view                                             #    
   #*******************************************************************************************#
   def export_design
     export_type = 'T1'
@@ -125,8 +125,8 @@ class OligoDesignsController < ApplicationController
 
     if params[:gene_string]
       gene_array = create_array_from_text_area(params[:gene_string])
-    elsif params[:pilot_oligo_design] && params[:pilot_oligo_design][:gene_code]
-      gene_array = params[:pilot_oligo_design][:gene_code]
+    elsif params[:pilot_oligo_design] && !param_blank?(params[:pilot_oligo_design][:gene_code])
+      gene_array = params[:pilot_oligo_design][:gene_code] 
     end
     
     if gene_array
