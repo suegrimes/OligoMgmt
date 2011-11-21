@@ -9,6 +9,7 @@ class SynthOligosController < ApplicationController
       @plate_string = params[:plate_string]
       @min_date = params[:date_from]
       @max_date = params[:date_to]
+      @oligo_usages = PlatePosition::OLIGO_USAGE.invert.to_a.sort.insert(0,'(All)') 
       @oligo_usage = params[:oligo_usage]
       render :action => :new_query
     else
