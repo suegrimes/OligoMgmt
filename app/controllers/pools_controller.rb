@@ -118,10 +118,21 @@ class PoolsController < ApplicationController
   # PUT /pools/1.xml
   def update
     @pool = Pool.find(params[:id])
+    if !param_blank?(params[:pool_string])
+      pool_array = create_array_from_text_area(params[:pool_string])
+      @from_pools = Pool.find(:all, :conditions => ['tube_label IN (?)', pool_array])
+      @pool.from_pools = @from_pools.collect(&:id) if !@from_pools.nil?
+    end
+    
+    if !param_blank?(params[:plate_string])
+      plate_array = create_array_from_text_area(params[:plate_string])
+      @from_plates = PlateTube.find(:all, :conditions => ['plate_or_tube_name IN (?)', plate_array])
+      @pool.from_plates = @from_plates.collect(&:id) if !@from_plates.nil?
+    end
 
     if @pool.update_attributes(params[:pool])
       flash[:notice] = 'Pool was successfully updated.'
-      redirect_to(:action => :index, :id => params[:id])
+      redirect_to(@pool)
     else
       render :action => "edit"
     end
