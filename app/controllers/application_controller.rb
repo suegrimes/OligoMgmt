@@ -33,6 +33,17 @@ class ApplicationController < ActionController::Base
     model_instance.add_comment(comment) 
   end
 
+  def param_blank?(val)
+    if val.nil?
+      val_blank = true
+    elsif val.is_a? Array
+      val_blank = (val.length == 1 && val[0].blank? ? true : false )
+    else
+       val_blank = val.blank?
+    end
+    return val_blank 
+  end
+  
   def create_array_from_text_area(text, ret_type='text')
     if text.blank? 
       return []
@@ -68,8 +79,8 @@ class ApplicationController < ActionController::Base
         plate_or_tube_names << num # gather into array
       when /^(M\d+)\-(M\d+)$/ # is a range with 'M' followed by digits
         #if $1[0].chr != $2[0].chr then error << 'First letters of ' + $1 + ' and ' + $2 + ' do not match'; next end
-        where_select.push('plate_positions.plate_or_tube_name BETWEEN ? AND ?')
-        where_values.push($1, $2)
+        where_select.push("plate_tubes.plate_or_tube_name LIKE 'M%' AND plate_tubes.plate_number BETWEEN ? AND ?")
+        where_values.push($1[1..-1], $2[1..-1])
       when /^\d+$/ # has digits only
         plate_numbers << num # gather into array
       when /^(\d+)\-(\d+)$/ # has range of digits
@@ -80,12 +91,12 @@ class ApplicationController < ActionController::Base
     end # for
     
     if (!plate_or_tube_names.empty?) 
-      where_select.push("plate_or_tube_name NOT LIKE 'M%' AND plate_or_tube_name IN (?)")
+      where_select.push("(plate_tubes.plate_or_tube_name LIKE 'M%' AND plate_tubes.plate_or_tube_name IN (?))")
       where_values.push(plate_or_tube_names)
     end
     
     if (!plate_numbers.empty?)
-      where_select.push('plate_number IN (?)')
+      where_select.push("(plate_tubes.plate_or_tube_name NOT LIKE 'M%' AND plate_tubes.plate_number IN (?))")
       where_values.push(plate_numbers)
     end
     
@@ -111,8 +122,9 @@ class ApplicationController < ActionController::Base
       end # case
     end # for
     
-    if (!pool_nums.empty?) 
-      where_select.push('CAST(SUBSTRING(tube_label,3) AS UNSIGNED) IN (?)')
+    if (!pool_nums.empty?)
+      where_select.push('LEFT(tube_label,2) = ? AND CAST(SUBSTRING(tube_label,3) AS UNSIGNED) IN (?)')
+      where_values.push(pool_type)
       where_values.push(pool_nums)
     end
     

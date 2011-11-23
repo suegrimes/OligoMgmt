@@ -1,20 +1,24 @@
-<% type_count = (@from_oligos_or_pools == 'oligo' ? "#{@plate_positions.size} Oligos " : "#{@current_pools.size} Existing Pools ") %>
-<h1>Listing <%= type_count %> for New Pool</h1>
+<h1>Listing Existing Pools, Plates for New Pool</h1>
 
 <% form_for @pool, :action => :create do |f| %>
   <%=f.error_messages %>
   <%= render :partial => 'pool_form', :locals => {:f => f} %>
   <%= break_clear %>
   
-  <span class="notes"> Check existing <%=@from_oligos_or_pools %>s below, to include in new pool</span>&nbsp;&nbsp;&nbsp;<%= f.submit 'Create Pool' %><br/>
+  <span class="notes"> Check boxes below, to include existing pools, plates or oligos in new pool</span><br/>
   <%= check_box_tag("checkall", '1', @checked, {:onclick => "checkUncheckAll(this);"}) %>
-  <span style="font-size:90%">Check/Uncheck All <%= @from_oligos_or_pools.capitalize %>s</span><br/><br/>
+  <span style="font-size:90%">Check/Uncheck All</span>&nbsp;&nbsp;&nbsp;
+  <%= f.submit 'Create Pool' %><br/>
+  <br/>
 
-  <% if @from_oligos_or_pools == 'oligo' %>
-    <%= render :partial => 'list_oligos', :locals => {:plate_positions => @plate_positions,
-                                                      :checkbox => true, :checked => @checked} %>
-  <% else %>
-    <%= render :partial => 'list_pools', :locals => {:pools => @current_pools, :checkbox => true, :checked => @checked} %>
+  <% if !@current_pools.nil? %>
+    <%= render :partial => 'list_pools', :locals => {:pools => @current_pools} %>
+	<% if !@current_plates.nil? %>
+    <%= render :partial => 'list_plates', :locals => {:plate_tubes => @current_plates} %>
+    <% end %>
+  
+  <% elsif !@plate_positions.nil? %>
+    <%= render :partial => 'list_oligos', :locals => {:plate_positions => @plate_positions} %>
   <% end %>
 
 <% end %>

@@ -45,6 +45,7 @@ class OligoDesign < ActiveRecord::Base
  
   belongs_to :version
   has_one  :oligo_annotation, :foreign_key => :oligo_design_id
+  has_many :synth_oligos, :as => :oligo
   
   validates_uniqueness_of :oligo_name,
                           :on  => :create  
@@ -106,7 +107,6 @@ class OligoDesign < ActiveRecord::Base
       oligo_design = self.find_by_oligo_name_and_id(oligo_name, oligo_array[0])
     else
       # oligo name in old format => cannot use id, use gene code instead
-      #gene_code    = self.get_gene_from_name(oligo_name, false)
       gene_code    = get_gene_from_oligo_name(oligo_name, false) 
       oligo_design = self.find_by_oligo_name_and_gene_code(oligo_name, gene_code)
     end

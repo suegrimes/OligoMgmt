@@ -9,12 +9,12 @@
   <tr>
   	<th style="text-align:right"><%=f.label :source_conc_um, 'Conc(um)' %></th>
     <td><%=f.text_field(:source_conc_um, :size => 6) %></td>
-    <th style="text-align:right"><%=f.label :storage_location, 'Room/Shelf/Box/Bin' %></th>
-    <td><%=f.collection_select(:storage_location_id, @storage_locations, :id, :location_string, {:include_blank => 'Select..'}) %></td> 
+	<th style="text-align:right"><%=f.label :storage_location, 'Room/Shelf/Box/Bin' %></th>
+    <td><%=f.collection_select(:storage_location_id, @storage_locations, :id, :location_string, {:include_blank => 'Select..'}) %></td>	
   </tr>
   <tr>
   	<th style="text-align:right"><%=f.label :pool_description, 'Description' %></th>
-    <td colspan="3"><%= f.text_area(:pool_description, :rows => 3, :cols => 80) %></td>
+    <td colspan="5"><%= f.text_area(:pool_description, :rows => 3, :cols => 80) %></td>
   </tr>
 </table>
 </fieldset>

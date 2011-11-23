@@ -1,17 +1,25 @@
-<h1>Synthesis Plates query - Select parameters</h1>
+<h1>Synthesis Plates query</h1>
 
 <% form_tag({:action => :index}, :method => :get) do %>
-<table>
+<fieldset class="form">
+<legend>Select Parameters</legend>
+<table class="form">
   <tr>
-    <th>Plate Number: </th><td>M<%= text_field_tag(:plate_from, @min_plate, :size => 4) %></td>
-    <th>To:</th><td>M<%= text_field_tag(:plate_to, @max_plate, :size => 4) %></td>
+    <th>Plate Number(s): </th>
+	<td colspan="2"><%= text_field_tag(:plate_string, @plate_string, :size => 30) %></td>
+  </tr>
+  <tr><td class="notes" colspan="4">Enter individual plates separated by commas, enter ranges with '-'. Eg. '1,23,M10-M15,100,30-32'</td></tr>
+  <tr><td>&nbsp;</td></tr>  
   </tr>
   <tr>
-    <th>Date From:</th><td><%=calendar_date_select_tag(:date_from, @min_date, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
-	<th>To:</th><td><%=calendar_date_select_tag(:date_to, @max_date, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
+    <th>Date From:</th>
+	<td><%=calendar_date_select_tag(:date_from, @min_date, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
+	<th>To:</th>
+	<td><%=calendar_date_select_tag(:date_to, @max_date, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
   </tr>	
 </table>
+</fieldset>
 
-<p><%= submit_tag "Submit"  %></p>
+<%= break_clear(submit_tag "Submit") %>
 <%end%>
 

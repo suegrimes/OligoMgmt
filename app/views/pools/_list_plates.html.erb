@@ -1,0 +1,20 @@
+<table class="list">
+  <tr>
+  	<th>&nbsp;</th>
+    <th>Plate</th>
+    <th>Description</th>
+	<th>Synth Date</th>
+	<th>&nbsp;</th>
+  </tr>
+
+<% for plate_tube in plate_tubes %>
+  <%= hidden_field_tag("plate_tube_id[#{plate_tube.id}]", '0')%>
+  <tr>
+  	<td><%= check_box_tag("plate_tube_id[#{plate_tube.id}]", '1', (@checked_plate_ids.nil? ? nil : @checked_plate_ids.include?(plate_tube.id.to_s))) %></td>
+    <td><%=h plate_tube.plate_or_tube_name %></td>
+	<td><%=h plate_tube.description %></td>
+	<td><%=h plate_tube.synthesis_date %></td>
+    <td><%= link_to 'Show', plate_tube %></td>
+  </tr>
+<% end %>
+</table>

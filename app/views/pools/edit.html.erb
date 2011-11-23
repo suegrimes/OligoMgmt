@@ -3,6 +3,29 @@
 <% form_for @pool, :action => :update do |f| %>
   <%=f.error_messages %>
   <%= render :partial => 'pool_form', :locals => {:f => f} %>
+  <%= break_clear %>
+  
+  <table class="list">
+  <tr><th>Total Oligos:</th><td><strong><%=h @pool.total_oligos %></strong></td></tr>
+  
+  <tr>
+  	<th>From Pools:</th>
+    <% if @from_pools %>
+	  <td><%=text_field_tag(:pool_string, value=@from_pools.join(', '), :size => 30)%></td>
+    <% else %>
+	  <td><%=text_field_tag(:pool_string, value='', :size => 30)%></td>
+    <% end %>
+  </tr>
+  
+  <tr>
+  	<th>From Plates:</th>
+    <% if @from_plates %>
+      <td><%=text_field_tag(:plate_string, value=@from_plates.join(', '), :size => 30)%></td>
+	<% else %>
+	  <td><%=text_field_tag(:plate_string, value='', :size => 30)%></td>
+    <% end %>
+  </tr>
+  </table>
   
   <%= break_clear(f.submit 'Update')%>
 <% end %>

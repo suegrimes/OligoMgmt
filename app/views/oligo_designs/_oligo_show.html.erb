@@ -43,8 +43,8 @@
 
 <table class="list">
   <tr>
-  	<th colspan=2>Annotations</th>
-	<th colspan=3>Repeat counts</th>
+  	<th style="text-align:center;" colspan="2">Annotations</th>
+	<th style="text-align:center;" colspan="3">Repeat counts</th>
   </tr>
   <tr>
   	<th>Flagged</th>
@@ -54,8 +54,8 @@
 	<th>WG U1</th>
   </tr>
   <tr>
-  	<td><%=h oligo_design.annotation_codes %></td>
-	<td><%=h oligo_design.other_annotations %></td>
+  	<td colspan="2"><%=h oligo_design.annotation_codes %></td>
+	<td colspan="3"><%=h oligo_design.other_annotations %></td>
 	
 	<% if controller.controller_name == 'synth_oligos' %>
 	  <%= render :partial => 'oligo_designs/annotations', :locals => {:oligo_annotation => oligo_design} %>
@@ -65,9 +65,9 @@
   </tr>
 </table>
 
-<table class="list">
-<tr><th>Amplicon&nbsp;Sequence</th></tr>
-<tr><td class="hardbreak"><%= oligo_design.amplicon_seq %></td></tr>
+<table class="list" style="margin-bottom:0;border-bottom:none;">
+<tr><th style="border-bottom:none;">Amplicon&nbsp;Sequence</th></tr>
 </table>
+<div class="wraplongstring longstring_border"><%= oligo_design.amplicon_seq %></div>
 
 		

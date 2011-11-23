@@ -2,74 +2,115 @@ class PoolsController < ApplicationController
   require_role "stanford"
   
   def new_params
-    @min_date, @max_date   = PlateTube.find_min_and_max_dates
-    # Invert hash keys/values (ie hash value first, then key); convert to array, sort and add blank first value
-    @oligo_usages = PlatePosition::OLIGO_USAGE.invert.to_a.sort.insert(0,'') 
-    @pool_types   = Pool.pool_types
+    @pool_types   = Pool.pool_types.insert(0,'')
   end
   
   def list_for_pool
-    @from_oligos_or_pools = (params[:pool_string].blank? ? 'oligo' : 'pool')
-    
-    if @from_oligos_or_pools == 'pool'
+    if !params[:pool_string].blank? && !params[:pool_type].blank?  
       sql_where_clause = define_pool_conditions(params)
       @current_pools = Pool.find(:all, :conditions => sql_where_clause,
                                        :order => :tube_label)
-    else
-      sql_where_clause = define_oligo_conditions(params)
-      @plate_positions = PlatePosition.find(:all, :include => :plate_tube, :conditions => sql_where_clause,
-                                                  :order => 'plate_positions.plate_or_tube_name, plate_position')
+      if !params[:plate_string].blank?
+        sql_where_clause = define_plate_conditions(params)
+        @current_plates = PlateTube.find_all_plates(sql_where_clause)
+      end
+      
+    elsif !params[:plate_string].blank?
+      sql_where_clause = define_plate_conditions(params)
+      @plate_positions = PlatePosition.find_all_positions(sql_where_clause)
     end
-    @checked = false
-    @pool = Pool.new
-    @storage_locations = StorageLocation.find(:all, :order => "room_nr, shelf_nr")
-    render :action => 'list_for_pool'
+    
+    if !@current_pools.nil? || !@plate_positions.nil?
+      @pool = Pool.new
+      @checked = false
+      @storage_locations = StorageLocation.find(:all, :order => "room_nr, shelf_nr")
+      render :action => 'list_for_pool'
+    else
+      flash.now[:notice] = 'Please enter pool type and numbers, and/or plate numbers for new pool'
+      @pool_types = Pool.pool_types.insert(0,'')
+      render :action => 'new_params'
+    end
   end
   
   # GET /pools
   # GET /pools.xml
   def index
-    #sql_where_clause = define_conditions(params)
-    @pools = Pool.find(:all, :order => :tube_label) 
+    sql_where_clause = ['pools.id = ?', params[:id]] if params[:id]
+    @pools = Pool.find(:all, :order => :tube_label, :conditions => sql_where_clause ) 
     render :action => 'index'
   end
 
   # GET /pools/1
   # GET /pools/1.xml
   def show
-    @pool = Pool.find(params[:id], :include => {:aliquot_to_pools => :plate_position})
+    @pool = Pool.find(params[:id])
+    @from_pools = Pool.find(:all, :conditions => ['id in (?)', @pool.from_pools]).collect(&:tube_label) if @pool.from_pools
+    @from_plates = PlateTube.find(:all, :conditions => ['id IN (?)', @pool.from_plates]).collect(&:plate_or_tube_name) if @pool.from_plates
     render :action => 'show'
+  end
+  
+  def get_oligos
+    @pool = Pool.find(params[:id], :include => :plate_positions)
+    render :partial => 'show_oligos', :locals => {:pool => @pool}
   end
 
   # GET /pools/1/edit
   def edit
     @pool = Pool.find(params[:id])
+    @from_pools = Pool.find(:all, :conditions => ['id in (?)', @pool.from_pools]).collect(&:tube_label) if @pool.from_pools
+    @from_plates = PlateTube.find(:all, :conditions => ['id IN (?)', @pool.from_plates]).collect(&:plate_or_tube_name) if @pool.from_plates
     @storage_locations = StorageLocation.find(:all, :order => "room_nr, shelf_nr")
   end
 
   # POST /pools
   # POST /pools.xml
   def create
+    #
+    # TODO - Work on error handling.  Ideally should return to same state as submitted form, with correct boxes checked
+    #
     @pool = Pool.new(params[:pool])
+    @total_oligos = 0
+    #render :action => 'debug'
     
-    if params[:plate_position_id]
-      success_msg_dtls = "#{params[:plate_position_id].size} plate_positions/tubes"
-      params[:plate_position_id].keys.each {|p_id| @pool.aliquot_to_pools.build(:plate_position_id => p_id)}
-    elsif params[:pool_id]
-      success_msg_dtls = "#{params[:pool_id].size} existing pools"
-      aliquot_to_pools = AliquotToPool.find(:all, :conditions => ['pool_id IN (?)', params[:pool_id].keys])
+    if params[:plate_position_id]  # Selecting from oligo list
+      @plate_positions = PlatePosition.find(:all, :conditions => ['id IN (?)', params[:plate_position_id].keys])
+      @checked_pposition_ids = params[:plate_position_id].reject {|id, val| val == '0'}.keys
+      @pool.total_oligos += @checked_pposition_ids.size
+      success_msg_dtls = "#{@checked_pposition_ids.size} plate_positions/tubes"
+      
+      # build aliquot_to_pools, only for checked plates 
+      @checked_pposition_ids.each {|p_id| @pool.aliquot_to_pools.build(:plate_position_id => p_id)}    
+      
+    elsif params[:pool_id]         # Selecting from pools list
+      @current_pools = Pool.find(:all, :include => :aliquot_to_pools, :conditions => ['id IN (?)', params[:pool_id].keys])
+      @checked_pool_ids = params[:pool_id].reject {|id, val| val == '0'}.keys
+      @pool.from_pools = @checked_pool_ids
+      @pool.total_oligos += Pool.sum(:total_oligos, :conditions => ['id IN (?)', @checked_pool_ids])
+      success_msg_dtls = "#{@checked_pool_ids.size} existing pools"
+
+      aliquot_to_pools = AliquotToPool.find(:all, :conditions => ['pool_id IN (?)', @checked_pool_ids])
       aliquot_to_pools.each {|aliquot| @pool.aliquot_to_pools.build(:plate_position => aliquot.plate_position)}
+
+      if params[:plate_tube_id]    # Selecting from plate/tube list
+        @current_plates = PlateTube.find(:all, :conditions => ['id IN (?)', params[:plate_tube_id].keys])
+        @checked_plate_ids = params[:plate_tube_id].reject {|id, val| val == '0'}.keys
+        @pool.from_plates = @checked_plate_ids
+        @pool.total_oligos += PlatePosition.count(:id, :conditions => ['plate_or_tube_id IN (?)', @checked_plate_ids])
+        success_msg_dtls += ", #{@checked_plate_ids.size} existing plates"
+        
+        plate_positions = PlatePosition.find(:all, :conditions => ['plate_or_tube_id IN (?)', @checked_plate_ids])
+        plate_positions.each {|plate_position| @pool.aliquot_to_pools.build(:plate_position => plate_position)}
+      end
     end
     
     if @pool.save
       flash[:notice] = "Pool successfully created from #{success_msg_dtls}"
       redirect_to(@pool)
     else
-      # Validation error in entering pool
-      @synth_oligos = SynthOligo.find(:all, :include => :plate_position, :conditions => ["id in (?)", params[:plate_position].keys])
-      @checked = true
+      flash[:notice] = "Validation error creating pool"
       @storage_locations = StorageLocation.find(:all, :order => "room_nr, shelf_nr")
-      render :action => :list_for_pool
+      #render :action => 'debug'
+      render :action => 'list_for_pool'
     end
   end
 
@@ -77,6 +118,17 @@ class PoolsController < ApplicationController
   # PUT /pools/1.xml
   def update
     @pool = Pool.find(params[:id])
+    if !param_blank?(params[:pool_string])
+      pool_array = create_array_from_text_area(params[:pool_string])
+      @from_pools = Pool.find(:all, :conditions => ['tube_label IN (?)', pool_array])
+      @pool.from_pools = @from_pools.collect(&:id) if !@from_pools.nil?
+    end
+    
+    if !param_blank?(params[:plate_string])
+      plate_array = create_array_from_text_area(params[:plate_string])
+      @from_plates = PlateTube.find(:all, :conditions => ['plate_or_tube_name IN (?)', plate_array])
+      @pool.from_plates = @from_plates.collect(&:id) if !@from_plates.nil?
+    end
 
     if @pool.update_attributes(params[:pool])
       flash[:notice] = 'Pool was successfully updated.'
@@ -96,30 +148,18 @@ class PoolsController < ApplicationController
   end
   
 protected
-  def define_oligo_conditions(params)
-    @where_select = [];  @where_values = [];
-    
-    @where_select, @where_values = plate_where_clause(params[:plate_string]) if !params[:plate_string].blank?
-    
-    if params[:oligo_usage] && !params[:oligo_usage].blank?
-      @where_select.push('oligo_usage = ?')
-      @where_values.push(params[:oligo_usage])
-    end   
-    
-    db_fld = 'plate_tubes.synthesis_date'
-    @where_select, @where_values = sql_conditions_for_range(@where_select, @where_values, params[:date_from], params[:date_to], db_fld)
-       
+  def define_pool_conditions(params)
+    @where_select = []; @where_values = [];  
+    @where_select, @where_values = pool_where_clause(params[:pool_type], params[:pool_string]) 
     sql_where_clause = (@where_select.length == 0 ? [] : [@where_select.join(' AND ')].concat(@where_values))
     return sql_where_clause
   end
   
-  def define_pool_conditions(params)
-    @where_select = []; @where_values = []
-    
-    @where_select, @where_values = pool_where_clause(params[:pool_type], params[:pool_string]) 
-    
+  def define_plate_conditions(params)
+    @where_select = [];  @where_values = []; 
+    @where_select, @where_values = plate_where_clause(params[:plate_string]) if !params[:plate_string].blank?       
     sql_where_clause = (@where_select.length == 0 ? [] : [@where_select.join(' AND ')].concat(@where_values))
     return sql_where_clause
   end
-
+ 
 end
