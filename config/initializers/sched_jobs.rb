@@ -9,7 +9,7 @@ if RAILS_ENV == 'production'
                         :tags => 'sqltouch', 
                         :try_again => false do 
     # access one record in each database, to keep SQL connection alive
-    Indicator.find(:first)
+    StorageLocation.find(:first)
     Version.find(:first)
   end
 end
