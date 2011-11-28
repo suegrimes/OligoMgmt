@@ -36,3 +36,7 @@ fieldset.form label.radio {
 	word-wrap: break-word;/* Internet Explorer 5.5+ */	
 }
 
+#leftsidebar ul li a {
+    padding: 0 10px 0 15px;
+}
+
