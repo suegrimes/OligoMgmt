@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
     else
       param_list = (text.gsub(',', ' ')).split
       param_list.pop if param_list.last =~ /^\s*$/
-    end  
+    end
     
     param_list.collect! { |value| value.to_i} if ret_type == 'integer'
     return param_list
@@ -67,36 +67,58 @@ class ApplicationController < ActionController::Base
     return error_found
   end
   
-  def plate_where_clause(plate_string)
+  def plate_array_from_list(plate_string)
     all_plate_numbers = plate_string.split(",")
-    where_select = []; where_values = [];
     plate_numbers = []; plate_or_tube_names = []; error = [];
-
+    
     for num in all_plate_numbers
-      num = num.to_s.delete(' ')    
+      num = num.to_s.delete(' ')
+      
       case num
-      when /^(M\d+)$/ # has 'M' followed by digits
-        plate_or_tube_names << num # gather into array
-      when /^(M\d+)\-(M\d+)$/ # is a range with 'M' followed by digits
-        #if $1[0].chr != $2[0].chr then error << 'First letters of ' + $1 + ' and ' + $2 + ' do not match'; next end
-        where_select.push("plate_tubes.plate_or_tube_name LIKE 'M%' AND plate_tubes.plate_number BETWEEN ? AND ?")
-        where_values.push($1[1..-1], $2[1..-1])
-      when /^\d+$/ # has digits only
-        plate_numbers << num # gather into array
-      when /^(\d+)\-(\d+)$/ # has range of digits
-        where_select.push("plate_tubes.plate_or_tube_name NOT LIKE 'M%' AND plate_tubes.plate_number BETWEEN ? AND ?")
-        where_values.push($1, $2)
-      else error << num + ' is unexpected value'
+        when /^([M|T]\d+)$/ # has 'M' or 'T' followed by digits
+          plate_or_tube_names << num # gather into array
+          
+        when /^([M|T]\d+)\-([M|T]\d+)$/ # is a range with 'M' or 'T' followed by digits
+          range_begin = $1; range_end = $2;
+          if range_begin[0].chr != range_end[0].chr then error << 'First letters of range ' + $1 + '-' + $2 + ' do not match'; next; end
+            
+          range_char = range_begin[0].chr
+          min_range = range_begin[1..-1].to_i; max_range = range_end[1..-1].to_i
+          if min_range > max_range then error << 'Beginning of range: ' + $1 + ' > end of range: ' + $2; next; end
+            
+          for i in (min_range..max_range) do
+            plate_or_tube_names << [range_char, i.to_s].join
+          end
+            
+        when /^\d+$/ # has digits only
+          plate_numbers << num # gather into array 
+          
+        when /^(\d+)\-(\d+)$/ # has range of digits
+          min_range = $1.to_i; max_range = $2.to_i
+          if min_range > max_range then error << 'Beginning of range: ' + $1 + ' > end of range: ' + $2; next; end
+          
+          for i in (min_range..max_range) do
+            plate_numbers << i
+          end
+          
+        else error << num + ' is unexpected value'
       end # case
     end # for
+    return plate_or_tube_names, plate_numbers
+  end
+  
+  def plate_where_clause(plate_string)
+    where_select = []; where_values = [];
+    plate_or_tube_names, plate_numbers = plate_array_from_list(plate_string)
     
     if (!plate_or_tube_names.empty?) 
-      where_select.push("(plate_tubes.plate_or_tube_name LIKE 'M%' AND plate_tubes.plate_or_tube_name IN (?))")
+      where_select.push("(plate_tubes.plate_or_tube_name IN (?))")
       where_values.push(plate_or_tube_names)
     end
     
     if (!plate_numbers.empty?)
-      where_select.push("(plate_tubes.plate_or_tube_name NOT LIKE 'M%' AND plate_tubes.plate_number IN (?))")
+      where_select.push("(LEFT(plate_tubes.plate_or_tube_name,1) IN (?) AND plate_tubes.plate_number IN (?))")
+      where_values.push(PlateTube::PROD_PLATE_CHARS)
       where_values.push(plate_numbers)
     end
     

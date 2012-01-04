@@ -14,6 +14,17 @@
 class PlateTube < InventoryDB
   has_many :plate_positions, :foreign_key => :plate_or_tube_id
   
+  PROD_PLATE_CHARS = %w{0 1}
+  
+  def plate_idnum
+    plate_char = (['M', 'T'].include?(plate_or_tube_name[0,1]) ? plate_or_tube_name[0,1] : 'P')
+    return [plate_char, ("%03d" % plate_number).to_s].join
+  end
+  
+  def plate_or_tube
+    (plate_or_tube_name[0,1] == 'T' ? 'Tube' : 'Plate')
+  end
+  
   def self.find_all_incl_oligos(condition_array=nil)
     #This sort order is needed because sorting alphabetically the 'M' plates would sort as M1,M10,M11,..M2,M20 etc),
     #and sorting numerically by plate_number would mix M plates and standard plates since there is M10 and 0010 for example)

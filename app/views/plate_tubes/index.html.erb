@@ -1,9 +1,8 @@
-<h1>Listing Oligo Synthesis Plates</h1>
+<h1>Listing Oligo Synthesis Plates/Tubes</h1>
 
 <table class="list">
   <tr>
-    <th>Plate#</th>
-    <th>Plate Name</th>
+    <th>Plate/Tube Name</th>
     <th>Description</th>
 	<th>Synthesis Date</th>
 	<th colspan="2">&nbsp;</th>
@@ -11,7 +10,6 @@
 
 <% for plate in @plate_tubes %>
   <tr>
-    <td><%=h plate.plate_number %></td>
     <td><%=h plate.plate_or_tube_name %></td>
     <td><%=h plate.description %></td>
 	<td><%=h plate.synthesis_date %></td>

@@ -38,7 +38,7 @@ class PlatePosition < InventoryDB
   def well_coord
     well_alpha = WELL_LETTER[(plate_position - 1)/12]
     well_num   = (plate_position - 1) % 12 + 1 
-    return well_alpha + well_num.to_s
+    return (plate_or_tube_name[0,1] == 'T' ? ' ' : well_alpha + well_num.to_s)
   end
   
   def self.find_all_positions(condition_array=nil)

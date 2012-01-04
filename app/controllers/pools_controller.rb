@@ -125,11 +125,13 @@ class PoolsController < ApplicationController
     end
     
     if !param_blank?(params[:plate_string])
-      plate_array = create_array_from_text_area(params[:plate_string])
-      @from_plates = PlateTube.find(:all, :conditions => ['plate_or_tube_name IN (?)', plate_array])
-      @pool.from_plates = @from_plates.collect(&:id) if !@from_plates.nil?
+      @where_clause = define_plate_conditions(params)
+      @from_plates = PlateTube.find(:all, :conditions => @where_clause) if !@where_clause.empty?
+      @pool.from_plates = (@from_plates.nil? ? [] : @from_plates.collect(&:id))
     end
-
+    
+    #render :action => 'debug'
+  
     if @pool.update_attributes(params[:pool])
       flash[:notice] = 'Pool was successfully updated.'
       redirect_to(@pool)
