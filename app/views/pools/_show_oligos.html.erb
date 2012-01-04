@@ -5,9 +5,11 @@
   </tr>
 
 <% for plate_position in pool.plate_positions %>
+<% for synth_oligo in plate_position.synth_oligos %>
   <tr>
-    <td><%=link_to plate_position.oligo_name, plate_position.synth_oligos[0] %></td>
+    <td><%=link_to synth_oligo.oligo_name, synth_oligo %></td>
 	<td><%=h plate_position.plate_or_tube_name %>/<%=h plate_position.well_coord %></td>
   </tr>
+<% end %>
 <% end %>
 </table>

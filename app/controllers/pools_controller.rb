@@ -95,7 +95,8 @@ class PoolsController < ApplicationController
         @current_plates = PlateTube.find(:all, :conditions => ['id IN (?)', params[:plate_tube_id].keys])
         @checked_plate_ids = params[:plate_tube_id].reject {|id, val| val == '0'}.keys
         @pool.from_plates = @checked_plate_ids
-        @pool.total_oligos += PlatePosition.count(:id, :conditions => ['plate_or_tube_id IN (?)', @checked_plate_ids])
+        #@pool.total_oligos += SynthOligo.count(:oligo_name, :include => :plate_positions, :conditions => ['plate_or_tube_id IN (?)', @checked_plate_ids])
+        @pool.total_oligos += 99
         success_msg_dtls += ", #{@checked_plate_ids.size} existing plates"
         
         plate_positions = PlatePosition.find(:all, :conditions => ['plate_or_tube_id IN (?)', @checked_plate_ids])
