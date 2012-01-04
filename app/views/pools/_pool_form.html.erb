@@ -14,7 +14,11 @@
   </tr>
   <tr>
   	<th style="text-align:right"><%=f.label :pool_description, 'Description' %></th>
-    <td colspan="5"><%= f.text_area(:pool_description, :rows => 3, :cols => 80) %></td>
+	<td colspan="5"><%=f.text_field(:pool_description, :size => 80)%></td>
+  </tr>
+  <tr>
+  	<th style="text-align:right"><%=f.label :notes %></th>
+    <td colspan="5"><%= f.text_area(:notes, :rows => 3, :cols => 80) %></td>
   </tr>
 </table>
 </fieldset>

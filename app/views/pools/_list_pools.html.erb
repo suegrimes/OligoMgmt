@@ -16,5 +16,10 @@
 	<td><%=h pool.pool_description %></td>
     <td><%= link_to 'Show', pool %></td>
   </tr>
+  <% if !pool.notes.blank? %>
+  <tr>
+  	<td>Notes:<%=h pool.notes %></td>
+  </tr>
+  <% end %>
 <% end %>
 </table>

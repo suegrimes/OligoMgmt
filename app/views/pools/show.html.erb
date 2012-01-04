@@ -3,16 +3,21 @@
 <table class="list">
   <tr>
 	<th>Pool Name</th>
+	<th>Description</th>
 	<th>Source Conc(um)</th>
 	<th>Room/Shelf/Box/Bin</th>
-	<th>Description</th>
   </tr>
   <tr>
     <td><%=h @pool.pool_name %></td>
+	<td><%=h @pool.pool_description %></td>
   	<td><%=h @pool.source_conc_um %></td>
 	<td><% if @pool.storage_location %><%=h @pool.storage_location.location_string %><% end %></td>
-	<td><%=h @pool.pool_description %></td>
   </tr>
+  <% if !@pool.notes.blank? %>
+  <tr>
+  	<td colspan="4"><strong><em>Notes:&nbsp;&nbsp;</em></strong><%=h @pool.notes %></td>
+  </tr>
+  <% end %>
  </table>
  
  <table class="list">
