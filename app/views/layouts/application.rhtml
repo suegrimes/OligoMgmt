@@ -43,7 +43,16 @@
   <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 0;">
     <tr>
       <td valign="top" rowspan="2" width="180"><div class="logo"><%= image_tag("sutech_reflect_DB.gif", :height => "89", :alt => "Stanford University") %></div></td>
-      <td valign="top"><div class="sitename-graphic"><%= image_tag("oligomgmt_sitename.gif", :height => "58", :title => "Oligonucleotide Inventory Management", :alt => "Oligonucleotide Inventory Management") %></div></td>
+      <td>          
+        <table align="center">
+          <tr>
+            <td>
+              <div class="sitename-graphic"><%= image_tag("oligo-mgmt-sitename.gif", :height => "45", :title => "Oligonucleotide Inventory Management", :alt => "Oligonucleotide Inventory Management") %></div>
+              <div class="sitename-description">Oligonucleotide Inventory Management</div>         
+            </td>
+          </tr>
+        </table> 
+      </td>
       <td valign="top" width="180"><div class="version"><% if Version::APP_VERSION %>Version: <%= Version::APP_VERSION %><% end %></div></td>
     </tr>
     <tr>
@@ -135,8 +144,7 @@
     <li><a href="http://med.stanford.edu/sgtc/">Stanford Genome Tech Center</a></li>
   </ul> <!-- /opened -->
 </div> <!-- /leftsidebar -->    
-
-    
+ 
 <div id="maincontent">
     <div style='color:red'> <%= flash[:error]%></div>
     <div style='color:green'> <%= flash[:notice]%></div>
@@ -151,7 +159,7 @@
     <td valign="top">
       <a href="http://med.stanford.edu/sgtc/">Stanford Genome Tech Center</a>&nbsp;|
       <a href="mailto:sgrimes@stanford.edu">Contact</a>
-      <div class="site-blurb">Website provided by the Ji Research Group<br />School of Medicine and Genome Technology Center at Stanford University<br />
+      <div class="site-blurb">Website provided by the <a href="http://dna-discovery.stanford.edu/">Ji Research Group</a><br />School of Medicine and Genome Technology Center at Stanford University<br />
       This website and its content &copy; Stanford University, <%= Time.now.localtime.strftime("%Y") %>. All rights reserved.
       </div>
     </td>
