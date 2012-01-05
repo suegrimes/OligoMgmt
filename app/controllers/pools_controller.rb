@@ -75,7 +75,7 @@ class PoolsController < ApplicationController
     if params[:plate_position_id]  # Selecting from oligo list
       @plate_positions = PlatePosition.find(:all, :conditions => ['id IN (?)', params[:plate_position_id].keys])
       @checked_pposition_ids = params[:plate_position_id].reject {|id, val| val == '0'}.keys
-      @pool.total_oligos += @checked_pposition_ids.size
+      @pool.total_oligos += SynthOligo.count(:id, :conditions => ['plate_position_id IN (?)', @checked_pposition_ids])
       success_msg_dtls = "#{@checked_pposition_ids.size} plate_positions/tubes"
       
       # build aliquot_to_pools, only for checked plates 
@@ -95,8 +95,7 @@ class PoolsController < ApplicationController
         @current_plates = PlateTube.find(:all, :conditions => ['id IN (?)', params[:plate_tube_id].keys])
         @checked_plate_ids = params[:plate_tube_id].reject {|id, val| val == '0'}.keys
         @pool.from_plates = @checked_plate_ids
-        #@pool.total_oligos += SynthOligo.count(:oligo_name, :include => :plate_positions, :conditions => ['plate_or_tube_id IN (?)', @checked_plate_ids])
-        @pool.total_oligos += 99
+        @pool.total_oligos += SynthOligo.count(:id, :include => :plate_positions, :conditions => ['plate_or_tube_id IN (?)', @checked_plate_ids])
         success_msg_dtls += ", #{@checked_plate_ids.size} existing plates"
         
         plate_positions = PlatePosition.find(:all, :conditions => ['plate_or_tube_id IN (?)', @checked_plate_ids])
