@@ -89,9 +89,12 @@ class ApplicationController < ActionController::Base
           for i in (min_range..max_range) do
             plate_or_tube_names << [range_char, i.to_s].join
           end
+          
+        when /^([0|1]\d+)_(\d+).*$/ # full old format plate number: yymmdd_nnnnnx 
+          plate_numbers << $2.to_i
             
         when /^\d+$/ # has digits only
-          plate_numbers << num # gather into array 
+          plate_numbers << num.to_i # gather into array 
           
         when /^(\d+)\-(\d+)$/ # has range of digits
           min_range = $1.to_i; max_range = $2.to_i
