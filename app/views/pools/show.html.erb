@@ -21,19 +21,20 @@
  </table>
  
  <table class="list">
-  <tr><th>Total Oligos:</th><td><strong><%=h @pool.total_oligos %></strong></td></tr>
+  <tr><th>Total Oligos:</th><td><strong><%=h @pool.total_oligos %></strong> 
+  <% if @pool.cherrypick_oligos > 0 %>&nbsp;(Cherrypick: <%=h @pool.cherrypick_oligos %>)<% end %></td></tr>
   
   <% if @from_pools %>
-    <tr><th>From Pools:</th><td><%=h @from_pools.join(', ')%></td></tr>
+    <tr><th>From Pool(s):</th><td><%=h @from_pools.join(', ')%></td></tr>
   <% end %>
   
   <% if @from_plates %>
-    <tr><th>From Plates:</th><td><%=h @from_plates.join(', ')%></td></tr>
+    <tr><th>From Plate/Tube(s):</th><td><%=h @from_plates.join(', ')%></td></tr>
   <% end %>
  </table>
  
  <div id="oligo_div">
    <%=link_to 'Edit', edit_pool_path(@pool) %> |
-   <%=link_to_remote("Show Oligos", :update => 'oligo_div', :url => {:action => 'get_oligos', :id => @pool.id}) %>
+   <%=link_to_remote("Show Oligos", :update => 'oligo_div', :url => {:action => 'get_oligos', :id => @pool.id}) %> 
  </div>
 

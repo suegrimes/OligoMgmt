@@ -6,25 +6,27 @@
   <%= break_clear %>
   
   <table class="list">
-  <tr><th>Total Oligos:</th><td><strong><%=h @pool.total_oligos %></strong></td></tr>
+  <tr><th>Total Oligos:</th><td><strong><%=h @pool.total_oligos %></strong> 
+  <% if @pool.cherrypick_oligos > 0 %>&nbsp;(Cherrypick: <%=h @pool.cherrypick_oligos %>)<% end %></td></tr>
   
-  <tr>
-  	<th>From Pools:</th>
-    <% if @from_pools %>
-	  <td><%=text_field_tag(:pool_string, value=@from_pools.join(', '), :size => 80)%></td>
-    <% else %>
-	  <td><%=text_field_tag(:pool_string, value='', :size => 80)%></td>
-    <% end %>
-  </tr>
+  <% pools_value = (@from_pools ? @from_pools.join(', ') : ' ') %>
+  <% plates_value = (@from_plates ? @from_plates.join(', ') : ' ') %>
   
-  <tr>
-  	<th>From Plates:</th>
-    <% if @from_plates %>
-      <td><%=text_field_tag(:plate_string, value=@from_plates.join(', '), :size => 80)%></td>
-	<% else %>
-	  <td><%=text_field_tag(:plate_string, value='', :size => 80)%></td>
-    <% end %>
-  </tr>
+  <tr><th>From Pool(s):</th>
+  <td><% if current_user.has_role?('admin') %><%=text_field_tag(:pool_string, value=pools_value, :size => 80)%>
+      <% else %><%=h pools_value %>
+	  <% end %>
+  </td></tr>
+	  
+  <tr><th>From Plate/Tube(s):</th>
+  <td><% if current_user.has_role?('admin') %><%=text_field_tag(:plate_string, value=plates_value, :size => 80)%>
+	  <% else %><%=h plates_value %>
+	  <% end %> 
+  </td></tr> 
+  
+  <% if current_user.has_role?('admin')%>
+  <tr><td colspan="2" class="notes">Note: From Pool/Plate/Tube information is editable by admin only, and does not affect actual oligos assigned to the pool</td></tr>
+  <% end %>
   </table>
   
   <%= break_clear(f.submit 'Update')%>

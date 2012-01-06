@@ -13,11 +13,13 @@
 
   <% if !@current_pools.nil? %>
     <%= render :partial => 'list_pools', :locals => {:pools => @current_pools} %>
-	<% if !@current_plates.nil? %>
-    <%= render :partial => 'list_plates', :locals => {:plate_tubes => @current_plates} %>
-    <% end %>
+  <% end %>
   
-  <% elsif !@plate_positions.nil? %>
+  <% if !@current_plates.nil? %>
+    <%= render :partial => 'list_plates', :locals => {:plate_tubes => @current_plates} %>
+  <% end %>
+  
+  <% if !@plate_positions.nil? %>
     <%= render :partial => 'list_oligos', :locals => {:plate_positions => @plate_positions} %>
   <% end %>
 
