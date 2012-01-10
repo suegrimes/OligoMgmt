@@ -1,25 +1,23 @@
-<h1>Listing Oligos for <%=h @plate_tube.plate_or_tube %>#: <%=h @plate_tube.plate_or_tube_name %></h1>
+<h1>Details for <%=h @plate_tube.plate_or_tube %>#: <%=h @plate_tube.plate_or_tube_name %></h1>
 
 <table class="list">
   <tr>
-    <th>Oligo name (chars 1-50)</th>
-    <th>Oligo type</th>
-	<th>Sequence Ordered (bases 1-40) </th>
-	<th>Well#</th>
-	<th>Notes</th>
-	<th>&nbsp;</th>
+    <th>Plate/Tube</th>
+    <th>Description</th>
+	<th>Synthesis Date</th>
+	<th>Total Oligos</th>
+	<th colspan="2">&nbsp;</th>
   </tr>
-
-<% for plate_position in @plate_tube.plate_positions %>
-<% for synth_oligo in plate_position.synth_oligos %>
   <tr>
-    <td><%=h synth_oligo.oligo_name[0,49] %></td>
-    <td><%=h plate_position.oligo_usage_descr %></td>
-	<td><%=h synth_oligo.sequence[0,39] %></td>
-	<td><%=h plate_position.well_coord %></td>
-	<td><%=h synth_oligo.notes %></td>
-    <td><%= link_to 'Show', synth_oligo %></td>
+  	<td style="text-align: center"><%=h @plate_tube.plate_or_tube_name %></td>
+	<td><%=h @plate_tube.description %></td>
+	<td><%=h @plate_tube.synthesis_date %></td>
+	<td style="text-align: center"><%=h @plate_tube.total_oligos %></td>
+	<td><%= link_to 'Show Oligos', show_oligos_path(:id => @plate_tube.id) %></td>
+	<td><%= link_to 'Edit', edit_plate_tube_path(@plate_tube) %></td>
   </tr>
-<% end %>
-<% end %>
+  <tr>
+  	<td>&nbsp;</td>
+  	<td colspan="3"><em><strong>Notes: </strong><%=h @plate_tube.notes%></em></td>
+  </tr>
 </table>

@@ -2,18 +2,20 @@
 
 <table class="list">
   <tr>
-    <th>Plate/Tube Name</th>
+    <th>Plate/Tube</th>
     <th>Description</th>
 	<th>Synthesis Date</th>
+	<th>Total Oligos</th>
 	<th colspan="2">&nbsp;</th>
   </tr>
 
 <% for plate in @plate_tubes %>
   <tr>
-    <td><%=h plate.plate_or_tube_name %></td>
+    <td style="text-align: center"><%=link_to plate.plate_or_tube_name, plate %></td>
     <td><%=h plate.description %></td>
 	<td><%=h plate.synthesis_date %></td>
-    <td><%= link_to 'Show Oligos', plate %></td>
+	<td style="text-align: center"><%=h plate.total_oligos %></td>
+    <td><%= link_to 'Show Oligos', show_oligos_path(:id => plate.id) %></td>
 	<td><%= link_to 'Edit', edit_plate_tube_path(plate) %></td>
   </tr>
 <% end %>

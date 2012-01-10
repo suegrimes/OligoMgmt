@@ -23,6 +23,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :plate_tubes
   map.resources :plate_positions
   map.resources :synth_oligos
+  map.show_oligos 'show_oligos', :controller => 'plate_tubes',  :action => 'show_oligos'
   map.plate_query 'plate_query', :controller => 'plate_tubes',  :action => 'new_query'
   map.inv_query 'inv_query',     :controller => 'synth_oligos', :action => 'new_query'
   

@@ -17,8 +17,13 @@ class PlateTubesController < ApplicationController
   # GET /plate_tubes/1
   # GET /plate_tubes/1.xml
   def show
-    @plate_tube = PlateTube.find(params[:id], :include => :plate_positions)
+    @plate_tube = PlateTube.find(params[:id])
     render :action => 'show'
+  end
+  
+  def show_oligos
+    @plate_tube = PlateTube.find(params[:id], :include => :plate_positions)
+    render :action => 'show_oligos'
   end
 
   # GET /plate_tubes/1/edit
