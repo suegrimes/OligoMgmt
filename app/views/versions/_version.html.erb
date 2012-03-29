@@ -1,0 +1,31 @@
+<table class="form">
+  	<tr>
+  	  <th>Version name: </th>
+	  <td><%= f.text_field :version_name %></td>
+	</tr>
+	
+	<tr>
+	  <th>(E)xome or (P)artial?</th>
+	  <td><%=f.select(:exonome_or_partial, %w{P E}) %></td>
+	</tr>
+	
+	<tr>
+	  <th>Genome build: </th>
+      <td><%= f.text_field :genome_build %></td>
+	</tr>
+  
+    <tr>
+	  <th>Genome build notes: </th>
+      <td><%= f.text_field :genome_build_notes %></td>
+	</tr>
+	
+	<tr>
+	  <th>Script version: </th>
+      <td><%= f.text_field :design_version %></td>
+	</tr>
+	
+	<tr>
+	  <th>Script version notes: </th>
+      <td><%= f.text_area :design_version_notes, :size => 80, :rows => 3 %></td>
+	</tr>
+  </table>

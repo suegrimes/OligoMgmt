@@ -1,0 +1,36 @@
+<h1>Version: <%=h @version.id %></h1>
+
+<table class="list">
+  	<tr>
+  	  <th>Version name: </th>
+	  <td><%=h @version.version_name %></td>
+	</tr>
+	
+	<tr>
+	  <th>(E)xome or (P)artial?</th>
+	  <td><%=h @version.exonome_or_partial %></td>
+	</tr>
+	
+	<tr>
+	  <th>Genome build: </th>
+      <td><%=h @version.genome_build %></td>
+	</tr>
+  
+    <tr>
+	  <th>Genome build notes: </th>
+      <td><%=h @version.genome_build_notes %></td>
+	</tr>
+	
+	<tr>
+	  <th>Script version: </th>
+      <td><%=h @version.design_version %></td>
+	</tr>
+	
+	<tr>
+	  <th>Script version notes: </th>
+      <td><%=h @version.design_version_notes %></td>
+	</tr>
+  </table>
+
+<%= link_to 'Edit', edit_version_path(@version) %> |
+<%= link_to 'Back', versions_path %>

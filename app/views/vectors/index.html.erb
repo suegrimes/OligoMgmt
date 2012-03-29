@@ -1,0 +1,24 @@
+<h1>Listing vectors</h1>
+
+<table class="list">
+  <tr>
+  	<th>ID</th>
+    <th>Vector</th>
+	<th>U_Vector</th>
+	<th colspan="2"></th>
+  </tr>
+
+<% for vector in @vectors %>
+  <tr>
+  	<td><%=h vector.id %></td>
+    <td><%=h vector.vector %></td>
+	<td><%=h vector.u_vector %></td>
+	<% if current_user && current_user.has_role?("admin") %>
+    <td><%= link_to 'Edit', edit_vector_path(vector) %></td>
+    <td><%= link_to 'Delete', vector, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'New vector', new_vector_path %>

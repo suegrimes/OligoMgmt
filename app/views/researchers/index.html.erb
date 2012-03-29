@@ -1,0 +1,30 @@
+<h1>Listing researchers</h1>
+
+<table class="list">
+  <tr>
+    <th>Researcher name</th>
+	<th>Initials</th>
+    <th>Phone number</th>
+    <th>Company</th>
+	<th colspan="2">&nbsp;</th>
+  </tr>
+
+<% for researcher in @researchers %>
+  <tr>
+    <td><%=h researcher.researcher_name %></td>
+	<td><%=h researcher.researcher_initials %></td>
+    <td><%=h researcher.phone_number %></td>
+    <td><%=h researcher.company %></td>
+	<% if current_user.has_role?("admin") %>
+    <td><%= link_to 'Edit', edit_researcher_path(researcher) %></td>
+    <td><%= link_to 'Delete', researcher, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% else %>
+	<td colspan="2">&nbsp;</td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<% if current_user.has_role?("admin") %>
+<%= link_to 'New researcher', new_researcher_path %>
+<% end %>

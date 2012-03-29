@@ -1,5 +1,4 @@
 # == Schema Information
-# Schema version: 20090121183010
 #
 # Table name: users
 #
@@ -8,6 +7,7 @@
 #  email                     :string(255)
 #  crypted_password          :string(40)
 #  salt                      :string(40)
+#  reset_code                :string(50)
 #  created_at                :datetime
 #  updated_at                :datetime
 #  remember_token            :string(255)
@@ -91,21 +91,6 @@ class User < ActiveRecord::Base
   def forget_me
     self.remember_token_expires_at = nil
     self.remember_token            = nil
-    save(false)
-  end
-
-  def create_reset_code
-    @reset = true
-    self.reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
-    save(false)
-  end
-  
-  def recently_reset?
-    @reset
-  end
-  
-  def delete_reset_code
-    self.reset_code = nil
     save(false)
   end
 

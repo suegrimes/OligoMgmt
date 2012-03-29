@@ -33,6 +33,13 @@ ActionController::Routing::Routes.draw do |map|
   map.pool_params 'pool_params',  :controller => 'pools',  :action => 'new_params'
   map.pools_list  'pools_list',   :controller => 'pools',  :action => 'list_for_pool'
   
+  # Routes for supporting tables
+  map.resources :storage_locations
+  map.resources :vectors
+  map.resources :versions
+  map.resources :researchers
+  map.resources :users
+  
   # Error/not implemented
   map.notimplemented 'notimplemented', :controller => 'dummy',         :action => 'notimplemented'
   

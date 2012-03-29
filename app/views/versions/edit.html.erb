@@ -1,0 +1,11 @@
+<h1>Editing version <%=h @version.id %></h1>
+
+<% form_for(@version) do |f| %>
+  <%= f.error_messages %>
+
+  <%= render :partial => 'version', :locals => {:f => f} %>
+  
+  <%= f.submit "Update" %>
+<% end %>
+
+<%= link_to 'Back', versions_path %>

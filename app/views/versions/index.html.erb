@@ -1,0 +1,30 @@
+<h1>Listing versions</h1>
+
+<table class="list">
+  <tr>
+  	<th>ID</th>
+    <th>Version name</th>
+	<th>Genome build</th>
+	<th>Exome/Partial?</th>
+    <th>Script version</th>
+	<th>Script version notes</th>
+    <th colspan="2"></th>
+  </tr>
+
+<% for version in @versions %>
+  <tr>
+  	<td><%=h version.id %></td>
+    <td><%=h version.version_name %></td>
+	<td><%=h version.genome_build %></td>
+	<td><%=h version.exonome_or_partial %></td>
+    <td><%=h version.design_version %></td>
+	<td><%=h version.design_version_notes %></td>
+    <td><%= link_to 'Edit', edit_version_path(version) %></td>
+	<% if current_user && current_user.has_role?("admin") %>
+    <td><%= link_to 'Delete', version, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'New version', new_version_path %>

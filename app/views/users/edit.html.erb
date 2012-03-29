@@ -1,37 +1,19 @@
-<h1>Edit User</h1>
+<h1>Editing User</h1>
 
-<% tagged_form_for(@user) do |f| -%>
 <%= error_messages_for :user %>
+<% form_for(@user) do |f| -%>
+<p><%= f.label :login %>
+   <%= f.text_field :login %></p>
 
-<fieldset class="form">
-<legend>User Details</legend>
+<p><%= f.label :email %>
+<%= f.text_field :email %></p>
 
-  <table class="form">
-  <% if DEMO_APP && current_user.login != @user.login %>
-    <tr><th>Login:</th><td><%=h @user.login %>&nbsp;&nbsp;<strong>Email:</strong>&nbsp;&nbsp;<%=h @user.email %></td></tr>
-    <tr><td></td></tr>	
-  <% else %>
-    <tr><%= f.text_field :login %></tr>  
-    <tr><%= f.text_field :email %></tr>
-	<tr>
-      <th><%= label :curr_user, :current_password %></th>
-      <td><%= password_field :curr_user, :current_password %></td>
-	</tr>
-	<tr><td>&nbsp;</td></tr>
-    <tr><%= f.password_field :password, :label => 'New Password' %></tr>
-    <tr><%= f.password_field :password_confirmation, :label => 'New Password Confirmation' %></tr>
-  <% end %>
-  
-  <% if can? :update, Role %>
-    <tr><th><%= f.label :roles %></th>
-    <td><% for role in @roles do %>
-      <% next if role.name == 'admin' && !current_user.has_role?("admin") %>
-      <%= check_box_tag "user[role_ids][]", role.id, @user.has_role?(role.name,'admin_does_not_default') -%>
-      <%= role.name %>
-    <% end %></td></tr>
-  <% end %>
-  </table>
-</fieldset>
-<%= break_clear %>
-<div><%= f.submit 'Update' -%></div>
+<p><%= f.label :roles %>
+<% for role in @roles do %>
+    <%= check_box_tag "user[role_ids][]", role.id, @user.has_role?(role.name,'admin_does_not_default') -%>
+    <%= role.name %>
 <% end %>
+</p>
+
+<p><%= f.submit 'Update' %></p>
+<% end -%>

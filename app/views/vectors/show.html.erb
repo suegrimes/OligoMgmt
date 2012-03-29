@@ -1,0 +1,18 @@
+<h1>Vector <%=h @vector.id %></h1>
+
+<table class="list">
+  	<tr>
+  	  <th>Vector sequence: </th>
+	  <td><%=h @vector.vector %></td>
+	</tr>
+	
+	<tr>
+	  <th>U Vector sequence: </th>
+      <td><%=h @vector.u_vector %></td>
+	</tr>
+</table>
+
+  <% if current_user && current_user.has_role?("admin") %>
+    <%= link_to 'Edit', edit_vector_path(@vector) %> |
+	<%= link_to 'Back', vectors_path %>
+  <% end %>
