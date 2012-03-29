@@ -3,6 +3,7 @@
 #
 # Table name: aliquot_to_pools
 #
+#  id                :integer(4)      not null, primary key
 #  plate_position_id :integer(4)      not null
 #  pool_id           :integer(4)      not null
 #  subpool           :string(25)

@@ -11,8 +11,11 @@
 #  chromosome_nr     :string(2)
 #  gene_code         :string(50)
 #  enzyme_code       :string(15)
+#  chr_start_pos     :integer(4)
+#  strand            :string(5)
 #  sequence          :string(255)     default(""), not null
 #  notes             :string(255)
+#  version_id        :integer(1)
 #  updated_at        :timestamp
 #
 

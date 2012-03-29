@@ -8,6 +8,9 @@
 #  plate_number       :integer(3)
 #  synthesis_date     :date
 #  description        :string(255)
+#  total_oligos       :integer(4)      default(0), not null
+#  version_id         :integer(3)
+#  notes              :text
 #  updated_at         :timestamp
 #
 
