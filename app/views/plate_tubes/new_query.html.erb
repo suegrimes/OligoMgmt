@@ -17,6 +17,10 @@
 	<th>To:</th>
 	<td><%=calendar_date_select_tag(:date_to, @max_date, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
   </tr>	
+  <tr>
+  	<th>Include unsynthesized plates?</th>
+	<td><%= check_box_tag(:incl_unsynth, 1, true) %></td>
+  </tr>
 </table>
 </fieldset>
 
