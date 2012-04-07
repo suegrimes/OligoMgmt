@@ -60,7 +60,7 @@
       <td valign="bottom">
         <% if logged_in? %>
         <div class="logout-link">
-          <!-- <%= link_to 'User Profile', edit_user_path(current_user) %>&nbsp;&nbsp;&nbsp;&nbsp; -->
+          <%= link_to 'User Profile', edit_user_path(current_user) %>&nbsp;&nbsp;&nbsp;&nbsp;
           <%= link_to 'Logout', logout_url %>
         </div>
         <% end %>
@@ -139,11 +139,9 @@
 	<li><%= link_to 'Synthesis Plates', plate_query_url %></li>
     
     <div class="sidebar-label">SYSTEM TABLES:</div>
-	<li><%= link_to 'Storage Locations', storage_locations_path %></li>
-	<li><%= link_to 'Vectors', vectors_path %></li>
-	<li><%= link_to 'Versions', versions_path %></li>
-    <% if current_user.has_role?("admin")%>
-	<li><%= link_to 'Researchers', researchers_path %></li> 	
+	<li><%= link_to 'Exome Vectors', vectors_path %></li>
+	<li><%= link_to 'Exome Versions', versions_path %></li>
+    <% if logged_in? && current_user.has_role?("admin")%>	
 	<li><%= link_to 'Users', users_path %></li>
 	<% end %>
   </ul> <!-- /opened -->

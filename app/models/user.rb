@@ -93,6 +93,22 @@ class User < ActiveRecord::Base
     self.remember_token            = nil
     save(false)
   end
+  
+  def create_reset_code
+    @reset = true
+    self.reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    save(false)
+  end
+  
+  def recently_reset?
+    @reset
+  end
+  
+  def delete_reset_code
+    self.reset_code = nil
+    save(false)
+  end
+  
 
   protected
     # before filter 

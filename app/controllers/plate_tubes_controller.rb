@@ -9,6 +9,7 @@ class PlateTubesController < ApplicationController
   # GET /plate_tubes
   # GET /plate_tubes.xml
   def index
+    #intentional_error_here
     sql_where_clause = define_plate_conditions(params)
     @plate_tubes = PlateTube.find_all_plates(sql_where_clause)
     render :action => 'index'
@@ -72,7 +73,7 @@ protected
     @where_select, @where_values = plate_where_clause(params[:plate_string]) if !params[:plate_string].blank?
     
     db_fld = 'plate_tubes.synthesis_date'
-    nullok = (params[:incl_unsynth] == 1 ? true : false)
+    nullok = (params[:incl_unsynth] == '1' ? true : false)
     @where_select, @where_values = sql_conditions_for_range(@where_select, @where_values, params[:date_from], params[:date_to], db_fld, nullok)
        
     sql_where_clause = (@where_select.length == 0 ? [] : [@where_select.join(' AND ')].concat(@where_values))
