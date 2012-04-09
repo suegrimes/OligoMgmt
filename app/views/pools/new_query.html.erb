@@ -1,0 +1,21 @@
+<h1>Oligo Pools query</h1>
+
+<% form_tag({:action => :index}, :method => :get) do %>
+<fieldset class="form">
+<legend>Select Parameters</legend>
+<table class="form">
+  <tr>
+    <th>Pool Type: </th>
+	<td><%=select_tag(:pool_type, options_for_select(@pool_types, '')) %>
+	<th>Pool Number(s)</th>
+	<td colspan="2"><%= text_field_tag(:pool_string, @pool_string, :size => 30) %></td>
+  </tr>
+  <tr><td class="notes" colspan="4">Enter individual pools separated by commas, enter ranges with '-'. Eg. '1,23,10-15'</td></tr>
+  <tr><td>&nbsp;</td></tr>  
+  </tr>
+</table>
+</fieldset>
+
+<%= break_clear(submit_tag "Submit") %>
+<%end%>
+

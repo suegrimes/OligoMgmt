@@ -7,8 +7,8 @@ class PoolsController < ApplicationController
   
   def list_for_pool
     if !params[:pool_type].blank? && !params[:pool_string].blank?  
-      sql_where_clause = define_pool_conditions(params[:pool_type], params[:pool_string])
-      @current_pools = Pool.find(:all, :conditions => sql_where_clause, :order => :tube_label)
+      sql_where_clause = define_pool_conditions(params)
+      @current_pools = Pool.find_all_pools(sql_where_clause)
     end
     
     if !params[:plate_string].blank?
@@ -33,11 +33,19 @@ class PoolsController < ApplicationController
     end
   end
   
+  def new_query
+    @pool_types = Pool.pool_types 
+  end
+  
   # GET /pools
   # GET /pools.xml
   def index
-    sql_where_clause = ['pools.id = ?', params[:id]] if params[:id]
-    @pools = Pool.find(:all, :order => :tube_label, :conditions => sql_where_clause ) 
+    if params[:id]
+      @pools = Pool.find(:all, :conditions => ['pools.id = ?', params[:id]])
+    else
+      sql_where_clause = define_pool_conditions(params)
+      @pools = Pool.find_all_pools(sql_where_clause)
+    end
     render :action => 'index'
   end
 
@@ -151,9 +159,9 @@ class PoolsController < ApplicationController
   end
   
 protected
-  def define_pool_conditions(pool_type, pool_string)
-    @where_select = []; @where_values = [];  
-    @where_select, @where_values = pool_where_clause(pool_type, pool_string) 
+  def define_pool_conditions(params)
+    @where_select = []; @where_values = []; 
+    @where_select, @where_values = pool_where_clause(params[:pool_type], params[:pool_string])       
     sql_where_clause = (@where_select.length == 0 ? [] : [@where_select.join(' AND ')].concat(@where_values))
     return sql_where_clause
   end

@@ -40,4 +40,8 @@ class Pool < InventoryDB
     unique_pool_types = self.find(:all, :select => 'DISTINCT(LEFT(tube_label,2)) AS pool_type')
     return unique_pool_types.map{|pool| pool[:pool_type]}
   end
+  
+  def self.find_all_pools(sql_conditions=nil)
+    self.find(:all, :conditions => sql_conditions, :order => :tube_label)
+  end
 end
