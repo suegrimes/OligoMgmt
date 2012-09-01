@@ -151,6 +151,9 @@ class ApplicationController < ActionController::Base
       where_select.push('LEFT(tube_label,2) = ? AND CAST(SUBSTRING(tube_label,3) AS UNSIGNED) IN (?)')
       where_values.push(pool_type)
       where_values.push(pool_nums)
+    elsif pool_string.blank?
+      where_select.push('LEFT(tube_label,2) = ?')
+      where_values.push(pool_type)
     end
     
     where_clause = (where_select.size > 0 ? ['(' + where_select.join(' OR ') + ')'] : [])
