@@ -7,10 +7,6 @@
 <legend>User Details</legend>
 
   <table class="form">
-  <% if DEMO_APP && current_user.login != @user.login %>
-    <tr><th>Login:</th><td><%=h @user.login %>&nbsp;&nbsp;<strong>Email:</strong>&nbsp;&nbsp;<%=h @user.email %></td></tr>
-    <tr><td></td></tr>	
-  <% else %>
     <tr><%= f.text_field :login %></tr>  
     <tr><%= f.text_field :email %></tr>
 	<tr>
@@ -19,13 +15,11 @@
 	</tr>
 	<tr><td>&nbsp;</td></tr>
     <tr><%= f.password_field :password, :label => 'New Password' %></tr>
-    <tr><%= f.password_field :password_confirmation, :label => 'New Password Confirmation' %></tr>
-  <% end %>
+    <tr><%= f.password_field :password_confirmation, :label => 'Confirm New Pswd' %></tr>
   
-  <% if can? :update, Role %>
+  <% if current_user.has_role?("admin") %>
     <tr><th><%= f.label :roles %></th>
     <td><% for role in @roles do %>
-      <% next if role.name == 'admin' && !current_user.has_role?("admin") %>
       <%= check_box_tag "user[role_ids][]", role.id, @user.has_role?(role.name,'admin_does_not_default') -%>
       <%= role.name %>
     <% end %></td></tr>

@@ -9,7 +9,6 @@ class PlateTubesController < ApplicationController
   # GET /plate_tubes
   # GET /plate_tubes.xml
   def index
-    #intentional_error_here
     sql_where_clause = define_plate_conditions(params)
     @plate_tubes = PlateTube.find_all_plates(sql_where_clause)
     render :action => 'index'

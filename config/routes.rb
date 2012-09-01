@@ -32,6 +32,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :aliquot_to_pools 
   map.pool_params 'pool_params',  :controller => 'pools',  :action => 'new_params'
   map.pools_list  'pools_list',   :controller => 'pools',  :action => 'list_for_pool'
+  map.pool_query  'pool_query',   :controller => 'pools',  :action => 'new_query'
   
   # Routes for supporting tables
   map.resources :storage_locations
