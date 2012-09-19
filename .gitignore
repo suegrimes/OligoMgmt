@@ -5,6 +5,7 @@ public/system/*
 public/*.zip
 public/javascripts/all.js
 config/database.yml
+config/deploy.rb
 config/environment.rb
 script/*
 test/*

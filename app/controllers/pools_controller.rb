@@ -42,9 +42,11 @@ class PoolsController < ApplicationController
   def index
     if params[:id]
       @pools = Pool.find(:all, :conditions => ['pools.id = ?', params[:id]])
-    else
+    elsif params[:pool_type] || params[:pool_string]
       sql_where_clause = define_pool_conditions(params)
       @pools = Pool.find_all_pools(sql_where_clause)
+    else
+      @pools = Pool.find_all_pools
     end
     render :action => 'index'
   end
