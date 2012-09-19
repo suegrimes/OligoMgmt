@@ -27,6 +27,7 @@
     </head>
 <body id='body'>
     <% user_roles = (logged_in? ? current_user.roles.collect(&:name) : nil) %>
+	<% env_descr  = (RAILS_ENV == 'production' ? nil : "(#{RAILS_ENV})")%>  
     
 <% if ( 
         (controller.controller_name == "welcome") ||
@@ -53,7 +54,7 @@
           </tr>
         </table> 
       </td>
-      <td valign="top" width="180"><div class="version"><% if Version::APP_VERSION %>Version: <%= Version::APP_VERSION %><% end %></div></td>
+      <td valign="top" width="180"><div class="version"><% if Version::APP_VERSION %>Version: <%= Version::APP_VERSION %><% end %><br /><span class="grey"><%=h env_descr %></span></div></td>
     </tr>
     <tr>
       <td><div class="tagline">Ji Research Group - Stanford Genome Technology Center</div></td>      
