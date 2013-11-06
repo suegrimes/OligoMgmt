@@ -21,9 +21,8 @@ group :assets do
 end
 
 #gem 'jquery-rails'
-
-#gem 'calendar_date_select'
-gem 'calendar_date_select', git: 'http://github.com/paneq/calendar_date_select.git'
+gem 'jquery-rails', '2.0.2'
+gem 'jquery_datepicker'
 
 gem 'prototype-rails'
 
