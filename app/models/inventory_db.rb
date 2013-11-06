@@ -1,4 +1,4 @@
 class InventoryDB < ActiveRecord::Base
   self.abstract_class = true
-  establish_connection (:inventory) if RAILS_ENV == 'production' 
+  establish_connection (:inventory) if Rails.env == 'production' 
 end

@@ -11,7 +11,7 @@ class OligoDesignsController < ApplicationController
   # Methods for input of parameters for retrieval of specific oligo designs                   #
   #*******************************************************************************************#
   def new_query
-    @versions = Version.curr_version.find(:all, :order => :id)
+    @versions = Version.curr_version.order(:id)
     @enzymes = OligoDesign::ENZYMES_WO_GAPFILL 
   end
 
@@ -19,11 +19,16 @@ class OligoDesignsController < ApplicationController
   # Method for listing oligo designs, based on parameters entered above                       #
   #*******************************************************************************************#
   def index
+    
     #@version = (params[:version] ? Version.find(params[:version][:id]) : Version::DESIGN_VERSION)
     @version = Version.find(params[:version][:id], :include => :gene_lists)
+
     @condition_array = define_conditions(params, @version.id)  
     
+    #render text: @condition_array
+    
     @oligo_designs   = OligoDesign.find_oligos_with_conditions(@condition_array, @version.id)
+    
     # return error if no oligos found
     error_found = check_if_blank(@oligo_designs, 'oligos') 
     
@@ -32,6 +37,7 @@ class OligoDesignsController < ApplicationController
     else
       render :action => 'index'
     end
+
   end
   
   #*******************************************************************************************#
@@ -99,6 +105,7 @@ class OligoDesignsController < ApplicationController
     
     if @version.exonome_or_partial == 'P'
       @genes = @version.gene_lists.collect{|genes| genes[:gene_code]} 
+      
       render :update do |page|
         if !@genes.nil?
           page.replace_html 'gene_list', :partial => 'gene_list', :genes => @genes
@@ -108,11 +115,12 @@ class OligoDesignsController < ApplicationController
       end
       
     else
-      @projects = Project.find(:all)
+      @projects = Project.all
       render :update do |page|
         page.replace_html 'gene_list', :partial => 'gene_text'
       end
     end
+       
   end
   
   protected
@@ -129,7 +137,7 @@ class OligoDesignsController < ApplicationController
       gene_array = params[:pilot_oligo_design][:gene_code] 
     end
     
-    if gene_array
+    if !gene_array[1].blank?
       @where_select.push("gene_code IN (?)")
       @where_values.push(gene_array)
     end
@@ -143,7 +151,7 @@ class OligoDesignsController < ApplicationController
   # Export oligo designs to csv file                                                          #    
   #*******************************************************************************************#
   def export_designs_csv(oligo_designs, fmt_nr=1)
-    csv_string = FasterCSV.generate(:col_sep => "\t") do |csv|
+    csv_string = CSV.generate(:col_sep => "\t") do |csv|
       csv << ['Date', 'Project'].concat(ExportField.headings(fmt_nr))
       
       oligo_designs.each do |oligo_design|

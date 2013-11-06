@@ -1,6 +1,6 @@
 <h1>Synthesis Plates query</h1>
 
-<% form_tag({:action => :index}, :method => :get) do %>
+<%= form_tag({:action => :index}, :method => :get) do %>
 <fieldset class="form">
 <legend>Select Parameters</legend>
 <table class="form">
@@ -24,6 +24,6 @@
 </table>
 </fieldset>
 
-<%= break_clear(submit_tag "Submit") %>
+<%= raw break_clear(submit_tag "Submit") %>
 <%end%>
 

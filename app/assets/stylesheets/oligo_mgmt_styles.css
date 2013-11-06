@@ -1,0 +1,60 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* 
+   Styles mainly for Oligo Management site
+*/
+
+/* form fieldset styles */
+
+fieldset.form ol {
+    list-style:none; 
+    padding:.5em 1em 0 1em;
+    margin: 0;
+}
+fieldset.form li {
+    float:left; 
+	clear:left; 
+    width:100%;
+    padding: 2px 0;
+}
+fieldset.form label {
+    float:left; 
+	width:9em; 
+    margin-right: 1em;
+    font-size: .9em;
+}
+fieldset.form label.radio {
+    float:left; width:20em; 
+    margin-right: 1em;
+}
+
+.hardbreak {
+    word-break: break-all;
+	white-space: nowrap;  /* css-3 */
+	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+	word-wrap: break-word;/* Internet Explorer 5.5+ */	
+}
+
+#leftsidebar ul li a {
+    padding: 0 10px 0 15px;
+}
+
+.wraplongstring {
+    /*display: block;*/
+	white-space: pre;           /* CSS 2.0 */
+	white-space: pre-wrap;      /* CSS 2.1 */
+	white-space: pre-line;      /* CSS 3.0 */
+	white-space: -pre-wrap;     /* Opera 4-6 */
+	white-space: -o-pre-wrap;   /* Opera 7 */
+	white-space: -moz-pre-wrap; /* Mozilla */
+	white-space: -hp-pre-wrap;  /* HP Printers */
+	word-wrap: break-word;      /* IE 5+ */
+	}
+
+.longstring_border {
+    border: 1px solid #B0AA91;
+    font-size: 0.9em;
+    padding: 0.1em;
+}
+

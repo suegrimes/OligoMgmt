@@ -4,7 +4,7 @@
 
 #require 'rufus/scheduler'
 
-#if RAILS_ENV == 'production'
+#if Rails.env == 'production'
 #  scheduler = Rufus::Scheduler.start_new
 #  scheduler.every '2h', :first_in => '1m',
 #                        :tags => 'sqltouch', 

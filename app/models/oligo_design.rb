@@ -41,7 +41,7 @@
 class OligoDesign < ActiveRecord::Base
 # PilotOligoDesign inherits from this model class, therefore any table name references must be generic, 
 # or method must be passed a parameter to indicate which model the method is accessing
-  acts_as_commentable
+  require 'acts_as_commentable'
  
   belongs_to :version
   has_one  :oligo_annotation, :foreign_key => :oligo_design_id
@@ -50,9 +50,9 @@ class OligoDesign < ActiveRecord::Base
   validates_uniqueness_of :oligo_name,
                           :on  => :create  
                           
-  named_scope :curr_ver, :conditions => ['version_id = (?)', Version::DESIGN_VERSION.id ]
-  named_scope :qcpassed, :conditions => ['internal_QC IS NULL OR internal_QC = " " ']
-  named_scope :notflagged, :conditions => ['annotation_codes IS NULL OR annotation_codes < "A" ']
+  scope :curr_ver, :conditions => ['version_id = (?)', Version::DESIGN_VERSION.id ]
+  scope :qcpassed, :conditions => ['internal_QC IS NULL OR internal_QC = " " ']
+  scope :notflagged, :conditions => ['annotation_codes IS NULL OR annotation_codes < "A" ']
   
   unique_enzymes = self.curr_ver.find(:all, 
                                       :select => "DISTINCT(enzyme_code)",
@@ -116,8 +116,9 @@ class OligoDesign < ActiveRecord::Base
   
   def self.find_oligos_with_conditions(condition_array, version_id=Version::DESIGN_VERSION_ID)        
     model = Version.find(version_id).oligo_model 
-    model.constantize.qcpassed.find(:all, :order => "gene_code, enzyme_code", 
-                                          :conditions => condition_array)
+    #model.constantize.qcpassed.find(:all, :order => "gene_code, enzyme_code", 
+    #                                      :conditions => condition_array)
+    model.constantize.qcpassed.order("gene_code, enzyme_code").where(condition_array)
   end
   
   def self.find_with_id_list(id_list)

@@ -1,0 +1,40 @@
+<%
+	user = if defined? current_user then current_user else nil end
+	extension = comment.commentable.class.comments_extension
+%>
+<div id="comment_<%=comment.id%>" class="comment comment-<%= odd %>" style="margin-left:<%= comment.depth * 50 %>px">
+	<a name="comment_<%=comment.id%>"></a>
+	
+	<div class="header">
+		<%if defined? User%>
+			<%user = comment.user%>
+			<%= link_to( user.login, user_path( user.id ) ) unless user.nil? %>
+		<%end%>
+		<h3><%= comment.title %></h3>
+	</div>
+				
+	<div class="text">
+		<%= comment.to_html %>
+	</div>	
+		
+	<div class="links">
+		<%if extension.can_comment?( comment.commentable, comment, user ) %>
+			(<%=link_to_function :do_comment.l, 'restfulComments.showForm( ' + comment.id.to_s + ')'  %>)
+		<%end%>
+		<%if extension.can_edit?( comment.commentable, comment, user ) %>
+			(<%=link_to_remote :do_edit.l, :url => edit_comment_path( comment.id ), :method => :get %>)
+		<%end%>		
+		<%if extension.can_remove?( comment.commentable, comment, user ) %>
+			(<%=link_to_remote :do_remove.l, :url => comment_path( comment.id ), :method => :delete, :confirm => :confirm_remove.l %>)
+		<%end%>
+		<%if extension.can_view_citations?( comment.commentable, comment, user ) %>
+			(<%=restful_citations_toggle_link :citations.l, comment%>)		
+		<%end%>
+	</div>
+	
+	<%if extension.can_view_citations?( comment.commentable, comment, user ) %>
+		<%=restful_citations_for comment %>
+	<%end%>
+		
+	<div id="comment_form_<%= comment.id %>"></div>	
+</div>

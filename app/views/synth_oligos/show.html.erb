@@ -1,4 +1,4 @@
-<h1>Details for Oligo ID# <%=h @synth_oligo.oligo_id %>, on plate: <%=h @synth_oligo.plate_position.plate_or_tube_name %></h1>
+<h1>Details for Oligo <% if !@synth_oligo.oligo_id.blank? %> ID# <%=h @synth_oligo.oligo_id%>, <%end%> on plate: <%=h @synth_oligo.plate_position.plate_or_tube_name %></h1>
 
 <table class="list">
   <tr>

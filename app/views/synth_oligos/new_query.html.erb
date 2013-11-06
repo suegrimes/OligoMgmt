@@ -1,6 +1,6 @@
 <h1>Query Synthesized Oligos</h1>
 
-<% form_tag({:action => :index}, :method => :get) do %>
+<%= form_tag({:action => :index}, :method => :get) do %>
 <table>
   <tr>
     <th>Plate Number(s): </th><td colspan="2"><%= text_field_tag(:plate_string, @plate_string, :size => 30) %></td>  

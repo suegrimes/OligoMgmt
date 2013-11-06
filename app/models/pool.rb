@@ -25,6 +25,8 @@ class Pool < InventoryDB
   has_many :plate_positions, :through => :aliquot_to_pools
   belongs_to :storage_location
   
+  attr_accessible :tube_label, :pool_name, :source_conc_um, :storage_location_id, :pool_description, :notes
+  
   serialize :from_pools, Array
   serialize :from_plates, Array
   

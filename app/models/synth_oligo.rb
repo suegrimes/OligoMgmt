@@ -30,9 +30,10 @@ class SynthOligo < InventoryDB
   end
   
   def self.find_all_incl_plate(condition_array=nil)
-    self.find(:all, :include => {:plate_position => :plate_tube}, 
-                    :order => 'plate_tubes.plate_number, plate_positions.well_number',
-                    :conditions => condition_array)
+#    self.find(:all, :include => {:plate_position => :plate_tube}, 
+#                    :order => 'plate_tubes.plate_number, plate_positions.well_number',
+#                    :conditions => condition_array)
+     self.includes(:plate_position => :plate_tube).order('plate_tubes.plate_number, plate_positions.well_number').where(condition_array)
   end
   
   def self.find_with_id_list(id_list)

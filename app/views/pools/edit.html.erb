@@ -1,9 +1,13 @@
 <h1>Editing Misc Pool: <%=h [@pool.tube_label, @pool.pool_name].join('/') %></h1>
 
-<% form_for @pool, :action => :update do |f| %>
-  <%=f.error_messages %>
+<%= form_for @pool, :action => :update do |f| %>
+  
+  <% @pool.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+  
   <%= render :partial => 'pool_form', :locals => {:f => f} %>
-  <%= break_clear %>
+  <%= raw break_clear %>
   
   <table class="list">
   <tr><th>Total Oligos:</th><td><strong><%=h @pool.total_oligos %></strong> 
@@ -29,5 +33,5 @@
   <% end %>
   </table>
   
-  <%= break_clear(f.submit 'Update')%>
+  <%= raw break_clear(f.submit 'Update')%>
 <% end %>

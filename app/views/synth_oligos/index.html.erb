@@ -1,6 +1,6 @@
 <h1>Listing Synthesized Oligos</h1>
 
-<% form_tag :action => "export_oligos" do %>
+<%= form_tag :action => "export_oligos" do %>
   <p><%=h @synth_oligos.size %> oligos selected <%= submit_tag "Export Oligos" -%></p>
 
 <table class="list">

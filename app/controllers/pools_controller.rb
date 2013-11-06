@@ -62,7 +62,7 @@ class PoolsController < ApplicationController
   
   def get_oligos
     @pool = Pool.find(params[:id], :include => :plate_positions)
-    render :partial => 'show_oligos', :locals => {:pool => @pool}
+    #render :partial => 'show_oligos', :locals => {:pool => @pool}
   end
 
   # GET /pools/1/edit

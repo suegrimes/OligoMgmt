@@ -14,4 +14,6 @@
 class AliquotToPool < InventoryDB
   belongs_to :plate_position
   belongs_to :pool
+  
+  attr_accessible :plate_position_id
 end
