@@ -13,9 +13,9 @@
   </tr>
   <tr>
     <th>Date From:</th>
-	<td><%=calendar_date_select_tag(:date_from, nil, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
+	<td><%= datepicker_input(:plate_tube, :date_from, dateFormat: "yy-mm-dd", changeMonth: true, changeYear: true, size: 15) %></td>
 	<th>To:</th>
-	<td><%=calendar_date_select_tag(:date_to, @max_date, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
+	<td><%= datepicker_input(:plate_tube, :date_to, maxDate:0, dateFormat: "yy-mm-dd", changeMonth: true, changeYear: true, size: 15) %></td>
   </tr>	
   <tr>
   	<th>Include unsynthesized plates?</th>
