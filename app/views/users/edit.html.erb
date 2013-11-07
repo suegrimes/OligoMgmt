@@ -1,7 +1,9 @@
 <h1>Edit User</h1>
 
-<% tagged_form_for(@user) do |f| -%>
-<%= error_messages_for :user %>
+<%= tagged_form_for(@user) do |f| -%>
+<% @user.errors.full_messages.each do |msg| %>
+    <p>Error: <%= msg %></p>
+<% end %>
 
 <fieldset class="form">
 <legend>User Details</legend>
