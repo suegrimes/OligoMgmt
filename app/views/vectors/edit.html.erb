@@ -1,7 +1,9 @@
 <h1>Editing vector</h1>
 
 <%= form_for(@vector) do |f| %>
-  <%= f.error_messages %>
+<% @vector.errors.full_messages.each do |msg| %>
+    <p>Error: <%= msg %></p>
+<% end %>
 
   <%= render :partial => 'vector', :locals => {:f => f} %>
   
