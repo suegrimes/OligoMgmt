@@ -1,5 +1,6 @@
-<%= error_messages_for :user %>
 <%= form_for :user do |f| -%>
+  <%= render '/shared/errors', model: @user %>
+
   <table id="newedit">
   	 <thead>
         <tr>

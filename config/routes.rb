@@ -1,6 +1,7 @@
 OligoMgmt::Application.routes.draw do
-  
-  match '/' => 'welcome#index'
+
+  root :to => "welcome#index"
+  #match '/' => 'welcome#index'
   match '/signup' => 'users#new', :as => :signup
   match '/forgot' => 'users#forgot', :as => :forgot
   match 'reset/:reset_code' => 'users#reset', :as => :reset

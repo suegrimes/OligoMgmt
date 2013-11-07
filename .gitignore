@@ -14,13 +14,15 @@
 /log/*.log
 /tmp
 
-/public/*.zip
+# Ignore RubyMine IDE .idea directory
+/.idea/*
 
+# Ignore database.yml and config/initializers for session setup
 /config/database.yml
-# Ignore initializers/config for session setup
 /config/initializers/secret_token.rb
 /config/initializers/session_store.rb
 
+# Ignore test directory
 /test/*
 
 /.project
