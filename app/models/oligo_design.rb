@@ -50,11 +50,11 @@ class OligoDesign < ActiveRecord::Base
   validates_uniqueness_of :oligo_name,
                           :on  => :create  
                           
-  scope :curr_ver, :conditions => ['version_id = (?)', Version::DESIGN_VERSION.id ]
+  scope :curr_ver, :conditions => ['version_id IN (?)', Version::DESIGN_VERSION.id ]
   scope :qcpassed, :conditions => ['internal_QC IS NULL OR internal_QC = " " ']
   scope :notflagged, :conditions => ['annotation_codes IS NULL OR annotation_codes < "A" ']
   
-  unique_enzymes = self.curr_ver.select('DISTINCT(enzyme_code)').order('enyzme_code').all
+  unique_enzymes = self.curr_ver.select('DISTINCT(enzyme_code)').group('enzyme_code').all
   ENZYMES = unique_enzymes.map{ |design| design.enzyme_code }
   ENZYMES_WO_GAPFILL = ENZYMES.reject { |enzyme| enzyme =~ /.*_gapfill/}
   #VECTOR = 'ACGATAACGGTACAAGGCTAAAGCTTTGCTAACGGTCGAG'

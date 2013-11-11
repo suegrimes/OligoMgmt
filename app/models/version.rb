@@ -33,7 +33,7 @@ class Version < ActiveRecord::Base
   #VERSIONS = self.find(:all)
   VERSIONS = self.all
   #DESIGN_VERSION = self.curr_version.find(:first)
-  DESIGN_VERSION = self.curr_version.first
+  DESIGN_VERSION = self.exome_version.curr_version.first
   DESIGN_VERSION_ID = DESIGN_VERSION.id
   DESIGN_VERSION_NAMES = DESIGN_VERSION.genome_build + "/" + DESIGN_VERSION.design_version
   
