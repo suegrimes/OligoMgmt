@@ -26,3 +26,5 @@
 /test/*
 
 /.project
+
+/.rvmrc
