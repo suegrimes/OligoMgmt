@@ -42,13 +42,15 @@ class PlatePosition < InventoryDB
   end
   
   def self.find_all_positions(condition_array=nil)
-    self.find(:all, :include => :plate_tube, :order => 'plate_positions.plate_or_tube_name, plate_position',
-                    :conditions => condition_array)
+    self.includes(:plate_tube).order('plate_positions.plate_or_tube_name, plate_position').where(*condition_array).all
+    #self.find(:all, :include => :plate_tube, :order => 'plate_positions.plate_or_tube_name, plate_position',
+    #                :conditions => condition_array)
   end
   
   def self.find_all_incl_oligos(condition_array=nil)
-    self.find(:all, :include => :synth_oligos, :order => 'plate_positions.plate_or_tube_name, plate_position',
-                    :conditions => condition_array)
+    self.includes(:synth_oligos).order('plate_positions.plate_or_tube_name, plate_position').where(*condition_array).all
+    #self.find(:all, :include => :synth_oligos, :order => 'plate_positions.plate_or_tube_name, plate_position',
+    #                :conditions => condition_array)
   end
   
 end

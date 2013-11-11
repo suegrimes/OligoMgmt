@@ -34,7 +34,8 @@ class Project < ActiveRecord::Base
   end
   
   def self.findall_proj
-    self.find(:all, :order => :project_name)
+    self.order(:project_name).all
+    #self.find(:all, :order => :project_name)
   end
   
   def delete_incl_children

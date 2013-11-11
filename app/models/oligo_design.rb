@@ -54,9 +54,7 @@ class OligoDesign < ActiveRecord::Base
   scope :qcpassed, :conditions => ['internal_QC IS NULL OR internal_QC = " " ']
   scope :notflagged, :conditions => ['annotation_codes IS NULL OR annotation_codes < "A" ']
   
-  unique_enzymes = self.curr_ver.find(:all, 
-                                      :select => "DISTINCT(enzyme_code)",
-                                      :order  => :enzyme_code)
+  unique_enzymes = self.curr_ver.select('DISTINCT(enzyme_code)').order('enyzme_code').all
   ENZYMES = unique_enzymes.map{ |design| design.enzyme_code }
   ENZYMES_WO_GAPFILL = ENZYMES.reject { |enzyme| enzyme =~ /.*_gapfill/}
   #VECTOR = 'ACGATAACGGTACAAGGCTAAAGCTTTGCTAACGGTCGAG'
@@ -118,13 +116,14 @@ class OligoDesign < ActiveRecord::Base
     model = Version.find(version_id).oligo_model 
     #model.constantize.qcpassed.find(:all, :order => "gene_code, enzyme_code", 
     #                                      :conditions => condition_array)
-    model.constantize.qcpassed.order("gene_code, enzyme_code").where(condition_array)
+    model.constantize.qcpassed.order('gene_code, enzyme_code').where(*condition_array)
   end
   
   def self.find_with_id_list(id_list)
-    self.find(:all, :include => :oligo_annotation,
-                    :order => 'gene_code, enzyme_code',
-                    :conditions => ["id IN (?)", id_list])
+    self.includes(:oligo_annotation).order('gene_code, enzyme_code').where('id in (?)', id_list).all
+    #self.find(:all, :include => :oligo_annotation,
+    #                :order => 'gene_code, enzyme_code',
+    #                :conditions => ["id IN (?)", id_list])
   end
   
 end

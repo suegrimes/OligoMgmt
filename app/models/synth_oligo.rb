@@ -37,8 +37,9 @@ class SynthOligo < InventoryDB
   end
   
   def self.find_with_id_list(id_list)
-    self.find(:all, :include => {:plate_position => :plate_tube},
-                    :order => 'gene_code, enzyme_code',
-                    :conditions => ["id IN (?)", id_list])
+    self.includes(:plate_position => :plate_tube).order('gene_code, enzyme_code').where('id in (?)', id_list).all
+    #self.find(:all, :include => {:plate_position => :plate_tube},
+    #                :order => 'gene_code, enzyme_code',
+    #                :conditions => ["id IN (?)", id_list])
   end
 end
