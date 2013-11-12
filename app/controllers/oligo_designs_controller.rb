@@ -104,22 +104,12 @@ class OligoDesignsController < ApplicationController
     @version = Version.includes(:gene_lists).find(params[:version_id])
     
     if @version.exonome_or_partial == 'P'
-      @genes = @version.gene_lists.collect{|genes| genes[:gene_code]} 
-      
-      render :update do |page|
-        if !@genes.nil?
-          page.replace_html 'gene_list', :partial => 'gene_list', :genes => @genes
-        else
-          page.replace_html 'gene_list', '<p>No genes found for this version, in gene_lists table</p>'
-        end
-      end
-      
+      @genes = @version.gene_lists.collect{|genes| genes[:gene_code]}
     else
       @projects = Project.all
-      render :update do |page|
-        page.replace_html 'gene_list', :partial => 'gene_text'
-      end
     end
+
+    respond_to {|format| format.js}
        
   end
   

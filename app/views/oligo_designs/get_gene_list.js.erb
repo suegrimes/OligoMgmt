@@ -1,0 +1,7 @@
+<% if @version.exonome_or_partial != 'P' %>
+  $('#gene_list').html("<%= escape_javascript(render :partial => 'gene_text').html_safe %>");
+<% elsif !@genes.nil? %>
+  $('#gene_list').html("<%= escape_javascript(render :partial => 'gene_list', :genes => @genes).html_safe %>");
+<% else %>
+  $('#gene_list').html('<p>No genes found for this version, in gene_lists table</p>');
+<% end %>
