@@ -3,7 +3,7 @@ class OligoDesignsController < ApplicationController
   
   # GET /oligo_designs/1
   def show
-    @oligo_design = OligoDesign.find(params[:id], :include => [:oligo_annotation, :version] )
+    @oligo_design = OligoDesign.includes(:oligo_annotation, :version).find(params[:id])
     @comments     = @oligo_design.comments.sort_by(&:created_at).reverse
   end
   
@@ -21,7 +21,7 @@ class OligoDesignsController < ApplicationController
   def index
     
     #@version = (params[:version] ? Version.find(params[:version][:id]) : Version::DESIGN_VERSION)
-    @version = Version.find(params[:version][:id], :include => :gene_lists)
+    @version = Version.includes(:gene_lists).find(params[:version][:id])
 
     @condition_array = define_conditions(params, @version.id)  
     
@@ -101,7 +101,7 @@ class OligoDesignsController < ApplicationController
   # Ajax method to populate gene or project list, based on selected design version            #
   #*******************************************************************************************#  
   def get_gene_list
-    @version = Version.find(params[:version_id], :include => :gene_lists)
+    @version = Version.includes(:gene_lists).find(params[:version_id])
     
     if @version.exonome_or_partial == 'P'
       @genes = @version.gene_lists.collect{|genes| genes[:gene_code]} 

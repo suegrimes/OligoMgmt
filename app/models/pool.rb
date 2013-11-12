@@ -45,7 +45,11 @@ class Pool < InventoryDB
   end
   
   def self.find_all_pools(condition_array=nil)
-    self.order(:tube_label).where(*condition_array).all
+    if condition_array
+      self.order(:tube_label).where(*condition_array).all
+    else
+      self.order(:tube_label).all
+    end
     #self.find(:all, :conditions => condition_array, :order => :tube_label)
   end
 end
