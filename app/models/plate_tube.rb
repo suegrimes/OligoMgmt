@@ -31,14 +31,14 @@ class PlateTube < InventoryDB
   def self.find_all_incl_oligos(condition_array=nil)
     #This sort order is needed because sorting alphabetically the 'M' plates would sort as M1,M10,M11,..M2,M20 etc),
     #and sorting numerically by plate_number would mix M plates and standard plates since there is M10 and 0010 for example)
-    self.includes(:plate_positions => :synth_oligos).order('LEFT(plate_or_tube_name,1), plate_number').where(*condition_array).all
+    self.includes(:plate_positions => :synth_oligos).order('LEFT(plate_or_tube_name,1), plate_number').where(sql_where(condition_array)).all
     #self.find(:all, :include => {:plate_positions => :synth_oligos},
     #                :order => 'LEFT(plate_or_tube_name,1), plate_number',
     #                :conditions => condition_array)
   end
   
   def self.find_all_plates(condition_array=nil)
-    self.order('LEFT(plate_or_tube_name,1), plate_number').where(*condition_array).all
+    self.order('LEFT(plate_or_tube_name,1), plate_number').where(sql_where(condition_array)).all
     #self.find(:all, :order => 'LEFT(plate_or_tube_name,1), plate_number', :conditions => condition_array)
   end
   
