@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   # render index.rhtml
   def index
-    @users = User.find(:all, :include => :roles)
+    @users = User.includes(:roles).all
   end
 
   # render new.rhtml
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   # render edit.html
   def edit 
     @user = User.find(params[:id])
-    @roles = Role.find(:all)
+    @roles = Role.all
   end
   
   def update

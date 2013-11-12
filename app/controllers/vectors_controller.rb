@@ -4,7 +4,7 @@ class VectorsController < ApplicationController
   
   # GET /vectors
   def index
-    @vectors = Vector.find(:all)
+    @vectors = Vector.all
   end
 
   # GET /vectors/1
