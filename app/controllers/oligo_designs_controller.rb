@@ -20,8 +20,8 @@ class OligoDesignsController < ApplicationController
   #*******************************************************************************************#
   def index
     
-    #@version = (params[:version] ? Version.find(params[:version][:id]) : Version::DESIGN_VERSION)
-    @version = Version.includes(:gene_lists).find(params[:version][:id])
+    @version = (params[:version] ? Version.find(params[:version][:id]) : Version::DESIGN_VERSION)
+    #@version = Version.includes(:gene_lists).find(params[:version][:id])
 
     @condition_array = define_conditions(params, @version.id)  
     
@@ -115,7 +115,7 @@ class OligoDesignsController < ApplicationController
   
   protected
   #*******************************************************************************************#
-  # Ajax method to populate gene list, based on selected design version                       #
+  # Populate SQL where conditions based on gene parameters                                    #
   #*******************************************************************************************#  
   def define_conditions(params, version_id=Version::DESIGN_VERSION_ID)
     @where_select = ['version_id = ?']
@@ -127,12 +127,12 @@ class OligoDesignsController < ApplicationController
       gene_array = params[:pilot_oligo_design][:gene_code] 
     end
     
-    if !gene_array[1].blank?
+    if gene_array
       @where_select.push("gene_code IN (?)")
       @where_values.push(gene_array)
     end
     
-    sql_where_clause = (@where_select.length == 0 ? [] : [@where_select.join(' AND ')].concat(@where_values))
+    sql_where_clause = [@where_select.join(' AND ')].concat(@where_values)
     return sql_where_clause
   end  
   
