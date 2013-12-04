@@ -5,8 +5,9 @@
   <meta name="description" content="<%= META_TAGS[:description] %>" />
   <meta name="keywords" content="<%= META_TAGS[:keywords] %>" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" %> 
+  <!--%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" %--> 
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "http://code.jquery.com/jquery-migrate-1.0.0.js" %>
   <%= csrf_meta_tags %>
 </head>
 
