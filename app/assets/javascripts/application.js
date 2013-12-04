@@ -13,12 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.datepicker
-//= require prototype
-//= require prototype_ujs
-//= require effects
-//= require dragdrop
-//= require controls
-//= require_directory .
 
 function checkUncheckAll(theElement) {
 var theForm = theElement.form, z = 0;
