@@ -28,3 +28,5 @@
 /.project
 
 /.rvmrc
+
+/Gemfile.lock
