@@ -4,7 +4,7 @@ class ResearchersController < ApplicationController
   # GET /researchers
   # GET /researchers.xml
   def index
-    @researchers = Researcher.find(:all)
+    @researchers = Researcher.all
 
     respond_to do |format|
       format.html # index.html.erb

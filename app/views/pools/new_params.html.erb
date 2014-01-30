@@ -1,12 +1,12 @@
 <h1>Create new pool - Select parameters</h1>
 
-<% form_tag({:action => :list_for_pool}, :method => :get) do %>
+<%= form_tag({:action => :list_for_pool}, :method => :get) do %>
 <%= render :partial => 'pool_from_pools' %>
-<%= break_clear('<br/>-AND/OR-<br/>')%>
+<%= raw break_clear('<br/>-AND/OR-<br/>')%>
 <%= render :partial => 'pool_from_plates' %>
-<%= break_clear('<br/>-AND/OR-<br/>')%>
+<%= raw break_clear('<br/>-AND/OR-<br/>')%>
 <%= render :partial => 'pool_from_cherrypick' %>
 
-<%= break_clear(submit_tag "Submit")%>
+<%= raw break_clear(submit_tag "Submit")%>
 <%end%>
 

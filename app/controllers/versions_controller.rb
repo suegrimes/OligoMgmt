@@ -4,7 +4,7 @@ class VersionsController < ApplicationController
   
   # GET /versions
   def index
-    @versions = Version.find(:all)
+    @versions = Version.all
   end
 
   # GET /versions/1

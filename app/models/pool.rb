@@ -25,6 +25,8 @@ class Pool < InventoryDB
   has_many :plate_positions, :through => :aliquot_to_pools
   belongs_to :storage_location
   
+  attr_accessible :tube_label, :pool_name, :source_conc_um, :storage_location_id, :pool_description, :notes
+  
   serialize :from_pools, Array
   serialize :from_plates, Array
   
@@ -37,11 +39,13 @@ class Pool < InventoryDB
   end
   
   def self.pool_types
-    unique_pool_types = self.find(:all, :select => 'DISTINCT(LEFT(tube_label,2)) AS pool_type')
+    unique_pool_types = self.select('DISTINCT(LEFT(tube_label,2)) AS pool_type').all
+    #unique_pool_types = self.find(:all, :select => 'DISTINCT(LEFT(tube_label,2)) AS pool_type')
     return unique_pool_types.map{|pool| pool[:pool_type]}
   end
   
-  def self.find_all_pools(sql_conditions=nil)
-    self.find(:all, :conditions => sql_conditions, :order => :tube_label)
+  def self.find_all_pools(condition_array=nil)
+    self.order(:tube_label).where(sql_where(condition_array)).all
+    #self.find(:all, :conditions => condition_array, :order => :tube_label)
   end
 end

@@ -1,0 +1,8 @@
+1.04	5/24/2011	Misc cosmetic changes, use graphics for funding sources
+1.03	3/24/2011	Misc cosmetic changes, add links to publication supplemental material
+1.02	7/21/2010	Modifications to home page and FAQ sections
+1.01	6/9/2010	Cosmetic and verbiage changes
+1.0	5/25/2010	Initial version for public release
+0.2(beta)	3/2/2010	Modified style sheet & menu; add disclaimers
+0.1(beta)	8/6/2009	Modified style sheet, deleted project option, revised oligo display fields
+0.0(alpha)	6/3/2009	Initial alpha version for external access

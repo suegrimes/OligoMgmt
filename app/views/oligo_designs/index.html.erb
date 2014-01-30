@@ -1,6 +1,6 @@
 <h1>Listing Oligo Designs</h1>
 
-<% form_tag :action => "export_design" do %>
+<%= form_tag :action => "export_design" do %>
 <p><%=h @oligo_designs.size %> oligos selected <%= submit_tag "Export Oligos" -%></p>
 <%= hidden_field_tag("version_id", @version.id)%>
 

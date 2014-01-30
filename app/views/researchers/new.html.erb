@@ -1,6 +1,6 @@
 <h1>New researcher</h1>
 
-<% form_for(@researcher) do |f| %>
+<%= form_for(@researcher) do |f| %>
   <%= f.error_messages %>
 
   <%= render :partial => 'researcher', :locals => {:f => f} %>

@@ -15,12 +15,12 @@ class ExportField < ActiveRecord::Base
 EXPORT_FMT = 1
 
 def self.headings(xfmt=EXPORT_FMT)
-  rpt_hdgs = self.find(:all, :order => :report_order, :conditions => ['export_type = ?', xfmt])
+  rpt_hdgs = self.where('export_type = ?', xfmt).order('report_order').all
   rpt_hdgs.collect(&:fld_heading)  
 end
 
 def self.fld_names(xfmt=EXPORT_FMT)
-  rpt_flds = self.find(:all, :order => :report_order, :conditions => ['export_type = ?', xfmt])
+  rpt_flds = self.where('export_type = ?', xfmt).order('report_order').all
   rpt_flds.collect{|xport| [xport.model_nm, xport.fld_name]}
 end
 

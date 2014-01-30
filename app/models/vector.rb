@@ -12,7 +12,8 @@
 #
 
 class Vector < ActiveRecord::Base
-  VECTORS = Hash[Version.find(:all, :include => :vector).map {|version| [version.id, version.vector.vector]}]
+  VECTORS = Hash[Version.includes(:vector).all.map {|version| [version.id, version.vector.vector]}]
+  #VECTORS = Hash[Version.find(:all, :include => :vector).map {|version| [version.id, version.vector.vector]}]
 
 #VECTOR(1) = 'ACGATAACGGTACAAGGCTAAAGCTTTGCTAACGGTCGAG'
 #VECTOR(2) = 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAACTCGGCATTCCTGCTGAACCGCTCTTCCGATCT'

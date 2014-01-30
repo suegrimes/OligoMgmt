@@ -20,7 +20,7 @@ class SynthOligosController < ApplicationController
 
   # GET /synth_oligos/1
   def show
-    @synth_oligo = SynthOligo.find(params[:id], :include => :oligo)
+    @synth_oligo = SynthOligo.includes(:oligo).find(params[:id])
   end
   
   # GET /synth_oligos/1/edit

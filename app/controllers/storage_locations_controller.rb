@@ -4,7 +4,7 @@ class StorageLocationsController < ApplicationController
   # GET /storage_locations
   # GET /storage_locations.xml
   def index
-    @storage_locations = StorageLocation.find(:all)
+    @storage_locations = StorageLocation.all
 
     respond_to do |format|
       format.html # index.html.erb

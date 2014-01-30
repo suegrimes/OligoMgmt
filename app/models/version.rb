@@ -23,26 +23,28 @@ class Version < ActiveRecord::Base
   belongs_to :vector
   has_many :gene_lists, :as => :list_owner
   
-  named_scope :curr_version, :conditions => {:archive_flag => 'C'}, :order => 'id DESC'
-  named_scope :exome_version, :conditions => {:exonome_or_partial => 'E'}
+  scope :curr_version, :conditions => {:archive_flag => 'C'}, :order => 'id DESC'
+  scope :exome_version, :conditions => {:exonome_or_partial => 'E'}
   
   before_save do |version|
     version.archive_flag = (version.exonome_or_partial == 'E' ? 'C' : 'P')
   end
   
-  VERSIONS = self.find(:all)
-  DESIGN_VERSION = self.curr_version.find(:first)
+  #VERSIONS = self.find(:all)
+  VERSIONS = self.all
+  #DESIGN_VERSION = self.curr_version.find(:first)
+  DESIGN_VERSION = self.exome_version.curr_version.first
   DESIGN_VERSION_ID = DESIGN_VERSION.id
   DESIGN_VERSION_NAMES = DESIGN_VERSION.genome_build + "/" + DESIGN_VERSION.design_version
   
-  BUILD_VERSION_NAMES = self.find(:all).map {|version| [version.id, 
+  BUILD_VERSION_NAMES = self.all.map {|version| [version.id, 
                             [version.exonome_or_partial, version.genome_build, version.design_version].join('/')]}
  
   #read App_Versions file to set current application version #
-  #version# is first row, first column
-  filepath = "#{RAILS_ROOT}/public/app_versions.txt"
+  #version# is first row, first column  
+  filepath = "#{Rails.root}/app/assets/app_versions.txt"
   if FileTest.file?(filepath)
-    app_version_row1 = FasterCSV.read(filepath, {:col_sep => "\t"})[0]
+    app_version_row1 = CSV.read(filepath, {:col_sep => "\t"})[0]
     end
   APP_VERSION = (app_version_row1 ? app_version_row1[0] : '??')
   

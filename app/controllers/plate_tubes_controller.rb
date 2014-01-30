@@ -9,8 +9,8 @@ class PlateTubesController < ApplicationController
   # GET /plate_tubes
   # GET /plate_tubes.xml
   def index
-    sql_where_clause = define_plate_conditions(params)
-    @plate_tubes = PlateTube.find_all_plates(sql_where_clause)
+    condition_array = define_plate_conditions(params)
+    @plate_tubes = PlateTube.find_all_plates(condition_array)
     render :action => 'index'
   end
 
@@ -22,7 +22,7 @@ class PlateTubesController < ApplicationController
   end
   
   def show_oligos
-    @plate_tube = PlateTube.find(params[:id], :include => :plate_positions)
+    @plate_tube = PlateTube.includes(:plate_positions).find(params[:id])
     render :action => 'show_oligos'
   end
 

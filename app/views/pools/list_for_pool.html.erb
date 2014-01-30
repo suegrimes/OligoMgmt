@@ -1,9 +1,13 @@
 <h1>Listing Existing Pools, Plates for New Pool</h1>
 
-<% form_for @pool, :action => :create do |f| %>
-  <%=f.error_messages %>
+<%= form_for @pool, :action => :create do |f| %>
+  
+  <% @pool.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+  
   <%= render :partial => 'pool_form', :locals => {:f => f} %>
-  <%= break_clear %>
+  <%= raw break_clear %>
   
   <span class="notes"> Check boxes below, to include existing pools, plates or oligos in new pool</span><br/>
   <%= check_box_tag("checkall", '1', @checked, {:onclick => "checkUncheckAll(this);"}) %>

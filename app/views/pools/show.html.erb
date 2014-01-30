@@ -33,8 +33,12 @@
   <% end %>
  </table>
  
- <div id="oligo_div">
+ <div id="oligo_div_links">
    <%=link_to 'Edit', edit_pool_path(@pool) %> |
-   <%=link_to_remote("Show Oligos", :update => 'oligo_div', :url => {:action => 'get_oligos', :id => @pool.id}) %> 
+   <%=link_to("Show Oligos", get_oligos_path(:id => @pool.id), :onclick => "showHideDiv('oligo_div_links','oligo_div'); return false;") %> 
+ </div>
+ 
+ <div id="oligo_div" style="visibility:hidden">
+   <%= render :partial => 'show_oligos', :locals => {:pool => @pool}  %>  
  </div>
 

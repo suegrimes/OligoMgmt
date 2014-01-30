@@ -1,7 +1,9 @@
 <h1>Editing version <%=h @version.id %></h1>
 
-<% form_for(@version) do |f| %>
-  <%= f.error_messages %>
+<%= form_for(@version) do |f| %>
+<% @version.errors.full_messages.each do |msg| %>
+    <p>Error: <%= msg %></p>
+<% end %>
 
   <%= render :partial => 'version', :locals => {:f => f} %>
   

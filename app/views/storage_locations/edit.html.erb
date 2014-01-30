@@ -1,6 +1,6 @@
 <h1>Update storage location</h1>
 
-<% form_for(@storage_location) do |f| %>
+<%= form_for(@storage_location) do |f| %>
   <%= f.error_messages %>
 
   <%= render :partial => 'storage_loc', :locals => {:f => f} %>

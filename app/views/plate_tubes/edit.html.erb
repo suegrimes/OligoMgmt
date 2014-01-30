@@ -1,7 +1,9 @@
 <h1>Editing Plate: <%=h @plate_tube.plate_or_tube_name %></h1>
 
-<% form_for @plate_tube, :action => :update do |f| %>
-  <%=f.error_messages %>
+<%= form_for @plate_tube, :action => :update do |f| %>
+  <% @plate_tube.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
   
   <fieldset class="form">
   <table class="form">
@@ -11,10 +13,10 @@
   </tr>
   <tr>
   	<th style="text-align:right"><%=f.label :synthesis_date %></th>
-    <td><%=f.text_field(:synthesis_date, :size => 8) %></td>
+    <td><%=f.text_field(:synthesis_date, :size => 15) %></td>
   </tr>
   </table>
   </fieldset>
   
-  <%= break_clear(f.submit 'Update')%>
+  <%= raw break_clear(f.submit 'Update')%>
 <% end %>

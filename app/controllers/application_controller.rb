@@ -1,17 +1,13 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
+  protect_from_forgery
   include AuthenticatedSystem
-  # You can move this into a different controller, if you wish.  This module gives you the require_role helpers, and others.
   include RoleRequirementSystem
   include OligoExtensions
 
   before_filter :login_required
   
-  require 'fastercsv'
-  require 'calendar_date_select'
-  
+  require 'csv'
+
   helper :all # include all helpers, all the time
   
   # Structure used for converting array into class with label/value pairs, for collection_select
@@ -24,7 +20,7 @@ class ApplicationController < ActionController::Base
   # See ActionController::Base for details 
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
-  filter_parameter_logging :password
+  #filter_parameter_logging :password
   
   def store_comment(model_instance, params)
     comment = Comment.create(:user_id => current_user.id, 
@@ -37,13 +33,16 @@ class ApplicationController < ActionController::Base
     if val.nil?
       val_blank = true
     elsif val.is_a? Array
-      val_blank = (val.length == 1 && val[0].blank? ? true : false )
+      #val_blank = (val.size == 1 && val[0].blank? ? true : false )
+      # Hack due to change in Rails 3 which passes hidden value for collection_select/multiple and causes duplicate blank entry in array
+      val_blank = (val.size == 1 && val[0].blank? ) || (val.size == 2 && val[0].blank? && val[1].blank?)
     else
-       val_blank = val.blank?
+      val_blank = val.blank?
     end
-    return val_blank 
+    return val_blank
   end
-  
+
+
   def create_array_from_text_area(text, ret_type='text')
     if text.blank? 
       return []
@@ -176,5 +175,13 @@ class ApplicationController < ActionController::Base
     end  
     return where_select, where_values 
   end
-
+  
+  def sql_where(condition_array)
+    # Handle change from Rails 2.3 to Rails 3.2 to turn conditions into individual parameters vs array
+    if condition_array.nil? || condition_array.empty?
+      return nil
+    else
+      return *condition_array
+    end
+  end
 end

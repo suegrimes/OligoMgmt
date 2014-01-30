@@ -1,6 +1,6 @@
 <h1>Query Synthesized Oligos</h1>
 
-<% form_tag({:action => :index}, :method => :get) do %>
+<%= form_tag({:action => :index}, :method => :get) do %>
 <table>
   <tr>
     <th>Plate Number(s): </th><td colspan="2"><%= text_field_tag(:plate_string, @plate_string, :size => 30) %></td>  
@@ -9,11 +9,12 @@
   <tr><td>&nbsp;</td></tr>
   <tr>
     <th>Oligo Type:</th>
-	<td><%= select_tag(:oligo_usage, options_for_select(@oligo_usages, ''), :prompt => '(All)')%></td>
+	<td><!--%= select_tag(:oligo_usage, options_for_select(@oligo_usages, ''), :prompt => '(All)')%-->
+		<%= select_tag(:oligo_usage, options_for_select(@oligo_usages, ''))%></td>
   </tr>
   <tr>
-    <th>Date From:</th><td><%=calendar_date_select_tag(:date_from, @min_date, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
-	<th>To:</th><td><%=calendar_date_select_tag(:date_to, @max_date, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
+    <th>Date From:</th><td><%= datepicker_input(:synth_oligo, :date_from, defaultDate: "#{@min_date}", dateFormat: "yy-mm-dd", changeMonth: true, changeYear: true, size: 15) %></td>
+	<th>To:</th><td><%= datepicker_input(:synth_oligo, :date_to, maxDate:0, dateFormat: "yy-mm-dd", changeMonth: true, changeYear: true, size: 15) %></td>
   </tr>	
 </table>
 

@@ -1,6 +1,6 @@
 <h1>Synthesis Plates query</h1>
 
-<% form_tag({:action => :index}, :method => :get) do %>
+<%= form_tag({:action => :index}, :method => :get) do %>
 <fieldset class="form">
 <legend>Select Parameters</legend>
 <table class="form">
@@ -13,9 +13,9 @@
   </tr>
   <tr>
     <th>Date From:</th>
-	<td><%=calendar_date_select_tag(:date_from, nil, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
+	<td><%= datepicker_input(:plate_tube, :date_from, dateFormat: "yy-mm-dd", changeMonth: true, changeYear: true, size: 15) %></td>
 	<th>To:</th>
-	<td><%=calendar_date_select_tag(:date_to, @max_date, :valid_date_check => "date <= (new Date()).stripTime()", :size => 15)%></td>
+	<td><%= datepicker_input(:plate_tube, :date_to, maxDate:0, dateFormat: "yy-mm-dd", changeMonth: true, changeYear: true, size: 15) %></td>
   </tr>	
   <tr>
   	<th>Include unsynthesized plates?</th>
@@ -24,6 +24,6 @@
 </table>
 </fieldset>
 
-<%= break_clear(submit_tag "Submit") %>
+<%= raw break_clear(submit_tag "Submit") %>
 <%end%>
 

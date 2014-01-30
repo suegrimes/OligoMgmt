@@ -3,7 +3,7 @@ class OligoDesignsController < ApplicationController
   
   # GET /oligo_designs/1
   def show
-    @oligo_design = OligoDesign.find(params[:id], :include => [:oligo_annotation, :version] )
+    @oligo_design = OligoDesign.includes(:oligo_annotation, :version).find(params[:id])
     @comments     = @oligo_design.comments.sort_by(&:created_at).reverse
   end
   
@@ -11,7 +11,7 @@ class OligoDesignsController < ApplicationController
   # Methods for input of parameters for retrieval of specific oligo designs                   #
   #*******************************************************************************************#
   def new_query
-    @versions = Version.curr_version.find(:all, :order => :id)
+    @versions = Version.curr_version.order(:id)
     @enzymes = OligoDesign::ENZYMES_WO_GAPFILL 
   end
 
@@ -19,11 +19,16 @@ class OligoDesignsController < ApplicationController
   # Method for listing oligo designs, based on parameters entered above                       #
   #*******************************************************************************************#
   def index
-    #@version = (params[:version] ? Version.find(params[:version][:id]) : Version::DESIGN_VERSION)
-    @version = Version.find(params[:version][:id], :include => :gene_lists)
+    
+    @version = (params[:version] ? Version.find(params[:version][:id]) : Version::DESIGN_VERSION)
+    #@version = Version.includes(:gene_lists).find(params[:version][:id])
+
     @condition_array = define_conditions(params, @version.id)  
     
+    #render text: @condition_array
+    
     @oligo_designs   = OligoDesign.find_oligos_with_conditions(@condition_array, @version.id)
+    
     # return error if no oligos found
     error_found = check_if_blank(@oligo_designs, 'oligos') 
     
@@ -32,6 +37,7 @@ class OligoDesignsController < ApplicationController
     else
       render :action => 'index'
     end
+
   end
   
   #*******************************************************************************************#
@@ -95,29 +101,21 @@ class OligoDesignsController < ApplicationController
   # Ajax method to populate gene or project list, based on selected design version            #
   #*******************************************************************************************#  
   def get_gene_list
-    @version = Version.find(params[:version_id], :include => :gene_lists)
+    @version = Version.includes(:gene_lists).find(params[:version_id])
     
     if @version.exonome_or_partial == 'P'
-      @genes = @version.gene_lists.collect{|genes| genes[:gene_code]} 
-      render :update do |page|
-        if !@genes.nil?
-          page.replace_html 'gene_list', :partial => 'gene_list', :genes => @genes
-        else
-          page.replace_html 'gene_list', '<p>No genes found for this version, in gene_lists table</p>'
-        end
-      end
-      
+      @genes = @version.gene_lists.collect{|genes| genes[:gene_code]}
     else
-      @projects = Project.find(:all)
-      render :update do |page|
-        page.replace_html 'gene_list', :partial => 'gene_text'
-      end
+      @projects = Project.all
     end
+
+    respond_to {|format| format.js}
+       
   end
   
   protected
   #*******************************************************************************************#
-  # Ajax method to populate gene list, based on selected design version                       #
+  # Populate SQL where conditions based on gene parameters                                    #
   #*******************************************************************************************#  
   def define_conditions(params, version_id=Version::DESIGN_VERSION_ID)
     @where_select = ['version_id = ?']
@@ -134,7 +132,7 @@ class OligoDesignsController < ApplicationController
       @where_values.push(gene_array)
     end
     
-    sql_where_clause = (@where_select.length == 0 ? [] : [@where_select.join(' AND ')].concat(@where_values))
+    sql_where_clause = [@where_select.join(' AND ')].concat(@where_values)
     return sql_where_clause
   end  
   
@@ -143,7 +141,7 @@ class OligoDesignsController < ApplicationController
   # Export oligo designs to csv file                                                          #    
   #*******************************************************************************************#
   def export_designs_csv(oligo_designs, fmt_nr=1)
-    csv_string = FasterCSV.generate(:col_sep => "\t") do |csv|
+    csv_string = CSV.generate(:col_sep => "\t") do |csv|
       csv << ['Date', 'Project'].concat(ExportField.headings(fmt_nr))
       
       oligo_designs.each do |oligo_design|
