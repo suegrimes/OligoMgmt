@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class ApplicationController - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/application_controller.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">ActionController::Base
+  
+</nav>
+
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="AuthenticatedSystem.html">AuthenticatedSystem</a>
+  
+  
+  
+    <li><a class="include" href="RoleRequirementSystem.html">RoleRequirementSystem</a>
+  
+  
+  
+    <li><a class="include" href="OligoExtensions.html">OligoExtensions</a>
+  
+  
+  </ul>
+</nav>
+
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-check_if_blank">#check_if_blank</a>
+    
+    <li><a href="#method-i-create_array_from_text_area">#create_array_from_text_area</a>
+    
+    <li><a href="#method-i-param_blank-3F">#param_blank?</a>
+    
+    <li><a href="#method-i-plate_array_from_list">#plate_array_from_list</a>
+    
+    <li><a href="#method-i-plate_where_clause">#plate_where_clause</a>
+    
+    <li><a href="#method-i-pool_where_clause">#pool_where_clause</a>
+    
+    <li><a href="#method-i-sql_conditions_for_range">#sql_conditions_for_range</a>
+    
+    <li><a href="#method-i-sql_where">#sql_where</a>
+    
+    <li><a href="#method-i-store_comment">#store_comment</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./UploadColumn.html">UploadColumn</a>
+  
+    <li><a href="./UploadColumn/ActionControllerExtension.html">UploadColumn::ActionControllerExtension</a>
+  
+    <li><a href="./UploadColumn/ActiveRecordExtension.html">UploadColumn::ActiveRecordExtension</a>
+  
+    <li><a href="./UploadColumn/ActiveRecordExtension/ClassMethods.html">UploadColumn::ActiveRecordExtension::ClassMethods</a>
+  
+    <li><a href="./UploadColumn/AssetTagExtension.html">UploadColumn::AssetTagExtension</a>
+  
+    <li><a href="./UploadColumn/ConfigurationProxy.html">UploadColumn::ConfigurationProxy</a>
+  
+    <li><a href="./UploadColumn/MagicColumns.html">UploadColumn::MagicColumns</a>
+  
+    <li><a href="./UploadColumn/Manipulators.html">UploadColumn::Manipulators</a>
+  
+    <li><a href="./UploadColumn/Manipulators/ImageScience.html">UploadColumn::Manipulators::ImageScience</a>
+  
+    <li><a href="./UploadColumn/Manipulators/RMagick.html">UploadColumn::Manipulators::RMagick</a>
+  
+    <li><a href="./UploadColumn/SanitizedFile.html">UploadColumn::SanitizedFile</a>
+  
+    <li><a href="./UploadColumn/UploadColumnHelper.html">UploadColumn::UploadColumnHelper</a>
+  
+    <li><a href="./UploadColumn/UploadedFile.html">UploadColumn::UploadedFile</a>
+  
+    <li><a href="./RestfulComments.html">RestfulComments</a>
+  
+    <li><a href="./RestfulComments/Commentable.html">RestfulComments::Commentable</a>
+  
+    <li><a href="./RestfulComments/Commentable/ClassMethods.html">RestfulComments::Commentable::ClassMethods</a>
+  
+    <li><a href="./RestfulComments/Commentable/CommentsExtension.html">RestfulComments::Commentable::CommentsExtension</a>
+  
+    <li><a href="./RestfulComments/Commentable/InstanceMethods.html">RestfulComments::Commentable::InstanceMethods</a>
+  
+    <li><a href="./RestfulComments/Commentable/SingletonMethods.html">RestfulComments::Commentable::SingletonMethods</a>
+  
+    <li><a href="./RestfulComments/Helper.html">RestfulComments::Helper</a>
+  
+    <li><a href="./Juixe.html">Juixe</a>
+  
+    <li><a href="./Juixe/Acts.html">Juixe::Acts</a>
+  
+    <li><a href="./Juixe/Acts/Commentable.html">Juixe::Acts::Commentable</a>
+  
+    <li><a href="./Juixe/Acts/Commentable/ClassMethods.html">Juixe::Acts::Commentable::ClassMethods</a>
+  
+    <li><a href="./Juixe/Acts/Commentable/InstanceMethods.html">Juixe::Acts::Commentable::InstanceMethods</a>
+  
+    <li><a href="./Juixe/Acts/Commentable/SingletonMethods.html">Juixe::Acts::Commentable::SingletonMethods</a>
+  
+    <li><a href="./YamlDb.html">YamlDb</a>
+  
+    <li><a href="./YamlDb/Dump.html">YamlDb::Dump</a>
+  
+    <li><a href="./YamlDb/EncodingException.html">YamlDb::EncodingException</a>
+  
+    <li><a href="./YamlDb/Load.html">YamlDb::Load</a>
+  
+    <li><a href="./YamlDb/Utils.html">YamlDb::Utils</a>
+  
+    <li><a href="./RoleRequirementSystem.html">RoleRequirementSystem</a>
+  
+    <li><a href="./RoleRequirementSystem/RoleSecurityClassMethods.html">RoleRequirementSystem::RoleSecurityClassMethods</a>
+  
+    <li><a href="./RoleRequirementSystem/RoleSecurityInstanceMethods.html">RoleRequirementSystem::RoleSecurityInstanceMethods</a>
+  
+    <li><a href="./ActionView.html">ActionView</a>
+  
+    <li><a href="./ActionView/Helpers.html">ActionView::Helpers</a>
+  
+    <li><a href="./ActiveRecordExtension.html">ActiveRecordExtension</a>
+  
+    <li><a href="./ActiveRecordExtension/ClassMethods.html">ActiveRecordExtension::ClassMethods</a>
+  
+    <li><a href="./ActsAsCommentableTest.html">ActsAsCommentableTest</a>
+  
+    <li><a href="./AliquotToPool.html">AliquotToPool</a>
+  
+    <li><a href="./AnnotateModels.html">AnnotateModels</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./AuthenticatedGenerator.html">AuthenticatedGenerator</a>
+  
+    <li><a href="./AuthenticatedSystem.html">AuthenticatedSystem</a>
+  
+    <li><a href="./AuthenticatedTestHelper.html">AuthenticatedTestHelper</a>
+  
+    <li><a href="./BeIdenticalWith.html">BeIdenticalWith</a>
+  
+    <li><a href="./BeNoLargerThan.html">BeNoLargerThan</a>
+  
+    <li><a href="./BuilderHelper.html">BuilderHelper</a>
+  
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentSystemTest.html">CommentSystemTest</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
+    <li><a href="./ControllerStub.html">ControllerStub</a>
+  
+    <li><a href="./CreateComments.html">CreateComments</a>
+  
+    <li><a href="./DummyController.html">DummyController</a>
+  
+    <li><a href="./Entry.html">Entry</a>
+  
+    <li><a href="./Event.html">Event</a>
+  
+    <li><a href="./ExistsPredicate.html">ExistsPredicate</a>
+  
+    <li><a href="./ExportCount.html">ExportCount</a>
+  
+    <li><a href="./ExportField.html">ExportField</a>
+  
+    <li><a href="./GeneList.html">GeneList</a>
+  
+    <li><a href="./HavePermissions.html">HavePermissions</a>
+  
+    <li><a href="./HaveTheExactDimensionsOf.html">HaveTheExactDimensionsOf</a>
+  
+    <li><a href="./Hijacker.html">Hijacker</a>
+  
+    <li><a href="./InventoryDB.html">InventoryDB</a>
+  
+    <li><a href="./MatchPath.html">MatchPath</a>
+  
+    <li><a href="./Monkey.html">Monkey</a>
+  
+    <li><a href="./Movie.html">Movie</a>
+  
+    <li><a href="./MyController.html">MyController</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./OligoAnnotation.html">OligoAnnotation</a>
+  
+    <li><a href="./OligoDesign.html">OligoDesign</a>
+  
+    <li><a href="./OligoDesignsController.html">OligoDesignsController</a>
+  
+    <li><a href="./OligoExtensions.html">OligoExtensions</a>
+  
+    <li><a href="./OtherController.html">OtherController</a>
+  
+    <li><a href="./PilotOligoDesign.html">PilotOligoDesign</a>
+  
+    <li><a href="./PilotOligoDesignsController.html">PilotOligoDesignsController</a>
+  
+    <li><a href="./PlatePosition.html">PlatePosition</a>
+  
+    <li><a href="./PlateTube.html">PlateTube</a>
+  
+    <li><a href="./PlateTubesController.html">PlateTubesController</a>
+  
+    <li><a href="./Pool.html">Pool</a>
+  
+    <li><a href="./PoolsController.html">PoolsController</a>
+  
+    <li><a href="./Project.html">Project</a>
+  
+    <li><a href="./Researcher.html">Researcher</a>
+  
+    <li><a href="./ResearchersController.html">ResearchersController</a>
+  
+    <li><a href="./Role.html">Role</a>
+  
+    <li><a href="./RoleGenerator.html">RoleGenerator</a>
+  
+    <li><a href="./RoleGeneratorHelpers.html">RoleGeneratorHelpers</a>
+  
+    <li><a href="./RoleRequirementTestHelper.html">RoleRequirementTestHelper</a>
+  
+    <li><a href="./RolesGenerator.html">RolesGenerator</a>
+  
+    <li><a href="./SessionsController.html">SessionsController</a>
+  
+    <li><a href="./SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="./Shroom.html">Shroom</a>
+  
+    <li><a href="./StorageLocation.html">StorageLocation</a>
+  
+    <li><a href="./StorageLocationsController.html">StorageLocationsController</a>
+  
+    <li><a href="./SynthOligo.html">SynthOligo</a>
+  
+    <li><a href="./SynthOligosController.html">SynthOligosController</a>
+  
+    <li><a href="./TaggedBuilder.html">TaggedBuilder</a>
+  
+    <li><a href="./TestMigration.html">TestMigration</a>
+  
+    <li><a href="./TestRoleController.html">TestRoleController</a>
+  
+    <li><a href="./UniversalSpecHelper.html">UniversalSpecHelper</a>
+  
+    <li><a href="./UploadColumnSpecHelper.html">UploadColumnSpecHelper</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UserNotifier.html">UserNotifier</a>
+  
+    <li><a href="./UserObserver.html">UserObserver</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./Vector.html">Vector</a>
+  
+    <li><a href="./VectorsController.html">VectorsController</a>
+  
+    <li><a href="./Version.html">Version</a>
+  
+    <li><a href="./VersionsController.html">VersionsController</a>
+  
+    <li><a href="./WelcomeController.html">WelcomeController</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class ApplicationController</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="LabelValue">LabelValue
+        
+        <dd class="description"><p>Structure used for converting array into class with label/value pairs, for
+collection_select</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-check_if_blank" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_if_blank</span><span
+            class="method-args">(model_object, model_text, param_type='parameters')</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="check_if_blank-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">check_if_blank</span>(<span class="ruby-identifier">model_object</span>, <span class="ruby-identifier">model_text</span>, <span class="ruby-identifier">param_type</span>=<span class="ruby-string">'parameters'</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">model_object</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">model_object</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">error_found</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-node">&quot;No #{model_text} found for #{param_type} entered - please try again&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">error_found</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">error_found</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- check_if_blank-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- check_if_blank-method -->
+
+    
+      <div id="method-i-create_array_from_text_area" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_array_from_text_area</span><span
+            class="method-args">(text, ret_type='text')</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create_array_from_text_area-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_array_from_text_area</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">ret_type</span>=<span class="ruby-string">'text'</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">blank?</span> 
+    <span class="ruby-keyword">return</span> []
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">param_list</span> = (<span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">','</span>, <span class="ruby-string">' '</span>)).<span class="ruby-identifier">split</span>
+    <span class="ruby-identifier">param_list</span>.<span class="ruby-identifier">pop</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">param_list</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^\s*$/</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-identifier">param_list</span>.<span class="ruby-identifier">collect!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_i</span>} <span class="ruby-keyword">if</span> <span class="ruby-identifier">ret_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">'integer'</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">param_list</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_array_from_text_area-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_array_from_text_area-method -->
+
+    
+      <div id="method-i-param_blank-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">param_blank?</span><span
+            class="method-args">(val)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="param_blank-3F-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">param_blank?</span>(<span class="ruby-identifier">val</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">val_blank</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span>
+    <span class="ruby-comment">#val_blank = (val.size == 1 &amp;&amp; val[0].blank? ? true : false )</span>
+    <span class="ruby-comment"># Hack due to change in Rails 3 which passes hidden value for collection_select/multiple and causes duplicate blank entry in array</span>
+    <span class="ruby-identifier">val_blank</span> = (<span class="ruby-identifier">val</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">val</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">blank?</span> ) <span class="ruby-operator">||</span> (<span class="ruby-identifier">val</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">val</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">blank?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">val</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">blank?</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">val_blank</span> = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">blank?</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">val_blank</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- param_blank-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- param_blank-3F-method -->
+
+    
+      <div id="method-i-plate_array_from_list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">plate_array_from_list</span><span
+            class="method-args">(plate_string)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="plate_array_from_list-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">plate_array_from_list</span>(<span class="ruby-identifier">plate_string</span>)
+  <span class="ruby-identifier">all_plate_numbers</span> = <span class="ruby-identifier">plate_string</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;,&quot;</span>)
+  <span class="ruby-identifier">plate_numbers</span> = []; <span class="ruby-identifier">plate_or_tube_names</span> = []; <span class="ruby-identifier">error</span> = [];
+  
+  <span class="ruby-keyword">for</span> <span class="ruby-identifier">num</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">all_plate_numbers</span>
+    <span class="ruby-identifier">num</span> = <span class="ruby-identifier">num</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">' '</span>)
+    
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">num</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^([M|T]\d+)$/</span> <span class="ruby-comment"># has 'M' or 'T' followed by digits</span>
+        <span class="ruby-identifier">plate_or_tube_names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">num</span> <span class="ruby-comment"># gather into array</span>
+        
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^([M|T]\d+)\-([M|T]\d+)$/</span> <span class="ruby-comment"># is a range with 'M' or 'T' followed by digits</span>
+        <span class="ruby-identifier">range_begin</span> = <span class="ruby-node">$1</span>; <span class="ruby-identifier">range_end</span> = <span class="ruby-node">$2</span>;
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">range_begin</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">chr</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">range_end</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">chr</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">error</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">'First letters of range '</span> <span class="ruby-operator">+</span> <span class="ruby-node">$1</span> <span class="ruby-operator">+</span> <span class="ruby-string">'-'</span> <span class="ruby-operator">+</span> <span class="ruby-node">$2</span> <span class="ruby-operator">+</span> <span class="ruby-string">' do not match'</span>; <span class="ruby-keyword">next</span>; <span class="ruby-keyword">end</span>
+          
+        <span class="ruby-identifier">range_char</span> = <span class="ruby-identifier">range_begin</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">chr</span>
+        <span class="ruby-identifier">min_range</span> = <span class="ruby-identifier">range_begin</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>].<span class="ruby-identifier">to_i</span>; <span class="ruby-identifier">max_range</span> = <span class="ruby-identifier">range_end</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>].<span class="ruby-identifier">to_i</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">min_range</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">max_range</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">error</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">'Beginning of range: '</span> <span class="ruby-operator">+</span> <span class="ruby-node">$1</span> <span class="ruby-operator">+</span> <span class="ruby-string">' &gt; end of range: '</span> <span class="ruby-operator">+</span> <span class="ruby-node">$2</span>; <span class="ruby-keyword">next</span>; <span class="ruby-keyword">end</span>
+          
+        <span class="ruby-keyword">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">min_range</span><span class="ruby-operator">..</span><span class="ruby-identifier">max_range</span>) <span class="ruby-keyword">do</span>
+          <span class="ruby-identifier">plate_or_tube_names</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">range_char</span>, <span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_s</span>].<span class="ruby-identifier">join</span>
+        <span class="ruby-keyword">end</span>
+        
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^([0|1]\d+)_(\d+).*$/</span> <span class="ruby-comment"># full old format plate number: yymmdd_nnnnnx </span>
+        <span class="ruby-identifier">plate_numbers</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">$2</span>.<span class="ruby-identifier">to_i</span>
+          
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^\d+$/</span> <span class="ruby-comment"># has digits only</span>
+        <span class="ruby-identifier">plate_numbers</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">num</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-comment"># gather into array </span>
+        
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^(\d+)\-(\d+)$/</span> <span class="ruby-comment"># has range of digits</span>
+        <span class="ruby-identifier">min_range</span> = <span class="ruby-node">$1</span>.<span class="ruby-identifier">to_i</span>; <span class="ruby-identifier">max_range</span> = <span class="ruby-node">$2</span>.<span class="ruby-identifier">to_i</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">min_range</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">max_range</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">error</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">'Beginning of range: '</span> <span class="ruby-operator">+</span> <span class="ruby-node">$1</span> <span class="ruby-operator">+</span> <span class="ruby-string">' &gt; end of range: '</span> <span class="ruby-operator">+</span> <span class="ruby-node">$2</span>; <span class="ruby-keyword">next</span>; <span class="ruby-keyword">end</span>
+        
+        <span class="ruby-keyword">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">min_range</span><span class="ruby-operator">..</span><span class="ruby-identifier">max_range</span>) <span class="ruby-keyword">do</span>
+          <span class="ruby-identifier">plate_numbers</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">i</span>
+        <span class="ruby-keyword">end</span>
+        
+      <span class="ruby-keyword">else</span> <span class="ruby-identifier">error</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">+</span> <span class="ruby-string">' is unexpected value'</span>
+    <span class="ruby-keyword">end</span> <span class="ruby-comment"># case</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-comment"># for</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">plate_or_tube_names</span>, <span class="ruby-identifier">plate_numbers</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- plate_array_from_list-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- plate_array_from_list-method -->
+
+    
+      <div id="method-i-plate_where_clause" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">plate_where_clause</span><span
+            class="method-args">(plate_string)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="plate_where_clause-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">plate_where_clause</span>(<span class="ruby-identifier">plate_string</span>)
+  <span class="ruby-identifier">where_select</span> = []; <span class="ruby-identifier">where_values</span> = [];
+  <span class="ruby-identifier">plate_or_tube_names</span>, <span class="ruby-identifier">plate_numbers</span> = <span class="ruby-identifier">plate_array_from_list</span>(<span class="ruby-identifier">plate_string</span>)
+  
+  <span class="ruby-keyword">if</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">plate_or_tube_names</span>.<span class="ruby-identifier">empty?</span>) 
+    <span class="ruby-identifier">where_select</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">&quot;(plate_tubes.plate_or_tube_name IN (?))&quot;</span>)
+    <span class="ruby-identifier">where_values</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">plate_or_tube_names</span>)
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-keyword">if</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">plate_numbers</span>.<span class="ruby-identifier">empty?</span>)
+    <span class="ruby-identifier">where_select</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">&quot;(LEFT(plate_tubes.plate_or_tube_name,1) IN (?) AND plate_tubes.plate_number IN (?))&quot;</span>)
+    <span class="ruby-identifier">where_values</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">PlateTube</span><span class="ruby-operator">::</span><span class="ruby-constant">PROD_PLATE_CHARS</span>)
+    <span class="ruby-identifier">where_values</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">plate_numbers</span>)
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-identifier">where_clause</span> = (<span class="ruby-identifier">where_select</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> [<span class="ruby-string">'('</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">where_select</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">' OR '</span>) <span class="ruby-operator">+</span> <span class="ruby-string">')'</span>] <span class="ruby-operator">:</span> [])
+  <span class="ruby-comment">#puts error if !error.empty?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">where_clause</span>, <span class="ruby-identifier">where_values</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- plate_where_clause-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- plate_where_clause-method -->
+
+    
+      <div id="method-i-pool_where_clause" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pool_where_clause</span><span
+            class="method-args">(pool_type, pool_string)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="pool_where_clause-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 132</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">pool_where_clause</span>(<span class="ruby-identifier">pool_type</span>, <span class="ruby-identifier">pool_string</span>)
+  <span class="ruby-identifier">all_pool_numbers</span> = <span class="ruby-identifier">pool_string</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;,&quot;</span>)
+  <span class="ruby-identifier">where_select</span> = []; <span class="ruby-identifier">where_values</span> = [];
+  <span class="ruby-identifier">pool_nums</span> = []; <span class="ruby-identifier">error</span> = [];
+
+  <span class="ruby-keyword">for</span> <span class="ruby-identifier">num</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">all_pool_numbers</span>
+    <span class="ruby-identifier">num</span> = <span class="ruby-identifier">num</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">' '</span>)    
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">num</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^(\d+)$/</span> <span class="ruby-comment"># digits only</span>
+      <span class="ruby-identifier">pool_nums</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">num</span>.<span class="ruby-identifier">to_i</span>  <span class="ruby-comment"># convert to integer; gather into array</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^(\d+)\-(\d+)$/</span> <span class="ruby-comment"># has range of digits</span>
+      <span class="ruby-identifier">where_select</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">'pools.tube_label BETWEEN ? AND ?'</span>)
+      <span class="ruby-identifier">where_values</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">pool_type</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;%04d&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-node">$1</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">pool_type</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;%04d&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-node">$2</span>.<span class="ruby-identifier">to_i</span>) <span class="ruby-comment"># Convert to format XXnnnn where XX is pool prefix, nnnn is 4 digit integer</span>
+    <span class="ruby-keyword">else</span> <span class="ruby-identifier">error</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">+</span> <span class="ruby-string">' is unexpected value'</span>
+    <span class="ruby-keyword">end</span> <span class="ruby-comment"># case</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-comment"># for</span>
+  
+  <span class="ruby-keyword">if</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">pool_nums</span>.<span class="ruby-identifier">empty?</span>)
+    <span class="ruby-identifier">where_select</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">'LEFT(tube_label,2) = ? AND CAST(SUBSTRING(tube_label,3) AS UNSIGNED) IN (?)'</span>)
+    <span class="ruby-identifier">where_values</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">pool_type</span>)
+    <span class="ruby-identifier">where_values</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">pool_nums</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">pool_string</span>.<span class="ruby-identifier">blank?</span>
+    <span class="ruby-identifier">where_select</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">'LEFT(tube_label,2) = ?'</span>)
+    <span class="ruby-identifier">where_values</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">pool_type</span>)
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-identifier">where_clause</span> = (<span class="ruby-identifier">where_select</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> [<span class="ruby-string">'('</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">where_select</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">' OR '</span>) <span class="ruby-operator">+</span> <span class="ruby-string">')'</span>] <span class="ruby-operator">:</span> [])
+  <span class="ruby-comment">#puts error if !error.empty?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">where_clause</span>, <span class="ruby-identifier">where_values</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- pool_where_clause-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- pool_where_clause-method -->
+
+    
+      <div id="method-i-sql_conditions_for_range" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sql_conditions_for_range</span><span
+            class="method-args">(where_select, where_values, from_fld, to_fld, db_fld, nullok=false)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="sql_conditions_for_range-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 163</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sql_conditions_for_range</span>(<span class="ruby-identifier">where_select</span>, <span class="ruby-identifier">where_values</span>, <span class="ruby-identifier">from_fld</span>, <span class="ruby-identifier">to_fld</span>, <span class="ruby-identifier">db_fld</span>, <span class="ruby-identifier">nullok</span>=<span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">datenull_or</span> = (<span class="ruby-identifier">nullok</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;#{db_fld} IS NULL OR &quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;&quot;</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">from_fld</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">to_fld</span>.<span class="ruby-identifier">blank?</span>
+    <span class="ruby-identifier">where_select</span>.<span class="ruby-identifier">push</span> <span class="ruby-node">&quot;(#{datenull_or} #{db_fld} BETWEEN ? AND ?)&quot;</span>
+    <span class="ruby-identifier">where_values</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">from_fld</span>, <span class="ruby-identifier">to_fld</span>) 
+  <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">from_fld</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-comment"># To field is null or blank</span>
+    <span class="ruby-identifier">where_select</span>.<span class="ruby-identifier">push</span>(<span class="ruby-node">&quot;#{datenull_or} #{db_fld} &gt;= ?&quot;</span>)
+    <span class="ruby-identifier">where_values</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">from_fld</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">to_fld</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-comment"># From field is null or blank</span>
+    <span class="ruby-identifier">where_select</span>.<span class="ruby-identifier">push</span>(<span class="ruby-node">&quot;(#{db_fld} IS NULL OR #{db_fld} &lt;= ?)&quot;</span>)
+    <span class="ruby-identifier">where_values</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">to_fld</span>)
+  <span class="ruby-keyword">end</span>  
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">where_select</span>, <span class="ruby-identifier">where_values</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- sql_conditions_for_range-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- sql_conditions_for_range-method -->
+
+    
+      <div id="method-i-sql_where" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sql_where</span><span
+            class="method-args">(condition_array)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="sql_where-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 179</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sql_where</span>(<span class="ruby-identifier">condition_array</span>)
+  <span class="ruby-comment"># Handle change from Rails 2.3 to Rails 3.2 to turn conditions into individual parameters vs array</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">condition_array</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">condition_array</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> *<span class="ruby-identifier">condition_array</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- sql_where-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- sql_where-method -->
+
+    
+      <div id="method-i-store_comment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">store_comment</span><span
+            class="method-args">(model_instance, params)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>See ActionController::Base for details 
+Uncomment this to filter the contents of submitted sensitive data parameters
+from your application log (in this case, all fields with names like &quot;password&quot;).</pre>
+
+<p>filter_parameter_logging :password</p>
+          
+
+          
+          <div class="method-source-code" id="store_comment-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">store_comment</span>(<span class="ruby-identifier">model_instance</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, 
+                           <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>], 
+                           <span class="ruby-value">:comment</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:comment</span>])
+  <span class="ruby-identifier">model_instance</span>.<span class="ruby-identifier">add_comment</span>(<span class="ruby-identifier">comment</span>) 
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- store_comment-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- store_comment-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

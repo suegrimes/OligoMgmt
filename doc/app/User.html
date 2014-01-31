@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class User - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/models/user.rb
+    <li>lib/role_requirement/test/user_stub.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">ActiveRecord::Base
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-authenticate">::authenticate</a>
+    
+    <li><a href="#method-c-encrypt">::encrypt</a>
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-i-authenticated-3F">#authenticated?</a>
+    
+    <li><a href="#method-i-create_reset_code">#create_reset_code</a>
+    
+    <li><a href="#method-i-delete_reset_code">#delete_reset_code</a>
+    
+    <li><a href="#method-i-encrypt">#encrypt</a>
+    
+    <li><a href="#method-i-encrypt_password">#encrypt_password</a>
+    
+    <li><a href="#method-i-forget_me">#forget_me</a>
+    
+    <li><a href="#method-i-has_role-3F">#has_role?</a>
+    
+    <li><a href="#method-i-id">#id</a>
+    
+    <li><a href="#method-i-password_required-3F">#password_required?</a>
+    
+    <li><a href="#method-i-recently_reset-3F">#recently_reset?</a>
+    
+    <li><a href="#method-i-remember_me">#remember_me</a>
+    
+    <li><a href="#method-i-remember_me_for">#remember_me_for</a>
+    
+    <li><a href="#method-i-remember_me_until">#remember_me_until</a>
+    
+    <li><a href="#method-i-remember_token-3F">#remember_token?</a>
+    
+    <li><a href="#method-i-roles-3D">#roles=</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./UploadColumn.html">UploadColumn</a>
+  
+    <li><a href="./UploadColumn/ActionControllerExtension.html">UploadColumn::ActionControllerExtension</a>
+  
+    <li><a href="./UploadColumn/ActiveRecordExtension.html">UploadColumn::ActiveRecordExtension</a>
+  
+    <li><a href="./UploadColumn/ActiveRecordExtension/ClassMethods.html">UploadColumn::ActiveRecordExtension::ClassMethods</a>
+  
+    <li><a href="./UploadColumn/AssetTagExtension.html">UploadColumn::AssetTagExtension</a>
+  
+    <li><a href="./UploadColumn/ConfigurationProxy.html">UploadColumn::ConfigurationProxy</a>
+  
+    <li><a href="./UploadColumn/MagicColumns.html">UploadColumn::MagicColumns</a>
+  
+    <li><a href="./UploadColumn/Manipulators.html">UploadColumn::Manipulators</a>
+  
+    <li><a href="./UploadColumn/Manipulators/ImageScience.html">UploadColumn::Manipulators::ImageScience</a>
+  
+    <li><a href="./UploadColumn/Manipulators/RMagick.html">UploadColumn::Manipulators::RMagick</a>
+  
+    <li><a href="./UploadColumn/SanitizedFile.html">UploadColumn::SanitizedFile</a>
+  
+    <li><a href="./UploadColumn/UploadColumnHelper.html">UploadColumn::UploadColumnHelper</a>
+  
+    <li><a href="./UploadColumn/UploadedFile.html">UploadColumn::UploadedFile</a>
+  
+    <li><a href="./RestfulComments.html">RestfulComments</a>
+  
+    <li><a href="./RestfulComments/Commentable.html">RestfulComments::Commentable</a>
+  
+    <li><a href="./RestfulComments/Commentable/ClassMethods.html">RestfulComments::Commentable::ClassMethods</a>
+  
+    <li><a href="./RestfulComments/Commentable/CommentsExtension.html">RestfulComments::Commentable::CommentsExtension</a>
+  
+    <li><a href="./RestfulComments/Commentable/InstanceMethods.html">RestfulComments::Commentable::InstanceMethods</a>
+  
+    <li><a href="./RestfulComments/Commentable/SingletonMethods.html">RestfulComments::Commentable::SingletonMethods</a>
+  
+    <li><a href="./RestfulComments/Helper.html">RestfulComments::Helper</a>
+  
+    <li><a href="./Juixe.html">Juixe</a>
+  
+    <li><a href="./Juixe/Acts.html">Juixe::Acts</a>
+  
+    <li><a href="./Juixe/Acts/Commentable.html">Juixe::Acts::Commentable</a>
+  
+    <li><a href="./Juixe/Acts/Commentable/ClassMethods.html">Juixe::Acts::Commentable::ClassMethods</a>
+  
+    <li><a href="./Juixe/Acts/Commentable/InstanceMethods.html">Juixe::Acts::Commentable::InstanceMethods</a>
+  
+    <li><a href="./Juixe/Acts/Commentable/SingletonMethods.html">Juixe::Acts::Commentable::SingletonMethods</a>
+  
+    <li><a href="./YamlDb.html">YamlDb</a>
+  
+    <li><a href="./YamlDb/Dump.html">YamlDb::Dump</a>
+  
+    <li><a href="./YamlDb/EncodingException.html">YamlDb::EncodingException</a>
+  
+    <li><a href="./YamlDb/Load.html">YamlDb::Load</a>
+  
+    <li><a href="./YamlDb/Utils.html">YamlDb::Utils</a>
+  
+    <li><a href="./RoleRequirementSystem.html">RoleRequirementSystem</a>
+  
+    <li><a href="./RoleRequirementSystem/RoleSecurityClassMethods.html">RoleRequirementSystem::RoleSecurityClassMethods</a>
+  
+    <li><a href="./RoleRequirementSystem/RoleSecurityInstanceMethods.html">RoleRequirementSystem::RoleSecurityInstanceMethods</a>
+  
+    <li><a href="./ActionView.html">ActionView</a>
+  
+    <li><a href="./ActionView/Helpers.html">ActionView::Helpers</a>
+  
+    <li><a href="./ActiveRecordExtension.html">ActiveRecordExtension</a>
+  
+    <li><a href="./ActiveRecordExtension/ClassMethods.html">ActiveRecordExtension::ClassMethods</a>
+  
+    <li><a href="./ActsAsCommentableTest.html">ActsAsCommentableTest</a>
+  
+    <li><a href="./AliquotToPool.html">AliquotToPool</a>
+  
+    <li><a href="./AnnotateModels.html">AnnotateModels</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./AuthenticatedGenerator.html">AuthenticatedGenerator</a>
+  
+    <li><a href="./AuthenticatedSystem.html">AuthenticatedSystem</a>
+  
+    <li><a href="./AuthenticatedTestHelper.html">AuthenticatedTestHelper</a>
+  
+    <li><a href="./BeIdenticalWith.html">BeIdenticalWith</a>
+  
+    <li><a href="./BeNoLargerThan.html">BeNoLargerThan</a>
+  
+    <li><a href="./BuilderHelper.html">BuilderHelper</a>
+  
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentSystemTest.html">CommentSystemTest</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
+    <li><a href="./ControllerStub.html">ControllerStub</a>
+  
+    <li><a href="./CreateComments.html">CreateComments</a>
+  
+    <li><a href="./DummyController.html">DummyController</a>
+  
+    <li><a href="./Entry.html">Entry</a>
+  
+    <li><a href="./Event.html">Event</a>
+  
+    <li><a href="./ExistsPredicate.html">ExistsPredicate</a>
+  
+    <li><a href="./ExportCount.html">ExportCount</a>
+  
+    <li><a href="./ExportField.html">ExportField</a>
+  
+    <li><a href="./GeneList.html">GeneList</a>
+  
+    <li><a href="./HavePermissions.html">HavePermissions</a>
+  
+    <li><a href="./HaveTheExactDimensionsOf.html">HaveTheExactDimensionsOf</a>
+  
+    <li><a href="./Hijacker.html">Hijacker</a>
+  
+    <li><a href="./InventoryDB.html">InventoryDB</a>
+  
+    <li><a href="./MatchPath.html">MatchPath</a>
+  
+    <li><a href="./Monkey.html">Monkey</a>
+  
+    <li><a href="./Movie.html">Movie</a>
+  
+    <li><a href="./MyController.html">MyController</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./OligoAnnotation.html">OligoAnnotation</a>
+  
+    <li><a href="./OligoDesign.html">OligoDesign</a>
+  
+    <li><a href="./OligoDesignsController.html">OligoDesignsController</a>
+  
+    <li><a href="./OligoExtensions.html">OligoExtensions</a>
+  
+    <li><a href="./OtherController.html">OtherController</a>
+  
+    <li><a href="./PilotOligoDesign.html">PilotOligoDesign</a>
+  
+    <li><a href="./PilotOligoDesignsController.html">PilotOligoDesignsController</a>
+  
+    <li><a href="./PlatePosition.html">PlatePosition</a>
+  
+    <li><a href="./PlateTube.html">PlateTube</a>
+  
+    <li><a href="./PlateTubesController.html">PlateTubesController</a>
+  
+    <li><a href="./Pool.html">Pool</a>
+  
+    <li><a href="./PoolsController.html">PoolsController</a>
+  
+    <li><a href="./Project.html">Project</a>
+  
+    <li><a href="./Researcher.html">Researcher</a>
+  
+    <li><a href="./ResearchersController.html">ResearchersController</a>
+  
+    <li><a href="./Role.html">Role</a>
+  
+    <li><a href="./RoleGenerator.html">RoleGenerator</a>
+  
+    <li><a href="./RoleGeneratorHelpers.html">RoleGeneratorHelpers</a>
+  
+    <li><a href="./RoleRequirementTestHelper.html">RoleRequirementTestHelper</a>
+  
+    <li><a href="./RolesGenerator.html">RolesGenerator</a>
+  
+    <li><a href="./SessionsController.html">SessionsController</a>
+  
+    <li><a href="./SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="./Shroom.html">Shroom</a>
+  
+    <li><a href="./StorageLocation.html">StorageLocation</a>
+  
+    <li><a href="./StorageLocationsController.html">StorageLocationsController</a>
+  
+    <li><a href="./SynthOligo.html">SynthOligo</a>
+  
+    <li><a href="./SynthOligosController.html">SynthOligosController</a>
+  
+    <li><a href="./TaggedBuilder.html">TaggedBuilder</a>
+  
+    <li><a href="./TestMigration.html">TestMigration</a>
+  
+    <li><a href="./TestRoleController.html">TestRoleController</a>
+  
+    <li><a href="./UniversalSpecHelper.html">UniversalSpecHelper</a>
+  
+    <li><a href="./UploadColumnSpecHelper.html">UploadColumnSpecHelper</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UserNotifier.html">UserNotifier</a>
+  
+    <li><a href="./UserObserver.html">UserObserver</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./Vector.html">Vector</a>
+  
+    <li><a href="./VectorsController.html">VectorsController</a>
+  
+    <li><a href="./Version.html">Version</a>
+  
+    <li><a href="./VersionsController.html">VersionsController</a>
+  
+    <li><a href="./WelcomeController.html">WelcomeController</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class User</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-password" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">password</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Virtual attribute for the unencrypted password</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-roles" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">roles</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-authenticate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">authenticate</span><span
+            class="method-args">(login, password)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Authenticates a user by their login name and unencrypted password.  Returns
+the user or nil.</p>
+          
+
+          
+          <div class="method-source-code" id="authenticate-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">login</span>, <span class="ruby-identifier">password</span>)
+  <span class="ruby-identifier">u</span> = <span class="ruby-identifier">find_by_login</span>(<span class="ruby-identifier">login</span>) <span class="ruby-comment"># need to get the salt</span>
+  <span class="ruby-identifier">u</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">authenticated?</span>(<span class="ruby-identifier">password</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">u</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- authenticate-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- authenticate-method -->
+
+    
+      <div id="method-c-encrypt" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">encrypt</span><span
+            class="method-args">(password, salt)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Encrypts some data with the salt.</p>
+          
+
+          
+          <div class="method-source-code" id="encrypt-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">encrypt</span>(<span class="ruby-identifier">password</span>, <span class="ruby-identifier">salt</span>)
+  <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA1</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-node">&quot;--#{salt}--#{password}--&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- encrypt-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- encrypt-method -->
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(params = {})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/user_stub.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span> = {})
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">roles</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:roles</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-authenticated-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">authenticated?</span><span
+            class="method-args">(password)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="authenticated-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">authenticated?</span>(<span class="ruby-identifier">password</span>)
+  <span class="ruby-identifier">crypted_password</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">encrypt</span>(<span class="ruby-identifier">password</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- authenticated-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- authenticated-3F-method -->
+
+    
+      <div id="method-i-create_reset_code" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_reset_code</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create_reset_code-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 97</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_reset_code</span>
+  <span class="ruby-ivar">@reset</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reset_code</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA1</span>.<span class="ruby-identifier">hexdigest</span>( <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">//</span>).<span class="ruby-identifier">sort_by</span> {<span class="ruby-identifier">rand</span>}.<span class="ruby-identifier">join</span> )
+  <span class="ruby-identifier">save</span>(<span class="ruby-value">:validate=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_reset_code-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_reset_code-method -->
+
+    
+      <div id="method-i-delete_reset_code" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_reset_code</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="delete_reset_code-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_reset_code</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reset_code</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">save</span>(<span class="ruby-value">:validate=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- delete_reset_code-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- delete_reset_code-method -->
+
+    
+      <div id="method-i-encrypt" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">encrypt</span><span
+            class="method-args">(password)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Encrypts the password with the user salt</p>
+          
+
+          
+          <div class="method-source-code" id="encrypt-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">encrypt</span>(<span class="ruby-identifier">password</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">encrypt</span>(<span class="ruby-identifier">password</span>, <span class="ruby-identifier">salt</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- encrypt-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- encrypt-method -->
+
+    
+      <div id="method-i-forget_me" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">forget_me</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="forget_me-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">forget_me</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">remember_token_expires_at</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">remember_token</span>            = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">save</span>(<span class="ruby-value">:validate=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- forget_me-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- forget_me-method -->
+
+    
+      <div id="method-i-has_role-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">has_role?</span><span
+            class="method-args">(role_in_question, admin='admin_defaults_to_true')</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>has_role? simply needs to return true or false whether a user has a role or
+not.</p>
+
+<p>It may be a good idea to have “admin” roles return true always</p>
+          
+
+          
+          <div class="method-source-code" id="has_role-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">has_role?</span>(<span class="ruby-identifier">role_in_question</span>, <span class="ruby-identifier">admin</span>=<span class="ruby-string">'admin_defaults_to_true'</span>)
+  <span class="ruby-ivar">@_list</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">roles</span>.<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:name</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@_list</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;admin&quot;</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">admin</span> <span class="ruby-operator">==</span> <span class="ruby-string">'admin_defaults_to_true'</span>)
+  (<span class="ruby-ivar">@_list</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">role_in_question</span>.<span class="ruby-identifier">to_s</span>) )
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- has_role-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- has_role-3F-method -->
+
+    
+      <div id="method-i-id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">id</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="id-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/user_stub.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">id</span>
+  <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- id-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- id-method -->
+
+    
+      <div id="method-i-recently_reset-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">recently_reset?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="recently_reset-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">recently_reset?</span>
+  <span class="ruby-ivar">@reset</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- recently_reset-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- recently_reset-3F-method -->
+
+    
+      <div id="method-i-remember_me" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remember_me</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>These create and unset the fields required for remembering users between
+browser closes</p>
+          
+
+          
+          <div class="method-source-code" id="remember_me-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remember_me</span>
+  <span class="ruby-identifier">remember_me_for</span> <span class="ruby-value">2</span>.<span class="ruby-identifier">weeks</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- remember_me-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- remember_me-method -->
+
+    
+      <div id="method-i-remember_me_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remember_me_for</span><span
+            class="method-args">(time)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="remember_me_for-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remember_me_for</span>(<span class="ruby-identifier">time</span>)
+  <span class="ruby-identifier">remember_me_until</span> <span class="ruby-identifier">time</span>.<span class="ruby-identifier">from_now</span>.<span class="ruby-identifier">utc</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- remember_me_for-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- remember_me_for-method -->
+
+    
+      <div id="method-i-remember_me_until" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remember_me_until</span><span
+            class="method-args">(time)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="remember_me_until-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remember_me_until</span>(<span class="ruby-identifier">time</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">remember_token_expires_at</span> = <span class="ruby-identifier">time</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">remember_token</span>            = <span class="ruby-identifier">encrypt</span>(<span class="ruby-node">&quot;#{email}--#{remember_token_expires_at}&quot;</span>)
+  <span class="ruby-identifier">save</span>(<span class="ruby-value">:validate=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">false</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- remember_me_until-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- remember_me_until-method -->
+
+    
+      <div id="method-i-remember_token-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remember_token?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="remember_token-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remember_token?</span>
+  <span class="ruby-identifier">remember_token_expires_at</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">utc</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">remember_token_expires_at</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- remember_token-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- remember_token-3F-method -->
+
+    
+      <div id="method-i-roles-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">roles=</span><span
+            class="method-args">(value)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="roles-3D-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/user_stub.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">roles=</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Array</span><span class="ruby-operator">===</span><span class="ruby-identifier">value</span>
+    <span class="ruby-ivar">@roles</span> = <span class="ruby-identifier">value</span> 
+  <span class="ruby-keyword">elsif</span> <span class="ruby-constant">String</span><span class="ruby-operator">===</span><span class="ruby-identifier">value</span>
+    <span class="ruby-ivar">@roles</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;,&quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@roles</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- roles-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- roles-3D-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Protected Instance Methods</h3>
+
+    
+      <div id="method-i-encrypt_password" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">encrypt_password</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>before filter</p>
+          
+
+          
+          <div class="method-source-code" id="encrypt_password-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 115</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">encrypt_password</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">password</span>.<span class="ruby-identifier">blank?</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">salt</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA1</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-node">&quot;--#{Time.now.to_s}--#{login}--&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_record?</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">crypted_password</span> = <span class="ruby-identifier">encrypt</span>(<span class="ruby-identifier">password</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- encrypt_password-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- encrypt_password-method -->
+
+    
+      <div id="method-i-password_required-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">password_required?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="password_required-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">password_required?</span>
+  <span class="ruby-identifier">crypted_password</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">password</span>.<span class="ruby-identifier">blank?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- password_required-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- password_required-3F-method -->
+
+    
+    </section><!-- protected-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>module UploadColumn::ActiveRecordExtension::ClassMethods - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../index.html">Home</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/upload_column/lib/upload_column/active_record_extension.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-image_column">#image_column</a>
+    
+    <li><a href="#method-i-reflect_on_upload_columns">#reflect_on_upload_columns</a>
+    
+    <li><a href="#method-i-upload_column">#upload_column</a>
+    
+    <li><a href="#method-i-validates_integrity_of">#validates_integrity_of</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../../doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../UploadColumn.html">UploadColumn</a>
+  
+    <li><a href="../../UploadColumn/ActionControllerExtension.html">UploadColumn::ActionControllerExtension</a>
+  
+    <li><a href="../../UploadColumn/ActiveRecordExtension.html">UploadColumn::ActiveRecordExtension</a>
+  
+    <li><a href="../../UploadColumn/ActiveRecordExtension/ClassMethods.html">UploadColumn::ActiveRecordExtension::ClassMethods</a>
+  
+    <li><a href="../../UploadColumn/AssetTagExtension.html">UploadColumn::AssetTagExtension</a>
+  
+    <li><a href="../../UploadColumn/ConfigurationProxy.html">UploadColumn::ConfigurationProxy</a>
+  
+    <li><a href="../../UploadColumn/MagicColumns.html">UploadColumn::MagicColumns</a>
+  
+    <li><a href="../../UploadColumn/Manipulators.html">UploadColumn::Manipulators</a>
+  
+    <li><a href="../../UploadColumn/Manipulators/ImageScience.html">UploadColumn::Manipulators::ImageScience</a>
+  
+    <li><a href="../../UploadColumn/Manipulators/RMagick.html">UploadColumn::Manipulators::RMagick</a>
+  
+    <li><a href="../../UploadColumn/SanitizedFile.html">UploadColumn::SanitizedFile</a>
+  
+    <li><a href="../../UploadColumn/UploadColumnHelper.html">UploadColumn::UploadColumnHelper</a>
+  
+    <li><a href="../../UploadColumn/UploadedFile.html">UploadColumn::UploadedFile</a>
+  
+    <li><a href="../../RestfulComments.html">RestfulComments</a>
+  
+    <li><a href="../../RestfulComments/Commentable.html">RestfulComments::Commentable</a>
+  
+    <li><a href="../../RestfulComments/Commentable/ClassMethods.html">RestfulComments::Commentable::ClassMethods</a>
+  
+    <li><a href="../../RestfulComments/Commentable/CommentsExtension.html">RestfulComments::Commentable::CommentsExtension</a>
+  
+    <li><a href="../../RestfulComments/Commentable/InstanceMethods.html">RestfulComments::Commentable::InstanceMethods</a>
+  
+    <li><a href="../../RestfulComments/Commentable/SingletonMethods.html">RestfulComments::Commentable::SingletonMethods</a>
+  
+    <li><a href="../../RestfulComments/Helper.html">RestfulComments::Helper</a>
+  
+    <li><a href="../../Juixe.html">Juixe</a>
+  
+    <li><a href="../../Juixe/Acts.html">Juixe::Acts</a>
+  
+    <li><a href="../../Juixe/Acts/Commentable.html">Juixe::Acts::Commentable</a>
+  
+    <li><a href="../../Juixe/Acts/Commentable/ClassMethods.html">Juixe::Acts::Commentable::ClassMethods</a>
+  
+    <li><a href="../../Juixe/Acts/Commentable/InstanceMethods.html">Juixe::Acts::Commentable::InstanceMethods</a>
+  
+    <li><a href="../../Juixe/Acts/Commentable/SingletonMethods.html">Juixe::Acts::Commentable::SingletonMethods</a>
+  
+    <li><a href="../../YamlDb.html">YamlDb</a>
+  
+    <li><a href="../../YamlDb/Dump.html">YamlDb::Dump</a>
+  
+    <li><a href="../../YamlDb/EncodingException.html">YamlDb::EncodingException</a>
+  
+    <li><a href="../../YamlDb/Load.html">YamlDb::Load</a>
+  
+    <li><a href="../../YamlDb/Utils.html">YamlDb::Utils</a>
+  
+    <li><a href="../../RoleRequirementSystem.html">RoleRequirementSystem</a>
+  
+    <li><a href="../../RoleRequirementSystem/RoleSecurityClassMethods.html">RoleRequirementSystem::RoleSecurityClassMethods</a>
+  
+    <li><a href="../../RoleRequirementSystem/RoleSecurityInstanceMethods.html">RoleRequirementSystem::RoleSecurityInstanceMethods</a>
+  
+    <li><a href="../../ActionView.html">ActionView</a>
+  
+    <li><a href="../../ActionView/Helpers.html">ActionView::Helpers</a>
+  
+    <li><a href="../../ActiveRecordExtension.html">ActiveRecordExtension</a>
+  
+    <li><a href="../../ActiveRecordExtension/ClassMethods.html">ActiveRecordExtension::ClassMethods</a>
+  
+    <li><a href="../../ActsAsCommentableTest.html">ActsAsCommentableTest</a>
+  
+    <li><a href="../../AliquotToPool.html">AliquotToPool</a>
+  
+    <li><a href="../../AnnotateModels.html">AnnotateModels</a>
+  
+    <li><a href="../../ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="../../ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="../../AuthenticatedGenerator.html">AuthenticatedGenerator</a>
+  
+    <li><a href="../../AuthenticatedSystem.html">AuthenticatedSystem</a>
+  
+    <li><a href="../../AuthenticatedTestHelper.html">AuthenticatedTestHelper</a>
+  
+    <li><a href="../../BeIdenticalWith.html">BeIdenticalWith</a>
+  
+    <li><a href="../../BeNoLargerThan.html">BeNoLargerThan</a>
+  
+    <li><a href="../../BuilderHelper.html">BuilderHelper</a>
+  
+    <li><a href="../../Comment.html">Comment</a>
+  
+    <li><a href="../../CommentSystemTest.html">CommentSystemTest</a>
+  
+    <li><a href="../../CommentsController.html">CommentsController</a>
+  
+    <li><a href="../../CommentsHelper.html">CommentsHelper</a>
+  
+    <li><a href="../../ControllerStub.html">ControllerStub</a>
+  
+    <li><a href="../../CreateComments.html">CreateComments</a>
+  
+    <li><a href="../../DummyController.html">DummyController</a>
+  
+    <li><a href="../../Entry.html">Entry</a>
+  
+    <li><a href="../../Event.html">Event</a>
+  
+    <li><a href="../../ExistsPredicate.html">ExistsPredicate</a>
+  
+    <li><a href="../../ExportCount.html">ExportCount</a>
+  
+    <li><a href="../../ExportField.html">ExportField</a>
+  
+    <li><a href="../../GeneList.html">GeneList</a>
+  
+    <li><a href="../../HavePermissions.html">HavePermissions</a>
+  
+    <li><a href="../../HaveTheExactDimensionsOf.html">HaveTheExactDimensionsOf</a>
+  
+    <li><a href="../../Hijacker.html">Hijacker</a>
+  
+    <li><a href="../../InventoryDB.html">InventoryDB</a>
+  
+    <li><a href="../../MatchPath.html">MatchPath</a>
+  
+    <li><a href="../../Monkey.html">Monkey</a>
+  
+    <li><a href="../../Movie.html">Movie</a>
+  
+    <li><a href="../../MyController.html">MyController</a>
+  
+    <li><a href="../../Object.html">Object</a>
+  
+    <li><a href="../../OligoAnnotation.html">OligoAnnotation</a>
+  
+    <li><a href="../../OligoDesign.html">OligoDesign</a>
+  
+    <li><a href="../../OligoDesignsController.html">OligoDesignsController</a>
+  
+    <li><a href="../../OligoExtensions.html">OligoExtensions</a>
+  
+    <li><a href="../../OtherController.html">OtherController</a>
+  
+    <li><a href="../../PilotOligoDesign.html">PilotOligoDesign</a>
+  
+    <li><a href="../../PilotOligoDesignsController.html">PilotOligoDesignsController</a>
+  
+    <li><a href="../../PlatePosition.html">PlatePosition</a>
+  
+    <li><a href="../../PlateTube.html">PlateTube</a>
+  
+    <li><a href="../../PlateTubesController.html">PlateTubesController</a>
+  
+    <li><a href="../../Pool.html">Pool</a>
+  
+    <li><a href="../../PoolsController.html">PoolsController</a>
+  
+    <li><a href="../../Project.html">Project</a>
+  
+    <li><a href="../../Researcher.html">Researcher</a>
+  
+    <li><a href="../../ResearchersController.html">ResearchersController</a>
+  
+    <li><a href="../../Role.html">Role</a>
+  
+    <li><a href="../../RoleGenerator.html">RoleGenerator</a>
+  
+    <li><a href="../../RoleGeneratorHelpers.html">RoleGeneratorHelpers</a>
+  
+    <li><a href="../../RoleRequirementTestHelper.html">RoleRequirementTestHelper</a>
+  
+    <li><a href="../../RolesGenerator.html">RolesGenerator</a>
+  
+    <li><a href="../../SessionsController.html">SessionsController</a>
+  
+    <li><a href="../../SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="../../Shroom.html">Shroom</a>
+  
+    <li><a href="../../StorageLocation.html">StorageLocation</a>
+  
+    <li><a href="../../StorageLocationsController.html">StorageLocationsController</a>
+  
+    <li><a href="../../SynthOligo.html">SynthOligo</a>
+  
+    <li><a href="../../SynthOligosController.html">SynthOligosController</a>
+  
+    <li><a href="../../TaggedBuilder.html">TaggedBuilder</a>
+  
+    <li><a href="../../TestMigration.html">TestMigration</a>
+  
+    <li><a href="../../TestRoleController.html">TestRoleController</a>
+  
+    <li><a href="../../UniversalSpecHelper.html">UniversalSpecHelper</a>
+  
+    <li><a href="../../UploadColumnSpecHelper.html">UploadColumnSpecHelper</a>
+  
+    <li><a href="../../User.html">User</a>
+  
+    <li><a href="../../UserNotifier.html">UserNotifier</a>
+  
+    <li><a href="../../UserObserver.html">UserObserver</a>
+  
+    <li><a href="../../UsersController.html">UsersController</a>
+  
+    <li><a href="../../Vector.html">Vector</a>
+  
+    <li><a href="../../VectorsController.html">VectorsController</a>
+  
+    <li><a href="../../Version.html">Version</a>
+  
+    <li><a href="../../VersionsController.html">VersionsController</a>
+  
+    <li><a href="../../WelcomeController.html">WelcomeController</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module UploadColumn::ActiveRecordExtension::ClassMethods</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-image_column" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">image_column</span><span
+            class="method-args">(name, options={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="image_column-source">
+            <pre><span class="ruby-comment"># File lib/upload_column/lib/upload_column/active_record_extension.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">image_column</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-identifier">upload_column</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">reverse_merge</span>(<span class="ruby-constant">UploadColumn</span>.<span class="ruby-identifier">image_column_configuration</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- image_column-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- image_column-method -->
+
+    
+      <div id="method-i-reflect_on_upload_columns" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reflect_on_upload_columns</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns a hash of all UploadColumns defined on the model and their options.</p>
+          
+
+          
+          <div class="method-source-code" id="reflect_on_upload_columns-source">
+            <pre><span class="ruby-comment"># File lib/upload_column/lib/upload_column/active_record_extension.rb, line 135</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reflect_on_upload_columns</span>
+  <span class="ruby-ivar">@upload_columns</span> <span class="ruby-operator">||</span> {}
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- reflect_on_upload_columns-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- reflect_on_upload_columns-method -->
+
+    
+      <div id="method-i-upload_column" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">upload_column</span><span
+            class="method-args">(name, options = {})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>handle the <code>attr</code> attribute as an “upload-column” field,
+generating additional methods as explained in the README. You should pass
+the attribute’s name as a symbol, like this:</p>
+
+<pre>upload_column :picture</pre>
+
+<p><code>upload_column</code> can manipulate file with the following options:</p>
+<dl class="rdoc-list label-list"><dt><code>versions</code>
+<dd>
+<p>Creates different versions of the file, can be an Array or a Hash, in the
+latter case the values of the Hash will be passed to the manipulator</p>
+</dd><dt><code>manipulator</code>
+<dd>
+<p>Takes a module that must have a method called process! that takes a single
+argument. Use this in conjucntion with :versions and :process</p>
+</dd><dt><code>process</code>
+<dd>
+<p>This instrucion is passed to the manipulators process! method.</p>
+</dd></dl>
+
+<p>you can customize file storage with the following:</p>
+<dl class="rdoc-list label-list"><dt><code>store_dir</code>
+<dd>
+<p>Determines where the file will be stored permanently, you can pass a String
+or a Proc that takes the current instance and the attribute name as
+parameters, see the <code>README</code> for detaills.</p>
+</dd><dt><code>tmp_dir</code>
+<dd>
+<p>Determines where the file will be stored temporarily before it is stored to
+its final location, you can pass a String or a Proc that takes the current
+instance and the attribute name as parameters, see the <code>README</code>
+for detaills.</p>
+</dd><dt><code>old_files</code>
+<dd>
+<p>Determines what happens when a file becomes outdated. It can be set to one
+of <code>:keep</code>, <code>:delete</code> and <code>:replace</code>. If
+set to <code>:keep</code> <a
+href="../../UploadColumn.html">UploadColumn</a> will always keep old files,
+and if set to :delete it will always delete them. If it’s set to :replace,
+the file will be replaced when a new one is uploaded, but will be kept when
+the associated object is deleted. Default to :delete.</p>
+</dd><dt><code>permissions</code>
+<dd>
+<p>Specify the Unix permissions to be used with <a
+href="../../UploadColumn.html">UploadColumn</a>. Defaults to 0644. Remember
+that permissions are usually counted in octal and that in Ruby octal
+numbers start with a zero, so 0644 != 644.</p>
+</dd><dt><code>root_dir</code>
+<dd>
+<p>The root path where image will be stored, it will be prepended to store_dir
+and tmp_dir</p>
+</dd></dl>
+
+<p>it also accepts the following, less common options:</p>
+<dl class="rdoc-list label-list"><dt><code>web_root</code>
+<dd>
+<p>Prepended to all addresses returned by <a
+href="../UploadedFile.html#method-i-url">UploadColumn::UploadedFile#url</a></p>
+</dd><dt><code>extensions</code>
+<dd>
+<p>A white list of files that can be used together with <a
+href="ClassMethods.html#method-i-validates_integrity_of">#validates_integrity_of</a>
+to secure your uploads against malicious files.</p>
+</dd><dt><code>fix_file_extensions</code>
+<dd>
+<p>Try to fix the file’s extension based on its mime-type, note that this does
+not give you any security, to make sure that no dangerous files are
+uploaded, use <code>validates_integrity_of</code>. This defaults to true.</p>
+</dd><dt><code>get_content_type_from_file_exec</code>
+<dd>
+<p>If this is set to true, <a
+href="../SanitizedFile.html">UploadColumn::SanitizedFile</a> will use a
+*nix exec to try to figure out the content type of the uploaded file.</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="upload_column-source">
+            <pre><span class="ruby-comment"># File lib/upload_column/lib/upload_column/active_record_extension.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">upload_column</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-ivar">@upload_columns</span> <span class="ruby-operator">||=</span> {}
+  <span class="ruby-ivar">@upload_columns</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-constant">Column</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span>)
+
+  <span class="ruby-identifier">define_method</span>( <span class="ruby-identifier">name</span> ) { <span class="ruby-identifier">get_upload_column</span>(<span class="ruby-identifier">name</span>) }
+  <span class="ruby-identifier">define_method</span>( <span class="ruby-node">&quot;#{name}=&quot;</span> ) { <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span> <span class="ruby-identifier">set_upload_column</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">file</span>) }
+  
+  <span class="ruby-identifier">define_submethod</span>( <span class="ruby-identifier">name</span>, <span class="ruby-string">&quot;temp&quot;</span> ) { <span class="ruby-identifier">get_upload_column_temp</span>(<span class="ruby-identifier">name</span>) }      
+  <span class="ruby-identifier">define_submethod</span>( <span class="ruby-identifier">name</span>, <span class="ruby-string">&quot;temp=&quot;</span> ) { <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span> <span class="ruby-identifier">set_upload_column_temp</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">path</span>) }
+
+  <span class="ruby-identifier">define_submethod</span>( <span class="ruby-identifier">name</span>, <span class="ruby-string">&quot;public_path&quot;</span> ) { <span class="ruby-identifier">get_upload_column</span>(<span class="ruby-identifier">name</span>).<span class="ruby-identifier">public_path</span> <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span> }
+  <span class="ruby-identifier">define_submethod</span>( <span class="ruby-identifier">name</span>, <span class="ruby-string">&quot;path&quot;</span> ) { <span class="ruby-identifier">get_upload_column</span>(<span class="ruby-identifier">name</span>).<span class="ruby-identifier">path</span> <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span> }
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:versions</span>]
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:versions</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">define_submethod</span>( <span class="ruby-identifier">name</span>, <span class="ruby-identifier">k</span> ) { <span class="ruby-identifier">get_upload_column</span>(<span class="ruby-identifier">name</span>).<span class="ruby-identifier">send</span>(<span class="ruby-identifier">k</span>) <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span> }
+      <span class="ruby-identifier">define_submethod</span>( <span class="ruby-identifier">name</span>, <span class="ruby-identifier">k</span>, <span class="ruby-string">&quot;public_path&quot;</span> ) { <span class="ruby-identifier">get_upload_column</span>(<span class="ruby-identifier">name</span>).<span class="ruby-identifier">send</span>(<span class="ruby-identifier">k</span>).<span class="ruby-identifier">public_path</span> <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span> }
+      <span class="ruby-identifier">define_submethod</span>( <span class="ruby-identifier">name</span>, <span class="ruby-identifier">k</span>, <span class="ruby-string">&quot;path&quot;</span> ) { <span class="ruby-identifier">get_upload_column</span>(<span class="ruby-identifier">name</span>).<span class="ruby-identifier">send</span>(<span class="ruby-identifier">k</span>).<span class="ruby-identifier">path</span> <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span> }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- upload_column-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- upload_column-method -->
+
+    
+      <div id="method-i-validates_integrity_of" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validates_integrity_of</span><span
+            class="method-args">(*attr_names)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates whether the images extension is in the array passed to
+:extensions. By default this is the UploadColumn.extensions array</p>
+
+<p>Use this to prevent upload of files which could potentially damage your
+system, such as executables or script files (.rb, .php, etc…).</p>
+          
+
+          
+          <div class="method-source-code" id="validates_integrity_of-source">
+            <pre><span class="ruby-comment"># File lib/upload_column/lib/upload_column/active_record_extension.rb, line 122</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validates_integrity_of</span>(*<span class="ruby-identifier">attr_names</span>)
+  <span class="ruby-identifier">configuration</span> = { <span class="ruby-value">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;is not of a valid file type.&quot;</span> }
+  <span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">attr_names</span>.<span class="ruby-identifier">pop</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">attr_names</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+
+  <span class="ruby-identifier">attr_names</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reflect_on_upload_columns</span>[<span class="ruby-identifier">name</span>].<span class="ruby-identifier">options</span>[<span class="ruby-value">:validate_integrity</span>] = <span class="ruby-keyword">true</span> }
+
+  <span class="ruby-identifier">validates_each</span>(<span class="ruby-identifier">attr_names</span>, <span class="ruby-identifier">configuration</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">record</span>, <span class="ruby-identifier">attr</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">value</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-string">'@files'</span>)[<span class="ruby-identifier">attr</span>]
+    <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">attr</span>, <span class="ruby-identifier">value</span>.<span class="ruby-identifier">message</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">IntegrityError</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validates_integrity_of-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validates_integrity_of-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

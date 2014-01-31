@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>module Juixe::Acts::Commentable::InstanceMethods - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="../../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../../index.html">Home</a>
+    <a href="../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/acts_as_commentable.rb
+    <li>lib/acts_as_commentable/lib/acts_as_commentable.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-add_comment">#add_comment</a>
+    
+    <li><a href="#method-i-comments_ordered_by_submitted">#comments_ordered_by_submitted</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../../../doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../../UploadColumn.html">UploadColumn</a>
+  
+    <li><a href="../../../UploadColumn/ActionControllerExtension.html">UploadColumn::ActionControllerExtension</a>
+  
+    <li><a href="../../../UploadColumn/ActiveRecordExtension.html">UploadColumn::ActiveRecordExtension</a>
+  
+    <li><a href="../../../UploadColumn/ActiveRecordExtension/ClassMethods.html">UploadColumn::ActiveRecordExtension::ClassMethods</a>
+  
+    <li><a href="../../../UploadColumn/AssetTagExtension.html">UploadColumn::AssetTagExtension</a>
+  
+    <li><a href="../../../UploadColumn/ConfigurationProxy.html">UploadColumn::ConfigurationProxy</a>
+  
+    <li><a href="../../../UploadColumn/MagicColumns.html">UploadColumn::MagicColumns</a>
+  
+    <li><a href="../../../UploadColumn/Manipulators.html">UploadColumn::Manipulators</a>
+  
+    <li><a href="../../../UploadColumn/Manipulators/ImageScience.html">UploadColumn::Manipulators::ImageScience</a>
+  
+    <li><a href="../../../UploadColumn/Manipulators/RMagick.html">UploadColumn::Manipulators::RMagick</a>
+  
+    <li><a href="../../../UploadColumn/SanitizedFile.html">UploadColumn::SanitizedFile</a>
+  
+    <li><a href="../../../UploadColumn/UploadColumnHelper.html">UploadColumn::UploadColumnHelper</a>
+  
+    <li><a href="../../../UploadColumn/UploadedFile.html">UploadColumn::UploadedFile</a>
+  
+    <li><a href="../../../RestfulComments.html">RestfulComments</a>
+  
+    <li><a href="../../../RestfulComments/Commentable.html">RestfulComments::Commentable</a>
+  
+    <li><a href="../../../RestfulComments/Commentable/ClassMethods.html">RestfulComments::Commentable::ClassMethods</a>
+  
+    <li><a href="../../../RestfulComments/Commentable/CommentsExtension.html">RestfulComments::Commentable::CommentsExtension</a>
+  
+    <li><a href="../../../RestfulComments/Commentable/InstanceMethods.html">RestfulComments::Commentable::InstanceMethods</a>
+  
+    <li><a href="../../../RestfulComments/Commentable/SingletonMethods.html">RestfulComments::Commentable::SingletonMethods</a>
+  
+    <li><a href="../../../RestfulComments/Helper.html">RestfulComments::Helper</a>
+  
+    <li><a href="../../../Juixe.html">Juixe</a>
+  
+    <li><a href="../../../Juixe/Acts.html">Juixe::Acts</a>
+  
+    <li><a href="../../../Juixe/Acts/Commentable.html">Juixe::Acts::Commentable</a>
+  
+    <li><a href="../../../Juixe/Acts/Commentable/ClassMethods.html">Juixe::Acts::Commentable::ClassMethods</a>
+  
+    <li><a href="../../../Juixe/Acts/Commentable/InstanceMethods.html">Juixe::Acts::Commentable::InstanceMethods</a>
+  
+    <li><a href="../../../Juixe/Acts/Commentable/SingletonMethods.html">Juixe::Acts::Commentable::SingletonMethods</a>
+  
+    <li><a href="../../../YamlDb.html">YamlDb</a>
+  
+    <li><a href="../../../YamlDb/Dump.html">YamlDb::Dump</a>
+  
+    <li><a href="../../../YamlDb/EncodingException.html">YamlDb::EncodingException</a>
+  
+    <li><a href="../../../YamlDb/Load.html">YamlDb::Load</a>
+  
+    <li><a href="../../../YamlDb/Utils.html">YamlDb::Utils</a>
+  
+    <li><a href="../../../RoleRequirementSystem.html">RoleRequirementSystem</a>
+  
+    <li><a href="../../../RoleRequirementSystem/RoleSecurityClassMethods.html">RoleRequirementSystem::RoleSecurityClassMethods</a>
+  
+    <li><a href="../../../RoleRequirementSystem/RoleSecurityInstanceMethods.html">RoleRequirementSystem::RoleSecurityInstanceMethods</a>
+  
+    <li><a href="../../../ActionView.html">ActionView</a>
+  
+    <li><a href="../../../ActionView/Helpers.html">ActionView::Helpers</a>
+  
+    <li><a href="../../../ActiveRecordExtension.html">ActiveRecordExtension</a>
+  
+    <li><a href="../../../ActiveRecordExtension/ClassMethods.html">ActiveRecordExtension::ClassMethods</a>
+  
+    <li><a href="../../../ActsAsCommentableTest.html">ActsAsCommentableTest</a>
+  
+    <li><a href="../../../AliquotToPool.html">AliquotToPool</a>
+  
+    <li><a href="../../../AnnotateModels.html">AnnotateModels</a>
+  
+    <li><a href="../../../ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="../../../ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="../../../AuthenticatedGenerator.html">AuthenticatedGenerator</a>
+  
+    <li><a href="../../../AuthenticatedSystem.html">AuthenticatedSystem</a>
+  
+    <li><a href="../../../AuthenticatedTestHelper.html">AuthenticatedTestHelper</a>
+  
+    <li><a href="../../../BeIdenticalWith.html">BeIdenticalWith</a>
+  
+    <li><a href="../../../BeNoLargerThan.html">BeNoLargerThan</a>
+  
+    <li><a href="../../../BuilderHelper.html">BuilderHelper</a>
+  
+    <li><a href="../../../Comment.html">Comment</a>
+  
+    <li><a href="../../../CommentSystemTest.html">CommentSystemTest</a>
+  
+    <li><a href="../../../CommentsController.html">CommentsController</a>
+  
+    <li><a href="../../../CommentsHelper.html">CommentsHelper</a>
+  
+    <li><a href="../../../ControllerStub.html">ControllerStub</a>
+  
+    <li><a href="../../../CreateComments.html">CreateComments</a>
+  
+    <li><a href="../../../DummyController.html">DummyController</a>
+  
+    <li><a href="../../../Entry.html">Entry</a>
+  
+    <li><a href="../../../Event.html">Event</a>
+  
+    <li><a href="../../../ExistsPredicate.html">ExistsPredicate</a>
+  
+    <li><a href="../../../ExportCount.html">ExportCount</a>
+  
+    <li><a href="../../../ExportField.html">ExportField</a>
+  
+    <li><a href="../../../GeneList.html">GeneList</a>
+  
+    <li><a href="../../../HavePermissions.html">HavePermissions</a>
+  
+    <li><a href="../../../HaveTheExactDimensionsOf.html">HaveTheExactDimensionsOf</a>
+  
+    <li><a href="../../../Hijacker.html">Hijacker</a>
+  
+    <li><a href="../../../InventoryDB.html">InventoryDB</a>
+  
+    <li><a href="../../../MatchPath.html">MatchPath</a>
+  
+    <li><a href="../../../Monkey.html">Monkey</a>
+  
+    <li><a href="../../../Movie.html">Movie</a>
+  
+    <li><a href="../../../MyController.html">MyController</a>
+  
+    <li><a href="../../../Object.html">Object</a>
+  
+    <li><a href="../../../OligoAnnotation.html">OligoAnnotation</a>
+  
+    <li><a href="../../../OligoDesign.html">OligoDesign</a>
+  
+    <li><a href="../../../OligoDesignsController.html">OligoDesignsController</a>
+  
+    <li><a href="../../../OligoExtensions.html">OligoExtensions</a>
+  
+    <li><a href="../../../OtherController.html">OtherController</a>
+  
+    <li><a href="../../../PilotOligoDesign.html">PilotOligoDesign</a>
+  
+    <li><a href="../../../PilotOligoDesignsController.html">PilotOligoDesignsController</a>
+  
+    <li><a href="../../../PlatePosition.html">PlatePosition</a>
+  
+    <li><a href="../../../PlateTube.html">PlateTube</a>
+  
+    <li><a href="../../../PlateTubesController.html">PlateTubesController</a>
+  
+    <li><a href="../../../Pool.html">Pool</a>
+  
+    <li><a href="../../../PoolsController.html">PoolsController</a>
+  
+    <li><a href="../../../Project.html">Project</a>
+  
+    <li><a href="../../../Researcher.html">Researcher</a>
+  
+    <li><a href="../../../ResearchersController.html">ResearchersController</a>
+  
+    <li><a href="../../../Role.html">Role</a>
+  
+    <li><a href="../../../RoleGenerator.html">RoleGenerator</a>
+  
+    <li><a href="../../../RoleGeneratorHelpers.html">RoleGeneratorHelpers</a>
+  
+    <li><a href="../../../RoleRequirementTestHelper.html">RoleRequirementTestHelper</a>
+  
+    <li><a href="../../../RolesGenerator.html">RolesGenerator</a>
+  
+    <li><a href="../../../SessionsController.html">SessionsController</a>
+  
+    <li><a href="../../../SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="../../../Shroom.html">Shroom</a>
+  
+    <li><a href="../../../StorageLocation.html">StorageLocation</a>
+  
+    <li><a href="../../../StorageLocationsController.html">StorageLocationsController</a>
+  
+    <li><a href="../../../SynthOligo.html">SynthOligo</a>
+  
+    <li><a href="../../../SynthOligosController.html">SynthOligosController</a>
+  
+    <li><a href="../../../TaggedBuilder.html">TaggedBuilder</a>
+  
+    <li><a href="../../../TestMigration.html">TestMigration</a>
+  
+    <li><a href="../../../TestRoleController.html">TestRoleController</a>
+  
+    <li><a href="../../../UniversalSpecHelper.html">UniversalSpecHelper</a>
+  
+    <li><a href="../../../UploadColumnSpecHelper.html">UploadColumnSpecHelper</a>
+  
+    <li><a href="../../../User.html">User</a>
+  
+    <li><a href="../../../UserNotifier.html">UserNotifier</a>
+  
+    <li><a href="../../../UserObserver.html">UserObserver</a>
+  
+    <li><a href="../../../UsersController.html">UsersController</a>
+  
+    <li><a href="../../../Vector.html">Vector</a>
+  
+    <li><a href="../../../VectorsController.html">VectorsController</a>
+  
+    <li><a href="../../../Version.html">Version</a>
+  
+    <li><a href="../../../VersionsController.html">VersionsController</a>
+  
+    <li><a href="../../../WelcomeController.html">WelcomeController</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module Juixe::Acts::Commentable::InstanceMethods</h1>
+
+  <div id="description" class="description">
+    
+<p>This module contains instance methods</p>
+
+<p>This module contains instance methods</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-add_comment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_comment</span><span
+            class="method-args">(comment)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Helper method that defaults the submitted time.</p>
+          
+
+          
+          <div class="method-source-code" id="add_comment-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_commentable.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add_comment</span>(<span class="ruby-identifier">comment</span>)
+  <span class="ruby-identifier">comments</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">comment</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- add_comment-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- add_comment-method -->
+
+    
+      <div id="method-i-comments_ordered_by_submitted" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">comments_ordered_by_submitted</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Helper method to sort comments by date</p>
+          
+
+          
+          <div class="method-source-code" id="comments_ordered_by_submitted-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_commentable.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">comments_ordered_by_submitted</span>
+  <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>,
+    <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;commentable_id = ? and commentable_type = ?&quot;</span>, <span class="ruby-identifier">id</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">type</span>.<span class="ruby-identifier">name</span>],
+    <span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;created_at DESC&quot;</span>
+  )
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- comments_ordered_by_submitted-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- comments_ordered_by_submitted-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

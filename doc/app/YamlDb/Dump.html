@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>module YamlDb::Dump - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/yaml_db/lib/yaml_db.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-dump">::dump</a>
+    
+    <li><a href="#method-c-dump_table">::dump_table</a>
+    
+    <li><a href="#method-c-dump_table_columns">::dump_table_columns</a>
+    
+    <li><a href="#method-c-dump_table_records">::dump_table_records</a>
+    
+    <li><a href="#method-c-each_table_page">::each_table_page</a>
+    
+    <li><a href="#method-c-table_column_names">::table_column_names</a>
+    
+    <li><a href="#method-c-table_record_count">::table_record_count</a>
+    
+    <li><a href="#method-c-table_record_header">::table_record_header</a>
+    
+    <li><a href="#method-c-tables">::tables</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../UploadColumn.html">UploadColumn</a>
+  
+    <li><a href="../UploadColumn/ActionControllerExtension.html">UploadColumn::ActionControllerExtension</a>
+  
+    <li><a href="../UploadColumn/ActiveRecordExtension.html">UploadColumn::ActiveRecordExtension</a>
+  
+    <li><a href="../UploadColumn/ActiveRecordExtension/ClassMethods.html">UploadColumn::ActiveRecordExtension::ClassMethods</a>
+  
+    <li><a href="../UploadColumn/AssetTagExtension.html">UploadColumn::AssetTagExtension</a>
+  
+    <li><a href="../UploadColumn/ConfigurationProxy.html">UploadColumn::ConfigurationProxy</a>
+  
+    <li><a href="../UploadColumn/MagicColumns.html">UploadColumn::MagicColumns</a>
+  
+    <li><a href="../UploadColumn/Manipulators.html">UploadColumn::Manipulators</a>
+  
+    <li><a href="../UploadColumn/Manipulators/ImageScience.html">UploadColumn::Manipulators::ImageScience</a>
+  
+    <li><a href="../UploadColumn/Manipulators/RMagick.html">UploadColumn::Manipulators::RMagick</a>
+  
+    <li><a href="../UploadColumn/SanitizedFile.html">UploadColumn::SanitizedFile</a>
+  
+    <li><a href="../UploadColumn/UploadColumnHelper.html">UploadColumn::UploadColumnHelper</a>
+  
+    <li><a href="../UploadColumn/UploadedFile.html">UploadColumn::UploadedFile</a>
+  
+    <li><a href="../RestfulComments.html">RestfulComments</a>
+  
+    <li><a href="../RestfulComments/Commentable.html">RestfulComments::Commentable</a>
+  
+    <li><a href="../RestfulComments/Commentable/ClassMethods.html">RestfulComments::Commentable::ClassMethods</a>
+  
+    <li><a href="../RestfulComments/Commentable/CommentsExtension.html">RestfulComments::Commentable::CommentsExtension</a>
+  
+    <li><a href="../RestfulComments/Commentable/InstanceMethods.html">RestfulComments::Commentable::InstanceMethods</a>
+  
+    <li><a href="../RestfulComments/Commentable/SingletonMethods.html">RestfulComments::Commentable::SingletonMethods</a>
+  
+    <li><a href="../RestfulComments/Helper.html">RestfulComments::Helper</a>
+  
+    <li><a href="../Juixe.html">Juixe</a>
+  
+    <li><a href="../Juixe/Acts.html">Juixe::Acts</a>
+  
+    <li><a href="../Juixe/Acts/Commentable.html">Juixe::Acts::Commentable</a>
+  
+    <li><a href="../Juixe/Acts/Commentable/ClassMethods.html">Juixe::Acts::Commentable::ClassMethods</a>
+  
+    <li><a href="../Juixe/Acts/Commentable/InstanceMethods.html">Juixe::Acts::Commentable::InstanceMethods</a>
+  
+    <li><a href="../Juixe/Acts/Commentable/SingletonMethods.html">Juixe::Acts::Commentable::SingletonMethods</a>
+  
+    <li><a href="../YamlDb.html">YamlDb</a>
+  
+    <li><a href="../YamlDb/Dump.html">YamlDb::Dump</a>
+  
+    <li><a href="../YamlDb/EncodingException.html">YamlDb::EncodingException</a>
+  
+    <li><a href="../YamlDb/Load.html">YamlDb::Load</a>
+  
+    <li><a href="../YamlDb/Utils.html">YamlDb::Utils</a>
+  
+    <li><a href="../RoleRequirementSystem.html">RoleRequirementSystem</a>
+  
+    <li><a href="../RoleRequirementSystem/RoleSecurityClassMethods.html">RoleRequirementSystem::RoleSecurityClassMethods</a>
+  
+    <li><a href="../RoleRequirementSystem/RoleSecurityInstanceMethods.html">RoleRequirementSystem::RoleSecurityInstanceMethods</a>
+  
+    <li><a href="../ActionView.html">ActionView</a>
+  
+    <li><a href="../ActionView/Helpers.html">ActionView::Helpers</a>
+  
+    <li><a href="../ActiveRecordExtension.html">ActiveRecordExtension</a>
+  
+    <li><a href="../ActiveRecordExtension/ClassMethods.html">ActiveRecordExtension::ClassMethods</a>
+  
+    <li><a href="../ActsAsCommentableTest.html">ActsAsCommentableTest</a>
+  
+    <li><a href="../AliquotToPool.html">AliquotToPool</a>
+  
+    <li><a href="../AnnotateModels.html">AnnotateModels</a>
+  
+    <li><a href="../ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="../ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="../AuthenticatedGenerator.html">AuthenticatedGenerator</a>
+  
+    <li><a href="../AuthenticatedSystem.html">AuthenticatedSystem</a>
+  
+    <li><a href="../AuthenticatedTestHelper.html">AuthenticatedTestHelper</a>
+  
+    <li><a href="../BeIdenticalWith.html">BeIdenticalWith</a>
+  
+    <li><a href="../BeNoLargerThan.html">BeNoLargerThan</a>
+  
+    <li><a href="../BuilderHelper.html">BuilderHelper</a>
+  
+    <li><a href="../Comment.html">Comment</a>
+  
+    <li><a href="../CommentSystemTest.html">CommentSystemTest</a>
+  
+    <li><a href="../CommentsController.html">CommentsController</a>
+  
+    <li><a href="../CommentsHelper.html">CommentsHelper</a>
+  
+    <li><a href="../ControllerStub.html">ControllerStub</a>
+  
+    <li><a href="../CreateComments.html">CreateComments</a>
+  
+    <li><a href="../DummyController.html">DummyController</a>
+  
+    <li><a href="../Entry.html">Entry</a>
+  
+    <li><a href="../Event.html">Event</a>
+  
+    <li><a href="../ExistsPredicate.html">ExistsPredicate</a>
+  
+    <li><a href="../ExportCount.html">ExportCount</a>
+  
+    <li><a href="../ExportField.html">ExportField</a>
+  
+    <li><a href="../GeneList.html">GeneList</a>
+  
+    <li><a href="../HavePermissions.html">HavePermissions</a>
+  
+    <li><a href="../HaveTheExactDimensionsOf.html">HaveTheExactDimensionsOf</a>
+  
+    <li><a href="../Hijacker.html">Hijacker</a>
+  
+    <li><a href="../InventoryDB.html">InventoryDB</a>
+  
+    <li><a href="../MatchPath.html">MatchPath</a>
+  
+    <li><a href="../Monkey.html">Monkey</a>
+  
+    <li><a href="../Movie.html">Movie</a>
+  
+    <li><a href="../MyController.html">MyController</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+    <li><a href="../OligoAnnotation.html">OligoAnnotation</a>
+  
+    <li><a href="../OligoDesign.html">OligoDesign</a>
+  
+    <li><a href="../OligoDesignsController.html">OligoDesignsController</a>
+  
+    <li><a href="../OligoExtensions.html">OligoExtensions</a>
+  
+    <li><a href="../OtherController.html">OtherController</a>
+  
+    <li><a href="../PilotOligoDesign.html">PilotOligoDesign</a>
+  
+    <li><a href="../PilotOligoDesignsController.html">PilotOligoDesignsController</a>
+  
+    <li><a href="../PlatePosition.html">PlatePosition</a>
+  
+    <li><a href="../PlateTube.html">PlateTube</a>
+  
+    <li><a href="../PlateTubesController.html">PlateTubesController</a>
+  
+    <li><a href="../Pool.html">Pool</a>
+  
+    <li><a href="../PoolsController.html">PoolsController</a>
+  
+    <li><a href="../Project.html">Project</a>
+  
+    <li><a href="../Researcher.html">Researcher</a>
+  
+    <li><a href="../ResearchersController.html">ResearchersController</a>
+  
+    <li><a href="../Role.html">Role</a>
+  
+    <li><a href="../RoleGenerator.html">RoleGenerator</a>
+  
+    <li><a href="../RoleGeneratorHelpers.html">RoleGeneratorHelpers</a>
+  
+    <li><a href="../RoleRequirementTestHelper.html">RoleRequirementTestHelper</a>
+  
+    <li><a href="../RolesGenerator.html">RolesGenerator</a>
+  
+    <li><a href="../SessionsController.html">SessionsController</a>
+  
+    <li><a href="../SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="../Shroom.html">Shroom</a>
+  
+    <li><a href="../StorageLocation.html">StorageLocation</a>
+  
+    <li><a href="../StorageLocationsController.html">StorageLocationsController</a>
+  
+    <li><a href="../SynthOligo.html">SynthOligo</a>
+  
+    <li><a href="../SynthOligosController.html">SynthOligosController</a>
+  
+    <li><a href="../TaggedBuilder.html">TaggedBuilder</a>
+  
+    <li><a href="../TestMigration.html">TestMigration</a>
+  
+    <li><a href="../TestRoleController.html">TestRoleController</a>
+  
+    <li><a href="../UniversalSpecHelper.html">UniversalSpecHelper</a>
+  
+    <li><a href="../UploadColumnSpecHelper.html">UploadColumnSpecHelper</a>
+  
+    <li><a href="../User.html">User</a>
+  
+    <li><a href="../UserNotifier.html">UserNotifier</a>
+  
+    <li><a href="../UserObserver.html">UserObserver</a>
+  
+    <li><a href="../UsersController.html">UsersController</a>
+  
+    <li><a href="../Vector.html">Vector</a>
+  
+    <li><a href="../VectorsController.html">VectorsController</a>
+  
+    <li><a href="../Version.html">Version</a>
+  
+    <li><a href="../VersionsController.html">VersionsController</a>
+  
+    <li><a href="../WelcomeController.html">WelcomeController</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module YamlDb::Dump</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-dump" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump</span><span
+            class="method-args">(io)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump-source">
+            <pre><span class="ruby-comment"># File lib/yaml_db/lib/yaml_db.rb, line 96</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-identifier">io</span>)
+        <span class="ruby-identifier">tables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">table</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">dump_table</span>(<span class="ruby-identifier">io</span>, <span class="ruby-identifier">table</span>)
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- dump-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- dump-method -->
+
+    
+      <div id="method-c-dump_table" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_table</span><span
+            class="method-args">(io, table)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_table-source">
+            <pre><span class="ruby-comment"># File lib/yaml_db/lib/yaml_db.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">dump_table</span>(<span class="ruby-identifier">io</span>, <span class="ruby-identifier">table</span>)
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">table_record_count</span>(<span class="ruby-identifier">table</span>).<span class="ruby-identifier">zero?</span>
+
+        <span class="ruby-identifier">dump_table_columns</span>(<span class="ruby-identifier">io</span>, <span class="ruby-identifier">table</span>)
+        <span class="ruby-identifier">dump_table_records</span>(<span class="ruby-identifier">io</span>, <span class="ruby-identifier">table</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- dump_table-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- dump_table-method -->
+
+    
+      <div id="method-c-dump_table_columns" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_table_columns</span><span
+            class="method-args">(io, table)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_table_columns-source">
+            <pre><span class="ruby-comment"># File lib/yaml_db/lib/yaml_db.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">dump_table_columns</span>(<span class="ruby-identifier">io</span>, <span class="ruby-identifier">table</span>)
+        <span class="ruby-identifier">io</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+        <span class="ruby-identifier">io</span>.<span class="ruby-identifier">write</span>({ <span class="ruby-identifier">table</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-string">'columns'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">table_column_names</span>(<span class="ruby-identifier">table</span>) } }.<span class="ruby-identifier">to_yaml</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- dump_table_columns-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- dump_table_columns-method -->
+
+    
+      <div id="method-c-dump_table_records" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dump_table_records</span><span
+            class="method-args">(io, table)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dump_table_records-source">
+            <pre><span class="ruby-comment"># File lib/yaml_db/lib/yaml_db.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">dump_table_records</span>(<span class="ruby-identifier">io</span>, <span class="ruby-identifier">table</span>)
+        <span class="ruby-identifier">table_record_header</span>(<span class="ruby-identifier">io</span>)       
+
+        <span class="ruby-identifier">column_names</span> = <span class="ruby-identifier">table_column_names</span>(<span class="ruby-identifier">table</span>)
+
+        <span class="ruby-identifier">each_table_page</span>(<span class="ruby-identifier">table</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">records</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">rows</span> = <span class="ruby-constant">YamlDb</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">unhash_records</span>(<span class="ruby-identifier">records</span>, <span class="ruby-identifier">column_names</span>)
+                <span class="ruby-identifier">io</span>.<span class="ruby-identifier">write</span>(<span class="ruby-constant">YamlDb</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">chunk_records</span>(<span class="ruby-identifier">records</span>))
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- dump_table_records-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- dump_table_records-method -->
+
+    
+      <div id="method-c-each_table_page" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_table_page</span><span
+            class="method-args">(table, records_per_page=1000) { |records| ... }</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="each_table_page-source">
+            <pre><span class="ruby-comment"># File lib/yaml_db/lib/yaml_db.rb, line 137</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">each_table_page</span>(<span class="ruby-identifier">table</span>, <span class="ruby-identifier">records_per_page</span>=<span class="ruby-value">1000</span>)
+        <span class="ruby-identifier">total_count</span> = <span class="ruby-identifier">table_record_count</span>(<span class="ruby-identifier">table</span>)
+        <span class="ruby-identifier">pages</span> = (<span class="ruby-identifier">total_count</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">records_per_page</span>).<span class="ruby-identifier">ceil</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">table_column_names</span>(<span class="ruby-identifier">table</span>).<span class="ruby-identifier">first</span>
+        <span class="ruby-identifier">boolean_columns</span> = <span class="ruby-constant">YamlDb</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">boolean_columns</span>(<span class="ruby-identifier">table</span>)
+        <span class="ruby-identifier">quoted_table_name</span> = <span class="ruby-constant">YamlDb</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">quote_table</span>(<span class="ruby-identifier">table</span>)
+        
+        (<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">pages</span>).<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">sql</span> = <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">add_limit_offset!</span>(<span class="ruby-node">&quot;SELECT * FROM #{quoted_table_name} ORDER BY #{id}&quot;</span>,
+                        <span class="ruby-value">:limit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">records_per_page</span>, <span class="ruby-value">:offset</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">records_per_page</span> * <span class="ruby-identifier">page</span>
+                )
+                <span class="ruby-identifier">records</span> = <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">select_all</span>(<span class="ruby-identifier">sql</span>)
+                <span class="ruby-identifier">records</span> = <span class="ruby-constant">YamlDb</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">convert_booleans</span>(<span class="ruby-identifier">records</span>, <span class="ruby-identifier">boolean_columns</span>)
+                <span class="ruby-keyword">yield</span> <span class="ruby-identifier">records</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- each_table_page-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- each_table_page-method -->
+
+    
+      <div id="method-c-table_column_names" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">table_column_names</span><span
+            class="method-args">(table)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="table_column_names-source">
+            <pre><span class="ruby-comment"># File lib/yaml_db/lib/yaml_db.rb, line 133</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">table_column_names</span>(<span class="ruby-identifier">table</span>)
+        <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">columns</span>(<span class="ruby-identifier">table</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- table_column_names-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- table_column_names-method -->
+
+    
+      <div id="method-c-table_record_count" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">table_record_count</span><span
+            class="method-args">(table)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="table_record_count-source">
+            <pre><span class="ruby-comment"># File lib/yaml_db/lib/yaml_db.rb, line 154</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">table_record_count</span>(<span class="ruby-identifier">table</span>)
+        <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">select_one</span>(<span class="ruby-node">&quot;SELECT COUNT(*) FROM #{YamlDb::Utils.quote_table(table)}&quot;</span>).<span class="ruby-identifier">values</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">to_i</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- table_record_count-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- table_record_count-method -->
+
+    
+      <div id="method-c-table_record_header" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">table_record_header</span><span
+            class="method-args">(io)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="table_record_header-source">
+            <pre><span class="ruby-comment"># File lib/yaml_db/lib/yaml_db.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">table_record_header</span>(<span class="ruby-identifier">io</span>)
+        <span class="ruby-identifier">io</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&quot;  records: \n&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- table_record_header-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- table_record_header-method -->
+
+    
+      <div id="method-c-tables" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tables</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="tables-source">
+            <pre><span class="ruby-comment"># File lib/yaml_db/lib/yaml_db.rb, line 102</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tables</span>
+        <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">tables</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">table</span><span class="ruby-operator">|</span> [<span class="ruby-string">'schema_info'</span>, <span class="ruby-string">'schema_migrations'</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">table</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- tables-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- tables-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

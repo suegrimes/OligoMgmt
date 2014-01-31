@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class TestRoleController - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/role_requirement/test/functional/test_role_controller.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Test::Unit::TestCase
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-assert_fails_with">#assert_fails_with</a>
+    
+    <li><a href="#method-i-assert_passes_with">#assert_passes_with</a>
+    
+    <li><a href="#method-i-passes_with_params-3F">#passes_with_params?</a>
+    
+    <li><a href="#method-i-require_role">#require_role</a>
+    
+    <li><a href="#method-i-reset_role_requirements-21">#reset_role_requirements!</a>
+    
+    <li><a href="#method-i-set_roles">#set_roles</a>
+    
+    <li><a href="#method-i-setup">#setup</a>
+    
+    <li><a href="#method-i-test__controllers_dont_share_requirements">#test__controllers_dont_share_requirements</a>
+    
+    <li><a href="#method-i-test__for_alias">#test__for_alias</a>
+    
+    <li><a href="#method-i-test__for_all_except_alias">#test__for_all_except_alias</a>
+    
+    <li><a href="#method-i-test__no_user__role_not_required__returns_true">#test__no_user__role_not_required__returns_true</a>
+    
+    <li><a href="#method-i-test__no_user__role_required__returns_false">#test__no_user__role_required__returns_false</a>
+    
+    <li><a href="#method-i-test__required_role_for_all__should_require">#test__required_role_for_all__should_require</a>
+    
+    <li><a href="#method-i-test__url_options_authenticate">#test__url_options_authenticate</a>
+    
+    <li><a href="#method-i-test__url_options_authenticate__nil_value__should_handle">#test__url_options_authenticate__nil_value__should_handle</a>
+    
+    <li><a href="#method-i-test__url_options_authenticate__nil_value__should_treat_as_index">#test__url_options_authenticate__nil_value__should_treat_as_index</a>
+    
+    <li><a href="#method-i-test__url_options_authenticate__no_controller__assumes_self">#test__url_options_authenticate__no_controller__assumes_self</a>
+    
+    <li><a href="#method-i-test_required_role_for_excluded_actions_only__should_require">#test_required_role_for_excluded_actions_only__should_require</a>
+    
+    <li><a href="#method-i-test_required_role_for_if_proc__should_require">#test_required_role_for_if_proc__should_require</a>
+    
+    <li><a href="#method-i-test_required_role_for_some_actions_only__should_require">#test_required_role_for_some_actions_only__should_require</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./UploadColumn.html">UploadColumn</a>
+  
+    <li><a href="./UploadColumn/ActionControllerExtension.html">UploadColumn::ActionControllerExtension</a>
+  
+    <li><a href="./UploadColumn/ActiveRecordExtension.html">UploadColumn::ActiveRecordExtension</a>
+  
+    <li><a href="./UploadColumn/ActiveRecordExtension/ClassMethods.html">UploadColumn::ActiveRecordExtension::ClassMethods</a>
+  
+    <li><a href="./UploadColumn/AssetTagExtension.html">UploadColumn::AssetTagExtension</a>
+  
+    <li><a href="./UploadColumn/ConfigurationProxy.html">UploadColumn::ConfigurationProxy</a>
+  
+    <li><a href="./UploadColumn/MagicColumns.html">UploadColumn::MagicColumns</a>
+  
+    <li><a href="./UploadColumn/Manipulators.html">UploadColumn::Manipulators</a>
+  
+    <li><a href="./UploadColumn/Manipulators/ImageScience.html">UploadColumn::Manipulators::ImageScience</a>
+  
+    <li><a href="./UploadColumn/Manipulators/RMagick.html">UploadColumn::Manipulators::RMagick</a>
+  
+    <li><a href="./UploadColumn/SanitizedFile.html">UploadColumn::SanitizedFile</a>
+  
+    <li><a href="./UploadColumn/UploadColumnHelper.html">UploadColumn::UploadColumnHelper</a>
+  
+    <li><a href="./UploadColumn/UploadedFile.html">UploadColumn::UploadedFile</a>
+  
+    <li><a href="./RestfulComments.html">RestfulComments</a>
+  
+    <li><a href="./RestfulComments/Commentable.html">RestfulComments::Commentable</a>
+  
+    <li><a href="./RestfulComments/Commentable/ClassMethods.html">RestfulComments::Commentable::ClassMethods</a>
+  
+    <li><a href="./RestfulComments/Commentable/CommentsExtension.html">RestfulComments::Commentable::CommentsExtension</a>
+  
+    <li><a href="./RestfulComments/Commentable/InstanceMethods.html">RestfulComments::Commentable::InstanceMethods</a>
+  
+    <li><a href="./RestfulComments/Commentable/SingletonMethods.html">RestfulComments::Commentable::SingletonMethods</a>
+  
+    <li><a href="./RestfulComments/Helper.html">RestfulComments::Helper</a>
+  
+    <li><a href="./Juixe.html">Juixe</a>
+  
+    <li><a href="./Juixe/Acts.html">Juixe::Acts</a>
+  
+    <li><a href="./Juixe/Acts/Commentable.html">Juixe::Acts::Commentable</a>
+  
+    <li><a href="./Juixe/Acts/Commentable/ClassMethods.html">Juixe::Acts::Commentable::ClassMethods</a>
+  
+    <li><a href="./Juixe/Acts/Commentable/InstanceMethods.html">Juixe::Acts::Commentable::InstanceMethods</a>
+  
+    <li><a href="./Juixe/Acts/Commentable/SingletonMethods.html">Juixe::Acts::Commentable::SingletonMethods</a>
+  
+    <li><a href="./YamlDb.html">YamlDb</a>
+  
+    <li><a href="./YamlDb/Dump.html">YamlDb::Dump</a>
+  
+    <li><a href="./YamlDb/EncodingException.html">YamlDb::EncodingException</a>
+  
+    <li><a href="./YamlDb/Load.html">YamlDb::Load</a>
+  
+    <li><a href="./YamlDb/Utils.html">YamlDb::Utils</a>
+  
+    <li><a href="./RoleRequirementSystem.html">RoleRequirementSystem</a>
+  
+    <li><a href="./RoleRequirementSystem/RoleSecurityClassMethods.html">RoleRequirementSystem::RoleSecurityClassMethods</a>
+  
+    <li><a href="./RoleRequirementSystem/RoleSecurityInstanceMethods.html">RoleRequirementSystem::RoleSecurityInstanceMethods</a>
+  
+    <li><a href="./ActionView.html">ActionView</a>
+  
+    <li><a href="./ActionView/Helpers.html">ActionView::Helpers</a>
+  
+    <li><a href="./ActiveRecordExtension.html">ActiveRecordExtension</a>
+  
+    <li><a href="./ActiveRecordExtension/ClassMethods.html">ActiveRecordExtension::ClassMethods</a>
+  
+    <li><a href="./ActsAsCommentableTest.html">ActsAsCommentableTest</a>
+  
+    <li><a href="./AliquotToPool.html">AliquotToPool</a>
+  
+    <li><a href="./AnnotateModels.html">AnnotateModels</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./AuthenticatedGenerator.html">AuthenticatedGenerator</a>
+  
+    <li><a href="./AuthenticatedSystem.html">AuthenticatedSystem</a>
+  
+    <li><a href="./AuthenticatedTestHelper.html">AuthenticatedTestHelper</a>
+  
+    <li><a href="./BeIdenticalWith.html">BeIdenticalWith</a>
+  
+    <li><a href="./BeNoLargerThan.html">BeNoLargerThan</a>
+  
+    <li><a href="./BuilderHelper.html">BuilderHelper</a>
+  
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentSystemTest.html">CommentSystemTest</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
+    <li><a href="./ControllerStub.html">ControllerStub</a>
+  
+    <li><a href="./CreateComments.html">CreateComments</a>
+  
+    <li><a href="./DummyController.html">DummyController</a>
+  
+    <li><a href="./Entry.html">Entry</a>
+  
+    <li><a href="./Event.html">Event</a>
+  
+    <li><a href="./ExistsPredicate.html">ExistsPredicate</a>
+  
+    <li><a href="./ExportCount.html">ExportCount</a>
+  
+    <li><a href="./ExportField.html">ExportField</a>
+  
+    <li><a href="./GeneList.html">GeneList</a>
+  
+    <li><a href="./HavePermissions.html">HavePermissions</a>
+  
+    <li><a href="./HaveTheExactDimensionsOf.html">HaveTheExactDimensionsOf</a>
+  
+    <li><a href="./Hijacker.html">Hijacker</a>
+  
+    <li><a href="./InventoryDB.html">InventoryDB</a>
+  
+    <li><a href="./MatchPath.html">MatchPath</a>
+  
+    <li><a href="./Monkey.html">Monkey</a>
+  
+    <li><a href="./Movie.html">Movie</a>
+  
+    <li><a href="./MyController.html">MyController</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./OligoAnnotation.html">OligoAnnotation</a>
+  
+    <li><a href="./OligoDesign.html">OligoDesign</a>
+  
+    <li><a href="./OligoDesignsController.html">OligoDesignsController</a>
+  
+    <li><a href="./OligoExtensions.html">OligoExtensions</a>
+  
+    <li><a href="./OtherController.html">OtherController</a>
+  
+    <li><a href="./PilotOligoDesign.html">PilotOligoDesign</a>
+  
+    <li><a href="./PilotOligoDesignsController.html">PilotOligoDesignsController</a>
+  
+    <li><a href="./PlatePosition.html">PlatePosition</a>
+  
+    <li><a href="./PlateTube.html">PlateTube</a>
+  
+    <li><a href="./PlateTubesController.html">PlateTubesController</a>
+  
+    <li><a href="./Pool.html">Pool</a>
+  
+    <li><a href="./PoolsController.html">PoolsController</a>
+  
+    <li><a href="./Project.html">Project</a>
+  
+    <li><a href="./Researcher.html">Researcher</a>
+  
+    <li><a href="./ResearchersController.html">ResearchersController</a>
+  
+    <li><a href="./Role.html">Role</a>
+  
+    <li><a href="./RoleGenerator.html">RoleGenerator</a>
+  
+    <li><a href="./RoleGeneratorHelpers.html">RoleGeneratorHelpers</a>
+  
+    <li><a href="./RoleRequirementTestHelper.html">RoleRequirementTestHelper</a>
+  
+    <li><a href="./RolesGenerator.html">RolesGenerator</a>
+  
+    <li><a href="./SessionsController.html">SessionsController</a>
+  
+    <li><a href="./SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="./Shroom.html">Shroom</a>
+  
+    <li><a href="./StorageLocation.html">StorageLocation</a>
+  
+    <li><a href="./StorageLocationsController.html">StorageLocationsController</a>
+  
+    <li><a href="./SynthOligo.html">SynthOligo</a>
+  
+    <li><a href="./SynthOligosController.html">SynthOligosController</a>
+  
+    <li><a href="./TaggedBuilder.html">TaggedBuilder</a>
+  
+    <li><a href="./TestMigration.html">TestMigration</a>
+  
+    <li><a href="./TestRoleController.html">TestRoleController</a>
+  
+    <li><a href="./UniversalSpecHelper.html">UniversalSpecHelper</a>
+  
+    <li><a href="./UploadColumnSpecHelper.html">UploadColumnSpecHelper</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UserNotifier.html">UserNotifier</a>
+  
+    <li><a href="./UserObserver.html">UserObserver</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./Vector.html">Vector</a>
+  
+    <li><a href="./VectorsController.html">VectorsController</a>
+  
+    <li><a href="./Version.html">Version</a>
+  
+    <li><a href="./VersionsController.html">VersionsController</a>
+  
+    <li><a href="./WelcomeController.html">WelcomeController</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class TestRoleController</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-setup" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">setup</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="setup-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">setup</span>
+  <span class="ruby-constant">MyController</span>.<span class="ruby-identifier">reset_role_requirements!</span>
+  <span class="ruby-constant">OtherController</span>.<span class="ruby-identifier">reset_role_requirements!</span>
+  
+  <span class="ruby-ivar">@controller</span> = <span class="ruby-constant">MyController</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- setup-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- setup-method -->
+
+    
+      <div id="method-i-test__controllers_dont_share_requirements" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test__controllers_dont_share_requirements</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test__controllers_dont_share_requirements-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 97</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test__controllers_dont_share_requirements</span>
+  <span class="ruby-ivar">@controller2</span> = <span class="ruby-constant">OtherController</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@controller2</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">require_role</span> <span class="ruby-string">&quot;user&quot;</span>
+  <span class="ruby-ivar">@controller2</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:current_user=</span>, <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:roles</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;user&quot;</span>)
+  
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">require_role</span> <span class="ruby-string">&quot;admin&quot;</span>
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:roles</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;admin&quot;</span>)
+  <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">check_roles</span>, <span class="ruby-string">&quot;should pass&quot;</span>)
+  <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@controller2</span>.<span class="ruby-identifier">check_roles</span>, <span class="ruby-string">&quot;should pass&quot;</span>)
+
+  <span class="ruby-ivar">@controller2</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:roles</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>)
+  <span class="ruby-identifier">set_roles</span> <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">assert</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">check_roles</span>, <span class="ruby-string">&quot;shouldn't pass&quot;</span>)
+  <span class="ruby-identifier">assert</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@controller2</span>.<span class="ruby-identifier">check_roles</span>, <span class="ruby-string">&quot;shouldn't pass&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test__controllers_dont_share_requirements-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test__controllers_dont_share_requirements-method -->
+
+    
+      <div id="method-i-test__for_alias" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test__for_alias</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test__for_alias-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test__for_alias</span>
+  <span class="ruby-identifier">require_role</span> <span class="ruby-string">&quot;admin&quot;</span>, <span class="ruby-value">:for</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">:update</span>, <span class="ruby-value">:destroy</span>, <span class="ruby-value">:delete</span>]
+  
+  <span class="ruby-identifier">set_roles</span> <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">assert_fails_with</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;update&quot;</span>
+  <span class="ruby-identifier">assert_passes_with</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;index&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test__for_alias-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test__for_alias-method -->
+
+    
+      <div id="method-i-test__for_all_except_alias" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test__for_all_except_alias</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test__for_all_except_alias-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test__for_all_except_alias</span>
+  <span class="ruby-identifier">require_role</span> <span class="ruby-string">&quot;admin&quot;</span>, <span class="ruby-value">:for_all_except</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">:index</span>]
+  
+  <span class="ruby-identifier">set_roles</span> <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">assert_fails_with</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;update&quot;</span>
+  <span class="ruby-identifier">assert_passes_with</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;index&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test__for_all_except_alias-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test__for_all_except_alias-method -->
+
+    
+      <div id="method-i-test__no_user__role_not_required__returns_true" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test__no_user__role_not_required__returns_true</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test__no_user__role_not_required__returns_true-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test__no_user__role_not_required__returns_true</span>
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">require_role</span> <span class="ruby-string">&quot;admin&quot;</span>, <span class="ruby-value">:except</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:index</span>
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-keyword">nil</span>
+  
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">params</span> = {<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;index&quot;</span> }
+  <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">check_roles</span>, <span class="ruby-string">&quot;should pass&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test__no_user__role_not_required__returns_true-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test__no_user__role_not_required__returns_true-method -->
+
+    
+      <div id="method-i-test__no_user__role_required__returns_false" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test__no_user__role_required__returns_false</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test__no_user__role_required__returns_false-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test__no_user__role_required__returns_false</span>
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">require_role</span> <span class="ruby-string">&quot;admin&quot;</span>
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-keyword">nil</span>
+  
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">params</span> = {<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;destroy&quot;</span> }
+  <span class="ruby-identifier">assert</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">check_roles</span>, <span class="ruby-string">&quot;shouldnt pass&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test__no_user__role_required__returns_false-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test__no_user__role_required__returns_false-method -->
+
+    
+      <div id="method-i-test__required_role_for_all__should_require" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test__required_role_for_all__should_require</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test__required_role_for_all__should_require-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test__required_role_for_all__should_require</span>
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">require_role</span> <span class="ruby-string">&quot;admin&quot;</span>
+  <span class="ruby-identifier">set_roles</span> <span class="ruby-string">&quot;&quot;</span>
+  
+  <span class="ruby-identifier">assert</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">check_roles</span>)
+
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:roles</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;admin&quot;</span>)
+  <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">check_roles</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test__required_role_for_all__should_require-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test__required_role_for_all__should_require-method -->
+
+    
+      <div id="method-i-test__url_options_authenticate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test__url_options_authenticate</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test__url_options_authenticate-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test__url_options_authenticate</span>
+  <span class="ruby-constant">MyController</span>.<span class="ruby-identifier">require_role</span> <span class="ruby-string">&quot;admin&quot;</span>, <span class="ruby-value">:only</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:destroy</span>
+  <span class="ruby-constant">OtherController</span>.<span class="ruby-identifier">require_role</span> <span class="ruby-string">&quot;admin&quot;</span>, <span class="ruby-value">:only</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:destroy</span>
+  
+  <span class="ruby-identifier">set_roles</span> <span class="ruby-string">&quot;&quot;</span>
+  
+  <span class="ruby-identifier">assert</span> <span class="ruby-operator">!</span> <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:url_options_authenticate?</span>, { <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:my</span>, <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;destroy&quot;</span> } ), <span class="ruby-string">&quot;shouldn't pass&quot;</span>
+  <span class="ruby-identifier">assert</span> <span class="ruby-operator">!</span> <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:url_options_authenticate?</span>, { <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:other</span>, <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;destroy&quot;</span> } ), <span class="ruby-string">&quot;shouldn't pass&quot;</span>
+  
+  <span class="ruby-identifier">assert</span> <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:url_options_authenticate?</span>, { <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:my</span>, <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;index&quot;</span> } ), <span class="ruby-string">&quot;should pass&quot;</span>
+  <span class="ruby-identifier">assert</span> <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:url_options_authenticate?</span>, { <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:other</span>, <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;index&quot;</span> } ), <span class="ruby-string">&quot;should pass&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test__url_options_authenticate-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test__url_options_authenticate-method -->
+
+    
+      <div id="method-i-test__url_options_authenticate__nil_value__should_handle" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test__url_options_authenticate__nil_value__should_handle</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test__url_options_authenticate__nil_value__should_handle-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 126</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test__url_options_authenticate__nil_value__should_handle</span>
+  <span class="ruby-identifier">assert_nothing_raised</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:url_options_authenticate?</span>, { <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:my</span> } )
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test__url_options_authenticate__nil_value__should_handle-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test__url_options_authenticate__nil_value__should_handle-method -->
+
+    
+      <div id="method-i-test__url_options_authenticate__nil_value__should_treat_as_index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test__url_options_authenticate__nil_value__should_treat_as_index</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test__url_options_authenticate__nil_value__should_treat_as_index-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 132</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test__url_options_authenticate__nil_value__should_treat_as_index</span>
+  <span class="ruby-constant">MyController</span>.<span class="ruby-identifier">require_role</span> <span class="ruby-string">&quot;admin&quot;</span>, <span class="ruby-value">:only</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:index</span>
+  <span class="ruby-identifier">set_roles</span> <span class="ruby-string">&quot;&quot;</span>
+
+  <span class="ruby-identifier">assert</span> <span class="ruby-operator">!</span> <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:url_options_authenticate?</span>, { <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:my</span> } ), <span class="ruby-string">&quot;shouldn't pass&quot;</span>
+  <span class="ruby-identifier">assert</span> <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:url_options_authenticate?</span>, { <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:my</span>, <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;destroy&quot;</span> } ), <span class="ruby-string">&quot;should pass&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test__url_options_authenticate__nil_value__should_treat_as_index-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test__url_options_authenticate__nil_value__should_treat_as_index-method -->
+
+    
+      <div id="method-i-test__url_options_authenticate__no_controller__assumes_self" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test__url_options_authenticate__no_controller__assumes_self</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test__url_options_authenticate__no_controller__assumes_self-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test__url_options_authenticate__no_controller__assumes_self</span>
+  <span class="ruby-constant">MyController</span>.<span class="ruby-identifier">require_role</span> <span class="ruby-string">&quot;admin&quot;</span>, <span class="ruby-value">:only</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:index</span>
+  <span class="ruby-identifier">set_roles</span> <span class="ruby-string">&quot;&quot;</span>
+
+  <span class="ruby-identifier">assert</span> <span class="ruby-operator">!</span> <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:url_options_authenticate?</span>, { <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;index&quot;</span> } ), <span class="ruby-string">&quot;shouldn't pass&quot;</span>
+  <span class="ruby-identifier">assert</span> <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:url_options_authenticate?</span>, { <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;boogy&quot;</span> } ), <span class="ruby-string">&quot;shouldn't pass&quot;</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test__url_options_authenticate__no_controller__assumes_self-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test__url_options_authenticate__no_controller__assumes_self-method -->
+
+    
+      <div id="method-i-test_required_role_for_excluded_actions_only__should_require" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_required_role_for_excluded_actions_only__should_require</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_required_role_for_excluded_actions_only__should_require-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_required_role_for_excluded_actions_only__should_require</span>
+  <span class="ruby-identifier">require_role</span> <span class="ruby-string">&quot;admin&quot;</span>, <span class="ruby-value">:except</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:index</span>
+  <span class="ruby-identifier">set_roles</span> <span class="ruby-string">&quot;&quot;</span>
+  
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">params</span> = {<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;update&quot;</span> }
+  <span class="ruby-identifier">assert</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">check_roles</span>, <span class="ruby-string">&quot;shouldn't pass&quot;</span>)
+  
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">params</span> = {<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;index&quot;</span> }
+  <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">check_roles</span>, <span class="ruby-string">&quot;should pass&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_required_role_for_excluded_actions_only__should_require-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_required_role_for_excluded_actions_only__should_require-method -->
+
+    
+      <div id="method-i-test_required_role_for_if_proc__should_require" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_required_role_for_if_proc__should_require</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_required_role_for_if_proc__should_require-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_required_role_for_if_proc__should_require</span>
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">require_role</span> <span class="ruby-string">&quot;admin&quot;</span>, <span class="ruby-value">:only</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:list</span>, <span class="ruby-value">:if</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">params</span><span class="ruby-operator">|</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:status</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;completed&quot;</span> }
+  <span class="ruby-identifier">set_roles</span> <span class="ruby-string">&quot;&quot;</span>
+  
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">params</span> = {<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;list&quot;</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;pending&quot;</span> }
+  <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">check_roles</span>, <span class="ruby-string">&quot;should pass&quot;</span>)
+  
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">params</span> = {<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;list&quot;</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;completed&quot;</span> }
+  <span class="ruby-identifier">assert</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">check_roles</span>, <span class="ruby-string">&quot;shouldn't pass&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_required_role_for_if_proc__should_require-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_required_role_for_if_proc__should_require-method -->
+
+    
+      <div id="method-i-test_required_role_for_some_actions_only__should_require" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_required_role_for_some_actions_only__should_require</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_required_role_for_some_actions_only__should_require-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_required_role_for_some_actions_only__should_require</span>
+  <span class="ruby-identifier">require_role</span> <span class="ruby-string">&quot;admin&quot;</span>, <span class="ruby-value">:only</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">:update</span>, <span class="ruby-value">:destroy</span>, <span class="ruby-value">:delete</span>]
+  <span class="ruby-identifier">set_roles</span> <span class="ruby-string">&quot;&quot;</span>
+  
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">params</span> = {<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;update&quot;</span> }
+  <span class="ruby-identifier">assert</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">check_roles</span>, <span class="ruby-string">&quot;shouldn't pass&quot;</span>)
+  
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">params</span> = {<span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;index&quot;</span> }
+  <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">check_roles</span>, <span class="ruby-string">&quot;should pass&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_required_role_for_some_actions_only__should_require-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_required_role_for_some_actions_only__should_require-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Protected Instance Methods</h3>
+
+    
+      <div id="method-i-assert_fails_with" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">assert_fails_with</span><span
+            class="method-args">(params = {})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="assert_fails_with-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 171</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_fails_with</span>(<span class="ruby-identifier">params</span> = {})
+  <span class="ruby-identifier">assert</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">passes_with_params?</span>(<span class="ruby-identifier">params</span>), <span class="ruby-string">&quot;should pass&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- assert_fails_with-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- assert_fails_with-method -->
+
+    
+      <div id="method-i-assert_passes_with" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">assert_passes_with</span><span
+            class="method-args">(params = {})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="assert_passes_with-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 167</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assert_passes_with</span>(<span class="ruby-identifier">params</span> = {})
+  <span class="ruby-identifier">assert</span> <span class="ruby-identifier">passes_with_params?</span>(<span class="ruby-identifier">params</span>), <span class="ruby-string">&quot;should pass&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- assert_passes_with-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- assert_passes_with-method -->
+
+    
+      <div id="method-i-passes_with_params-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">passes_with_params?</span><span
+            class="method-args">(params = {})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="passes_with_params-3F-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 162</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">passes_with_params?</span>(<span class="ruby-identifier">params</span> = {})
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">check_roles</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- passes_with_params-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- passes_with_params-3F-method -->
+
+    
+      <div id="method-i-require_role" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">require_role</span><span
+            class="method-args">(*params)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="require_role-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 150</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">require_role</span>(*<span class="ruby-identifier">params</span>)
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">require_role</span>(*<span class="ruby-identifier">params</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- require_role-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- require_role-method -->
+
+    
+      <div id="method-i-reset_role_requirements-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reset_role_requirements!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="reset_role_requirements-21-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 154</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reset_role_requirements!</span>
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">reset_role_requirements!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- reset_role_requirements-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- reset_role_requirements-21-method -->
+
+    
+      <div id="method-i-set_roles" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_roles</span><span
+            class="method-args">(roles = "")</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_roles-source">
+            <pre><span class="ruby-comment"># File lib/role_requirement/test/functional/test_role_controller.rb, line 158</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_roles</span>(<span class="ruby-identifier">roles</span> = <span class="ruby-string">&quot;&quot;</span>)
+  <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:roles</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">roles</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- set_roles-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- set_roles-method -->
+
+    
+    </section><!-- protected-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

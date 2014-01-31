@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>module AnnotateModels - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/annotate_models/lib/annotate_models.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-annotate">::annotate</a>
+    
+    <li><a href="#method-c-annotate_one_file">::annotate_one_file</a>
+    
+    <li><a href="#method-c-do_annotations">::do_annotations</a>
+    
+    <li><a href="#method-c-get_model_names">::get_model_names</a>
+    
+    <li><a href="#method-c-get_schema_info">::get_schema_info</a>
+    
+    <li><a href="#method-c-quote">::quote</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./UploadColumn.html">UploadColumn</a>
+  
+    <li><a href="./UploadColumn/ActionControllerExtension.html">UploadColumn::ActionControllerExtension</a>
+  
+    <li><a href="./UploadColumn/ActiveRecordExtension.html">UploadColumn::ActiveRecordExtension</a>
+  
+    <li><a href="./UploadColumn/ActiveRecordExtension/ClassMethods.html">UploadColumn::ActiveRecordExtension::ClassMethods</a>
+  
+    <li><a href="./UploadColumn/AssetTagExtension.html">UploadColumn::AssetTagExtension</a>
+  
+    <li><a href="./UploadColumn/ConfigurationProxy.html">UploadColumn::ConfigurationProxy</a>
+  
+    <li><a href="./UploadColumn/MagicColumns.html">UploadColumn::MagicColumns</a>
+  
+    <li><a href="./UploadColumn/Manipulators.html">UploadColumn::Manipulators</a>
+  
+    <li><a href="./UploadColumn/Manipulators/ImageScience.html">UploadColumn::Manipulators::ImageScience</a>
+  
+    <li><a href="./UploadColumn/Manipulators/RMagick.html">UploadColumn::Manipulators::RMagick</a>
+  
+    <li><a href="./UploadColumn/SanitizedFile.html">UploadColumn::SanitizedFile</a>
+  
+    <li><a href="./UploadColumn/UploadColumnHelper.html">UploadColumn::UploadColumnHelper</a>
+  
+    <li><a href="./UploadColumn/UploadedFile.html">UploadColumn::UploadedFile</a>
+  
+    <li><a href="./RestfulComments.html">RestfulComments</a>
+  
+    <li><a href="./RestfulComments/Commentable.html">RestfulComments::Commentable</a>
+  
+    <li><a href="./RestfulComments/Commentable/ClassMethods.html">RestfulComments::Commentable::ClassMethods</a>
+  
+    <li><a href="./RestfulComments/Commentable/CommentsExtension.html">RestfulComments::Commentable::CommentsExtension</a>
+  
+    <li><a href="./RestfulComments/Commentable/InstanceMethods.html">RestfulComments::Commentable::InstanceMethods</a>
+  
+    <li><a href="./RestfulComments/Commentable/SingletonMethods.html">RestfulComments::Commentable::SingletonMethods</a>
+  
+    <li><a href="./RestfulComments/Helper.html">RestfulComments::Helper</a>
+  
+    <li><a href="./Juixe.html">Juixe</a>
+  
+    <li><a href="./Juixe/Acts.html">Juixe::Acts</a>
+  
+    <li><a href="./Juixe/Acts/Commentable.html">Juixe::Acts::Commentable</a>
+  
+    <li><a href="./Juixe/Acts/Commentable/ClassMethods.html">Juixe::Acts::Commentable::ClassMethods</a>
+  
+    <li><a href="./Juixe/Acts/Commentable/InstanceMethods.html">Juixe::Acts::Commentable::InstanceMethods</a>
+  
+    <li><a href="./Juixe/Acts/Commentable/SingletonMethods.html">Juixe::Acts::Commentable::SingletonMethods</a>
+  
+    <li><a href="./YamlDb.html">YamlDb</a>
+  
+    <li><a href="./YamlDb/Dump.html">YamlDb::Dump</a>
+  
+    <li><a href="./YamlDb/EncodingException.html">YamlDb::EncodingException</a>
+  
+    <li><a href="./YamlDb/Load.html">YamlDb::Load</a>
+  
+    <li><a href="./YamlDb/Utils.html">YamlDb::Utils</a>
+  
+    <li><a href="./RoleRequirementSystem.html">RoleRequirementSystem</a>
+  
+    <li><a href="./RoleRequirementSystem/RoleSecurityClassMethods.html">RoleRequirementSystem::RoleSecurityClassMethods</a>
+  
+    <li><a href="./RoleRequirementSystem/RoleSecurityInstanceMethods.html">RoleRequirementSystem::RoleSecurityInstanceMethods</a>
+  
+    <li><a href="./ActionView.html">ActionView</a>
+  
+    <li><a href="./ActionView/Helpers.html">ActionView::Helpers</a>
+  
+    <li><a href="./ActiveRecordExtension.html">ActiveRecordExtension</a>
+  
+    <li><a href="./ActiveRecordExtension/ClassMethods.html">ActiveRecordExtension::ClassMethods</a>
+  
+    <li><a href="./ActsAsCommentableTest.html">ActsAsCommentableTest</a>
+  
+    <li><a href="./AliquotToPool.html">AliquotToPool</a>
+  
+    <li><a href="./AnnotateModels.html">AnnotateModels</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./AuthenticatedGenerator.html">AuthenticatedGenerator</a>
+  
+    <li><a href="./AuthenticatedSystem.html">AuthenticatedSystem</a>
+  
+    <li><a href="./AuthenticatedTestHelper.html">AuthenticatedTestHelper</a>
+  
+    <li><a href="./BeIdenticalWith.html">BeIdenticalWith</a>
+  
+    <li><a href="./BeNoLargerThan.html">BeNoLargerThan</a>
+  
+    <li><a href="./BuilderHelper.html">BuilderHelper</a>
+  
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentSystemTest.html">CommentSystemTest</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
+    <li><a href="./ControllerStub.html">ControllerStub</a>
+  
+    <li><a href="./CreateComments.html">CreateComments</a>
+  
+    <li><a href="./DummyController.html">DummyController</a>
+  
+    <li><a href="./Entry.html">Entry</a>
+  
+    <li><a href="./Event.html">Event</a>
+  
+    <li><a href="./ExistsPredicate.html">ExistsPredicate</a>
+  
+    <li><a href="./ExportCount.html">ExportCount</a>
+  
+    <li><a href="./ExportField.html">ExportField</a>
+  
+    <li><a href="./GeneList.html">GeneList</a>
+  
+    <li><a href="./HavePermissions.html">HavePermissions</a>
+  
+    <li><a href="./HaveTheExactDimensionsOf.html">HaveTheExactDimensionsOf</a>
+  
+    <li><a href="./Hijacker.html">Hijacker</a>
+  
+    <li><a href="./InventoryDB.html">InventoryDB</a>
+  
+    <li><a href="./MatchPath.html">MatchPath</a>
+  
+    <li><a href="./Monkey.html">Monkey</a>
+  
+    <li><a href="./Movie.html">Movie</a>
+  
+    <li><a href="./MyController.html">MyController</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./OligoAnnotation.html">OligoAnnotation</a>
+  
+    <li><a href="./OligoDesign.html">OligoDesign</a>
+  
+    <li><a href="./OligoDesignsController.html">OligoDesignsController</a>
+  
+    <li><a href="./OligoExtensions.html">OligoExtensions</a>
+  
+    <li><a href="./OtherController.html">OtherController</a>
+  
+    <li><a href="./PilotOligoDesign.html">PilotOligoDesign</a>
+  
+    <li><a href="./PilotOligoDesignsController.html">PilotOligoDesignsController</a>
+  
+    <li><a href="./PlatePosition.html">PlatePosition</a>
+  
+    <li><a href="./PlateTube.html">PlateTube</a>
+  
+    <li><a href="./PlateTubesController.html">PlateTubesController</a>
+  
+    <li><a href="./Pool.html">Pool</a>
+  
+    <li><a href="./PoolsController.html">PoolsController</a>
+  
+    <li><a href="./Project.html">Project</a>
+  
+    <li><a href="./Researcher.html">Researcher</a>
+  
+    <li><a href="./ResearchersController.html">ResearchersController</a>
+  
+    <li><a href="./Role.html">Role</a>
+  
+    <li><a href="./RoleGenerator.html">RoleGenerator</a>
+  
+    <li><a href="./RoleGeneratorHelpers.html">RoleGeneratorHelpers</a>
+  
+    <li><a href="./RoleRequirementTestHelper.html">RoleRequirementTestHelper</a>
+  
+    <li><a href="./RolesGenerator.html">RolesGenerator</a>
+  
+    <li><a href="./SessionsController.html">SessionsController</a>
+  
+    <li><a href="./SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="./Shroom.html">Shroom</a>
+  
+    <li><a href="./StorageLocation.html">StorageLocation</a>
+  
+    <li><a href="./StorageLocationsController.html">StorageLocationsController</a>
+  
+    <li><a href="./SynthOligo.html">SynthOligo</a>
+  
+    <li><a href="./SynthOligosController.html">SynthOligosController</a>
+  
+    <li><a href="./TaggedBuilder.html">TaggedBuilder</a>
+  
+    <li><a href="./TestMigration.html">TestMigration</a>
+  
+    <li><a href="./TestRoleController.html">TestRoleController</a>
+  
+    <li><a href="./UniversalSpecHelper.html">UniversalSpecHelper</a>
+  
+    <li><a href="./UploadColumnSpecHelper.html">UploadColumnSpecHelper</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UserNotifier.html">UserNotifier</a>
+  
+    <li><a href="./UserObserver.html">UserObserver</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./Vector.html">Vector</a>
+  
+    <li><a href="./VectorsController.html">VectorsController</a>
+  
+    <li><a href="./Version.html">Version</a>
+  
+    <li><a href="./VersionsController.html">VersionsController</a>
+  
+    <li><a href="./WelcomeController.html">WelcomeController</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module AnnotateModels</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="PREFIX">PREFIX
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-annotate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">annotate</span><span
+            class="method-args">(klass, header)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Given the name of an ActiveRecord class, create a schema info block
+(basically a comment containing information on the columns and their types)
+and put it at the front of the model and fixture source files.</p>
+          
+
+          
+          <div class="method-source-code" id="annotate-source">
+            <pre><span class="ruby-comment"># File lib/annotate_models/lib/annotate_models.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">annotate</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">header</span>)
+  <span class="ruby-identifier">info</span> = <span class="ruby-identifier">get_schema_info</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">header</span>)
+  
+  <span class="ruby-identifier">model_file_name</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">MODEL_DIR</span>, <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">underscore</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.rb&quot;</span>)
+  <span class="ruby-identifier">annotate_one_file</span>(<span class="ruby-identifier">model_file_name</span>, <span class="ruby-identifier">info</span>)
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">RAILS_ROOT</span>, <span class="ruby-string">&quot;spec&quot;</span>)
+    <span class="ruby-identifier">rspec_file_name</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">RSPEC_DIR</span>, <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">underscore</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_spec.rb&quot;</span>)
+    <span class="ruby-identifier">annotate_one_file</span>(<span class="ruby-identifier">rspec_file_name</span>, <span class="ruby-identifier">info</span>)
+    
+    <span class="ruby-identifier">rspec_fixture</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">RSPEC_FIXTURES</span>, <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">table_name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.yml&quot;</span>)
+    <span class="ruby-identifier">annotate_one_file</span>(<span class="ruby-identifier">rspec_fixture</span>, <span class="ruby-identifier">info</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">FIXTURE_DIR</span>, <span class="ruby-string">&quot;**&quot;</span>, <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">table_name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.yml&quot;</span>)) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">fixture_file_name</span> <span class="ruby-operator">|</span>
+    <span class="ruby-identifier">annotate_one_file</span>(<span class="ruby-identifier">fixture_file_name</span>, <span class="ruby-identifier">info</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- annotate-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- annotate-method -->
+
+    
+      <div id="method-c-annotate_one_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">annotate_one_file</span><span
+            class="method-args">(file_name, info_block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add a schema block to a file. If the file already contains a schema info
+block (a comment starting with “Schema as of …”), remove it first.</p>
+          
+
+          
+          <div class="method-source-code" id="annotate_one_file-source">
+            <pre><span class="ruby-comment"># File lib/annotate_models/lib/annotate_models.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">annotate_one_file</span>(<span class="ruby-identifier">file_name</span>, <span class="ruby-identifier">info_block</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">file_name</span>)
+    <span class="ruby-identifier">content</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">file_name</span>)
+
+    <span class="ruby-comment"># Remove old schema info</span>
+    <span class="ruby-identifier">content</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-node">/^# #{PREFIX}.*?\n(#.*\n)*\n/</span>, <span class="ruby-string">''</span>)
+
+    <span class="ruby-comment"># Write it back</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file_name</span>, <span class="ruby-string">&quot;w&quot;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">info_block</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">content</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- annotate_one_file-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- annotate_one_file-method -->
+
+    
+      <div id="method-c-do_annotations" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">do_annotations</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>We’re passed a name of things that might be  ActiveRecord models. If we can
+find the class, and if its a subclass of ActiveRecord::Base, then pas it to
+the associated block</p>
+          
+
+          
+          <div class="method-source-code" id="do_annotations-source">
+            <pre><span class="ruby-comment"># File lib/annotate_models/lib/annotate_models.rb, line 116</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">do_annotations</span>
+  <span class="ruby-identifier">header</span> = <span class="ruby-constant">PREFIX</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-identifier">version</span> = <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Migrator</span>.<span class="ruby-identifier">current_version</span> <span class="ruby-keyword">rescue</span> <span class="ruby-value">0</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">version</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">header</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\n# Schema version: #{version}&quot;</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_model_names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">class_name</span> = <span class="ruby-identifier">m</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/\.rb$/</span>,<span class="ruby-string">''</span>).<span class="ruby-identifier">camelize</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">class_name</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">'::'</span>).<span class="ruby-identifier">inject</span>(<span class="ruby-constant">Object</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">klass</span>,<span class="ruby-identifier">part</span><span class="ruby-operator">|</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">part</span>) }
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">klass</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">klass</span>.<span class="ruby-identifier">abstract_class?</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Annotating #{class_name}&quot;</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">annotate</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">header</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Skipping #{class_name}&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Unable to annotate #{class_name}: #{e.message}&quot;</span>
+    <span class="ruby-keyword">end</span>
+    
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- do_annotations-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- do_annotations-method -->
+
+    
+      <div id="method-c-get_model_names" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_model_names</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return a list of the model files to annotate. If we have  command line
+arguments, they’re assumed to be either the underscore or CamelCase
+versions of model names. Otherwise we take all the model files in the 
+app/models directory.</p>
+          
+
+          
+          <div class="method-source-code" id="get_model_names-source">
+            <pre><span class="ruby-comment"># File lib/annotate_models/lib/annotate_models.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_model_names</span>
+  <span class="ruby-identifier">models</span> = <span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">dup</span>
+  <span class="ruby-identifier">models</span>.<span class="ruby-identifier">shift</span>
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">models</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-constant">MODEL_DIR</span>) <span class="ruby-keyword">do</span> 
+      <span class="ruby-identifier">models</span> = <span class="ruby-constant">Dir</span>[<span class="ruby-string">&quot;**/*.rb&quot;</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">models</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_model_names-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_model_names-method -->
+
+    
+      <div id="method-c-get_schema_info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_schema_info</span><span
+            class="method-args">(klass, header)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Use the column information in an ActiveRecord class to create a comment
+block containing a line for each column. The line contains the column name,
+the type (and length), and any optional attributes</p>
+          
+
+          
+          <div class="method-source-code" id="get_schema_info-source">
+            <pre><span class="ruby-comment"># File lib/annotate_models/lib/annotate_models.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_schema_info</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">header</span>)
+  <span class="ruby-identifier">info</span> = <span class="ruby-node">&quot;# #{header}\n#\n&quot;</span>
+  <span class="ruby-identifier">info</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;# Table name: #{klass.table_name}\n#\n&quot;</span>
+  
+  <span class="ruby-identifier">max_size</span> = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">column_names</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">size</span>}.<span class="ruby-identifier">max</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+  <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">columns</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">col</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">attrs</span> = []
+    <span class="ruby-identifier">attrs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;default(#{quote(col.default)})&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">col</span>.<span class="ruby-identifier">default</span>
+    <span class="ruby-identifier">attrs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;not null&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">col</span>.<span class="ruby-identifier">null</span>
+    <span class="ruby-identifier">attrs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;primary key&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">col</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">primary_key</span>
+
+    <span class="ruby-identifier">col_type</span> = <span class="ruby-identifier">col</span>.<span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_s</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">col_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;decimal&quot;</span>
+      <span class="ruby-identifier">col_type</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;(#{col.precision}, #{col.scale})&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">col_type</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;(#{col.limit})&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">col</span>.<span class="ruby-identifier">limit</span>
+    <span class="ruby-keyword">end</span> 
+    <span class="ruby-identifier">info</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sprintf</span>(<span class="ruby-node">&quot;#  %-#{max_size}.#{max_size}s:%-15.15s %s&quot;</span>, <span class="ruby-identifier">col</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">col_type</span>, <span class="ruby-identifier">attrs</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;, &quot;</span>)).<span class="ruby-identifier">rstrip</span>
+    <span class="ruby-identifier">info</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">info</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#\n\n&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_schema_info-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_schema_info-method -->
+
+    
+      <div id="method-c-quote" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">quote</span><span
+            class="method-args">(value)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Simple quoting for the default column value</p>
+          
+
+          
+          <div class="method-source-code" id="quote-source">
+            <pre><span class="ruby-comment"># File lib/annotate_models/lib/annotate_models.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">value</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">NilClass</span>                 <span class="ruby-keyword">then</span> <span class="ruby-string">&quot;NULL&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">TrueClass</span>                <span class="ruby-keyword">then</span> <span class="ruby-string">&quot;TRUE&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">FalseClass</span>               <span class="ruby-keyword">then</span> <span class="ruby-string">&quot;FALSE&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">Float</span>, <span class="ruby-constant">Fixnum</span>, <span class="ruby-constant">Bignum</span>    <span class="ruby-keyword">then</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>
+    <span class="ruby-comment"># BigDecimals need to be output in a non-normalized form and quoted.</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">BigDecimal</span>               <span class="ruby-keyword">then</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-string">'F'</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">value</span>.<span class="ruby-identifier">inspect</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- quote-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- quote-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
