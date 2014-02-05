@@ -20,11 +20,11 @@ class Comment < ActiveRecord::Base
 		'/' + self[:commentable_type].tableize + '/' + self[:commentable_id].to_s
 	end
 	
-	def before_create
-		if !self[:parent_id].to_i.zero?
-			self[:depth] = parent[:depth].to_i + 1
+	def before_create(comment)
+		if !comment[:parent_id].to_i.zero?
+			comment[:depth] = parent[:depth].to_i + 1
 		else
-			self[:depth] = 0
+			comment[:depth] = 0
 		end
 	end
 	
