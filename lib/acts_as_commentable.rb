@@ -22,10 +22,11 @@ module Juixe
         def find_comments_for(obj)
           commentable = ActiveRecord::Base.send(:class_name_of_active_record_descendant, self).to_s
          
-          Comment.find(:all,
-            :conditions => ["commentable_id = ? and commentable_type = ?", obj.id, commentable],
-            :order => "created_at DESC"
-          )
+          Comment.where("commentable_id = ? and commentable_type = ?", obj.id, commentable).order("created_at DESC").all
+          #Comment.find(:all,
+          #  :conditions => ["commentable_id = ? and commentable_type = ?", obj.id, commentable],
+          #  :order => "created_at DESC"
+          #)
         end
         
         # Helper class method to lookup comments for
@@ -34,10 +35,11 @@ module Juixe
         def find_comments_by_user(user) 
           commentable = ActiveRecord::Base.send(:class_name_of_active_record_descendant, self).to_s
           
-          Comment.find(:all,
-            :conditions => ["user_id = ? and commentable_type = ?", user.id, commentable],
-            :order => "created_at DESC"
-          )
+          Comment.where("user_id = ? and commentable_type = ?", user.id, commentable).order("created_at DESC").all
+          #Comment.find(:all,
+          #  :conditions => ["user_id = ? and commentable_type = ?", user.id, commentable],
+          #  :order => "created_at DESC"
+          #)
         end
       end
       
@@ -45,10 +47,11 @@ module Juixe
       module InstanceMethods
         # Helper method to sort comments by date
         def comments_ordered_by_submitted
-          Comment.find(:all,
-            :conditions => ["commentable_id = ? and commentable_type = ?", id, self.type.name],
-            :order => "created_at DESC"
-          )
+          Comment.where("commentable_id = ? and commentable_type = ?", id, self.type.name).order("created_at DESC").all
+          #Comment.find(:all,
+          #  :conditions => ["commentable_id = ? and commentable_type = ?", id, self.type.name],
+          #  :order => "created_at DESC"
+          #)
         end
         
         # Helper method that defaults the submitted time.

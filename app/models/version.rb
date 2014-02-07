@@ -26,7 +26,7 @@ class Version < ActiveRecord::Base
   scope :curr_version, :conditions => {:archive_flag => 'C'}, :order => 'id DESC'
   scope :exome_version, :conditions => {:exonome_or_partial => 'E'}
   
-  before_save do |version|
+  before_save(version)
     version.archive_flag = (version.exonome_or_partial == 'E' ? 'C' : 'P')
   end
   
