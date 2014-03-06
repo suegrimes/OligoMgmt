@@ -34,6 +34,7 @@ class UsersController < ApplicationController
   # render edit.html
   def edit 
     @user = User.find(params[:id])
+    @user = current_user if (cannot? :edit, @user)
     @roles = Role.all
   end
   
@@ -41,6 +42,7 @@ class UsersController < ApplicationController
     params[:user][:role_ids] ||= []
  
     @user = User.find(params[:id])
+    authorize! :update, @user
     @user.roles = Role.find(params[:user][:role_ids])
 
     if @user.update_attributes(params[:user])
@@ -55,6 +57,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user = User.find(params[:id])
+    authorize! :destroy, @user
     @user.destroy
 
     redirect_to(users_url) 
