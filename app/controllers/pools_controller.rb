@@ -1,5 +1,6 @@
 class PoolsController < ApplicationController
-  require_role "stanford"
+  #require_role "stanford"
+  load_and_authorize_resource
   
   def new_params
     @pool_types   = Pool.pool_types.insert(0,'')

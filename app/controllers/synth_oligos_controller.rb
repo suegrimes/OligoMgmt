@@ -1,5 +1,6 @@
 class SynthOligosController < ApplicationController
-  require_role "stanford"
+  #require_role "stanford"
+  load_and_authorize_resource
   
   # GET /synth_oligos
   def index

@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
 
   skip_before_filter :login_required, :only => [:new, :create, :forgot, :reset]
-  require_role "admin", :for_all_except => [:new, :create, :forgot, :reset]
+  #require_role "admin", :for_all_except => [:new, :create, :forgot, :reset]
+  #load_and_authorize_resource
 
   # render index.rhtml
   def index
-    @users = User.includes(:roles).all
+    @users = User.find_all_with_authorization(current_user)
   end
 
   # render new.rhtml

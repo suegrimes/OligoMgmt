@@ -1,5 +1,7 @@
 class OligoDesignsController < ApplicationController
-  require_role "admin", :for => [:new, :create, :edit, :update]
+  load_and_authorize_resource
+  #require_role "admin", :for => [:new, :create, :edit, :update]
+  #require_role "admin", :for_all_except => [:show, :new_query, :index, :export_design, :zip_download, :add_comment, :get_gene_list]
   
   # GET /oligo_designs/1
   def show

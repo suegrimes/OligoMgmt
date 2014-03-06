@@ -1,5 +1,6 @@
 class ResearchersController < ApplicationController
-  require_role "admin", :for_all_except => :index
+  #require_role "admin", :for_all_except => :index
+  load_and_authorize_resource
   
   # GET /researchers
   # GET /researchers.xml

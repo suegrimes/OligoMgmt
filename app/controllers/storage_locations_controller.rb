@@ -1,6 +1,7 @@
 class StorageLocationsController < ApplicationController
-  require_role "stanford"
-  
+  #require_role "stanford"
+  load_and_authorize_resource
+
   # GET /storage_locations
   # GET /storage_locations.xml
   def index

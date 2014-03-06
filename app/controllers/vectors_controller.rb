@@ -1,6 +1,7 @@
 class VectorsController < ApplicationController
-    require_role "stanford"
-    require_role "admin", :for => [:new, :create, :destroy]
+    #require_role ["stanford","admin"]
+    #require_role "admin", :for => [:new, :create, :destroy]
+    load_and_authorize_resource
   
   # GET /vectors
   def index
