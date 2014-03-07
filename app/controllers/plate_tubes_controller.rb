@@ -1,5 +1,6 @@
 class PlateTubesController < ApplicationController
-  require_role "stanford"
+  #require_role "stanford"
+  load_and_authorize_resource
   
   def new_query
     @min_date, @max_date = PlateTube.find_min_and_max_dates

@@ -5,6 +5,14 @@ class ApplicationController < ActionController::Base
   include OligoExtensions
 
   before_filter :login_required
+  #Make current_user accessible from model (via User.current_user)
+  before_filter :set_current_user
+
+  rescue_from CanCan::AccessDenied do |exception|
+    user_login = (current_user.nil? ? nil : current_user.login)
+    flash[:error] = "Sorry #{user_login}, you are not authorized to access that page"
+    redirect_to root_url
+  end
   
   require 'csv'
 
@@ -184,4 +192,13 @@ class ApplicationController < ActionController::Base
       return *condition_array
     end
   end
+
+  protected
+  def set_current_user
+    @user = User.find_by_id(session[:user])
+    if @user
+      User.current_user = @user
+    end
+  end
+
 end
