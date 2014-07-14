@@ -91,17 +91,17 @@ class PoolsController < ApplicationController
       @pool.total_oligos += Pool.where('id IN (?)', @checked_pool_ids).sum(:total_oligos)
 
       aliquot_to_pools = AliquotToPool.where('pool_id IN (?)', @checked_pool_ids).all
-      aliquot_to_pools.each {|aliquot| @pool.aliquot_to_pools.build(:plate_position => aliquot.plate_position)}
+      aliquot_to_pools.each {|aliquot| @pool.aliquot_to_pools.build(:plate_position_id => aliquot.plate_position_id)}
     end
     
     if params[:plate_tube_id]    # Selecting entire plate/tube(s)
       @current_plates = PlateTube.where('id IN (?)', params[:plate_tube_id].keys).all
       @checked_plate_ids = params[:plate_tube_id].reject {|id, val| val == '0'}.keys
       @pool.from_plates = @checked_plate_ids
-      @pool.total_oligos += SynthOligo.includes(:plate_position).where('plate_or_tube_id IN (?)', @checked_plate_ids).count(:id)
+      @pool.total_oligos += SynthOligo.includes(:plate_position).where('plate_positions.plate_or_tube_id IN (?)', @checked_plate_ids).count(:id)
         
       plate_positions = PlatePosition.where('plate_or_tube_id IN (?)', @checked_plate_ids).all
-      plate_positions.each {|plate_position| @pool.aliquot_to_pools.build(:plate_position => plate_position)}
+      plate_positions.each {|plate_position| @pool.aliquot_to_pools.build(:plate_position_id => plate_position.id)}
     end
     
     if params[:plate_position_id]  # Cherrypicking oligos from plate(s)
