@@ -3,3 +3,7 @@ META_TAGS = {:description => "Stanford Human OligoExome comprises capture oligon
                             cancer research, resequencing, dna sequencing, capture sequence, primer, CCDS, gene, regulatory region"]}
 
 require 'active_record_extension'
+
+SITE_URL = 'http://sgtc-svr108.stanford.edu/OligoMgmt'
+EMAIL_FROM = 'sgtc_lims@stanford.edu'
+

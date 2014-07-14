@@ -48,17 +48,6 @@ OligoMgmt::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
 
-  # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-             :enable_starttls_auto => true,
-             :address => 'smtp.stanford.edu',
-             :port    => 25,
-             :domain  => 'stanford.edu',
-             :tls     => true
-             }
-
   # Enable threaded mode
   # config.threadsafe!
 
