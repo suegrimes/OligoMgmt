@@ -40,6 +40,21 @@
 	<td><%=h @synth_oligo.oligo.version.version_id_name %></td>
   </tr>
 </table>
+<% else %>
+    <table class="list">
+      <tr>
+        <th>Gene</th>
+        <th>Chr</th>
+        <th>Start Pos</th>
+        <th>Polarity</th>
+      </tr>
+      <tr>
+        <td><%=h @synth_oligo.gene_code %></td>
+        <td><%=h @synth_oligo.chromosome_nr %></td>
+        <td><%=h @synth_oligo.chr_start_pos %></td>
+        <td><%=h @synth_oligo.strand %></td>
+      </tr>
+    </table>
 <% end %>
 
 <table class="list">
