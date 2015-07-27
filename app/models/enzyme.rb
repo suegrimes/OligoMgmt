@@ -13,6 +13,7 @@
 #
 
 class Enzyme < ActiveRecord::Base
-  ENZYMES = Enzyme.all.pluck(:enzyme_name)
+  #ENZYMES = Enzyme.all.pluck(:enzyme_name)
+  ENZYMES = Enzyme.all.map{ |enzyme| enzyme.enzyme_name}
   ENZYMES_WO_GAPFILL = ENZYMES.reject { |enzyme| enzyme =~ /.*_gapfill/}
 end
