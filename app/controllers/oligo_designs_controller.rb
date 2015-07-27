@@ -14,7 +14,7 @@ class OligoDesignsController < ApplicationController
   #*******************************************************************************************#
   def new_query
     @versions = Version.curr_version.order(:id)
-    @enzymes = OligoDesign::ENZYMES_WO_GAPFILL 
+    @enzymes = Enzyme::ENZYMES_WO_GAPFILL
   end
 
   #*******************************************************************************************#

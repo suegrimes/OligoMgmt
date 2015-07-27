@@ -54,9 +54,9 @@ class OligoDesign < ActiveRecord::Base
   scope :qcpassed, :conditions => ['internal_QC IS NULL OR internal_QC = " " ']
   scope :notflagged, :conditions => ['annotation_codes IS NULL OR annotation_codes < "A" ']
   
-  unique_enzymes = self.curr_ver.select('DISTINCT(enzyme_code)').group('enzyme_code').all
-  ENZYMES = unique_enzymes.map{ |design| design.enzyme_code }
-  ENZYMES_WO_GAPFILL = ENZYMES.reject { |enzyme| enzyme =~ /.*_gapfill/}
+  #unique_enzymes = self.curr_ver.select('DISTINCT(enzyme_code)').group('enzyme_code').all
+  #ENZYMES = unique_enzymes.map{ |design| design.enzyme_code }
+  #ENZYMES_WO_GAPFILL = ENZYMES.reject { |enzyme| enzyme =~ /.*_gapfill/}
   #VECTOR = 'ACGATAACGGTACAAGGCTAAAGCTTTGCTAACGGTCGAG'
 
   #****************************************************************************************#
