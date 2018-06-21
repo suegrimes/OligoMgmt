@@ -28,7 +28,7 @@ gem 'prototype-rails'
 
 gem "cancan", '~> 1.6.4'
 
-gem 'rvm-capistrano', group: :production
+gem 'rvm1-capistrano3', group: :production
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
