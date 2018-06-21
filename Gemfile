@@ -19,7 +19,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-
 #gem 'jquery-rails', '2.0.2'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -28,6 +27,8 @@ gem 'jquery_datepicker'
 gem 'prototype-rails'
 
 gem "cancan", '~> 1.6.4'
+
+gem 'rvm-capistrano', group: :production
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
